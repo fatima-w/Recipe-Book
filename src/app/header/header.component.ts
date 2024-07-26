@@ -24,14 +24,15 @@ export class HeaderComponent {
   ngOnInit(){
     this.userSub = this.authService.user.subscribe(user =>{
       this.isAuthenticated = !!user;
+      this.authService.isAuthenticated.next(!!user);
       // console.log(!user);
       console.log("user authentication status: ",!!user);
     });
   }
 
   onMyRecipeClicked(){
-    this.groupService.isPrivate = true;
-    console.log("Private recipes group status",this.groupService.isPrivate)
+    // this.groupService.isPrivate = true;
+    // console.log("Private recipes group status",this.groupService.isPrivate)
   }
   saveRecipes(){
     this.dataService.storeRecipes();
