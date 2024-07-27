@@ -1,0 +1,105 @@
+/* Container styling for authentication form */
+.container-fluid {
+    max-width: 600px; /* Set a max-width for the form container */
+    margin-top: 5rem; /* Spacing from the top of the viewport */
+    background-color: #ECFFE6; /* Light green background for the form container */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    padding: 2rem; /* Padding inside the container */
+}
+
+/* Alert styling for error messages */
+.alert {
+    margin-bottom: 1.5rem; /* Space below the alert */
+    border-radius: 4px; /* Rounded corners for alert box */
+    padding: 1rem; /* Padding inside the alert */
+    background-color: #FF7777; /* Soft red background for errors */
+    color: #ffffff; /* White text for readability */
+}
+
+/* Loader styling */
+app-loading {
+    display: block; /* Ensure the loader is displayed as block element */
+    margin: 2rem auto; /* Center the loader horizontally with spacing */
+}
+
+/* Form styling */
+form {
+    display: flex;
+    flex-direction: column; /* Arrange form elements in a column */
+}
+
+/* Form group styling */
+.form-group {
+    margin-bottom: 1rem; /* Space below each form group */
+}
+
+.form-control {
+    width: 100%; /* Full width for input fields */
+    padding: 0.75rem; /* Padding inside input fields */
+    border-radius: 4px; /* Rounded corners for input fields */
+    border: 1px solid #ced4da; /* Light border */
+    font-size: 1rem; /* Font size for readability */
+    box-sizing: border-box; /* Ensure padding does not affect width */
+}
+
+/* Input focus styling */
+.form-control:focus {
+    border-color: #FFF455; /* Bright yellow border on focus */
+    outline: none; /* Remove default outline */
+    box-shadow: 0 0 0 0.2rem rgba(255, 244, 85, 0.25); /* Yellow focus shadow */
+}
+
+/* Button styling */
+.btn {
+    background-color: #FFF455; /* Bright yellow button color */
+    color: #333333; /* Dark text for contrast */
+    padding: 0.75rem 1.5rem; /* Padding inside the button */
+    border: none; /* Remove default border */
+    border-radius: 4px; /* Rounded corners */
+    font-size: 1rem; /* Font size for readability */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Smooth transition effects */
+    margin: 0.5rem; /* Spacing between buttons */
+}
+
+/* Button hover effect */
+.btn:hover {
+    background-color: #F6FB7A; /* Light yellow on hover */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Enhanced shadow on hover */
+}
+
+/* Disabled button styling */
+.btn:disabled {
+    background-color: #f0f0f0; /* Light gray background for disabled state */
+    color: #999999; /* Gray text */
+    cursor: not-allowed; /* Not-allowed cursor for disabled state */
+}
+
+/* Form link button styling */
+.btn[type="button"] {
+    background-color: #88D66C; /* Vibrant green color for secondary button */
+    color: #ffffff; /* White text */
+    margin-top: 1rem; /* Margin above the button */
+}
+
+/* Link button hover effect */
+.btn[type="button"]:hover {
+    background-color: #B4E380; /* Lighter green on hover */
+}
+
+/* Responsive styling */
+@media (max-width: 576px) {
+    .container-fluid {
+        padding: 1.5rem; /* Reduced padding on small screens */
+    }
+
+    .form-control {
+        padding: 0.5rem; /* Reduced padding inside input fields */
+    }
+
+    .btn {
+        width: 100%; /* Full-width buttons on small screens */
+        padding: 0.5rem; /* Reduced padding inside buttons */
+    }
+}

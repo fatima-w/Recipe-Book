@@ -1,42 +1,74 @@
-/* src/app/group-create/group-create.component.css */
-
+/* Container Styling */
 .group-create-container {
-    max-width: 400px;
-    margin: 0 auto;
-    padding: 20px;
-    background-color: #f9f9f9;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
-  
-  .form-group {
-    margin-bottom: 15px;
-  }
-  
-  .form-control {
-    width: 100%;
-    padding: 10px;
-    font-size: 14px;
-    border-radius: 4px;
-    border: 1px solid #ccc;
-  }
-  
-  .btn {
-    background-color: #007bff;
-    color: white;
-    padding: 10px 15px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  
-  .btn:disabled {
-    background-color: #ccc;
-    cursor: not-allowed;
-  }
-  
-  .text-danger {
-    color: #d9534f;
-    font-size: 12px;
-  }
-  
+  max-width: 500px; /* Increased max-width for better layout */
+  margin: 30px auto; /* Added margin for top and bottom spacing */
+  padding: 30px; /* Increased padding for better spacing */
+  background-color: #ffffff; /* Pure white background */
+  border-radius: 12px; /* More rounded corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /* Stronger shadow for depth */
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition effects */
+}
+
+.group-create-container:hover {
+  transform: translateY(-5px); /* Slight lift effect on hover */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Enhanced shadow on hover */
+}
+
+/* Form Group Styling */
+.form-group {
+  margin-bottom: 20px; /* Increased spacing between form groups */
+}
+
+/* Input and Textarea Styling */
+.form-control {
+  width: 100%;
+  padding: 12px 15px; /* Adjusted padding for better input area */
+  font-size: 15px; /* Increased font size for readability */
+  border-radius: 6px; /* Slightly more rounded corners */
+  border: 1px solid #ddd; /* Lighter border color */
+  transition: border-color 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for border and shadow */
+}
+
+.form-control:focus {
+  border-color: #007bff; /* Blue border on focus */
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Blue shadow on focus */
+}
+
+/* Checkbox Styling */
+.form-check-input {
+  margin-top: 8px; /* Slight adjustment for better alignment */
+}
+
+.form-check-label {
+  margin-left: 5px; /* Small spacing between checkbox and label */
+}
+
+/* Button Styling */
+.btn {
+  background-color: #007bff; /* Primary blue background */
+  color: white; /* White text */
+  padding: 12px 20px; /* Adjusted padding for better button size */
+  border: none; /* No border */
+  border-radius: 6px; /* Slightly more rounded corners */
+  cursor: pointer; /* Pointer cursor */
+  font-size: 16px; /* Larger font size */
+  transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition effects */
+}
+
+.btn:hover {
+  background-color: #0056b3; /* Darker blue on hover */
+  transform: translateY(-2px); /* Slight lift effect on hover */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Stronger shadow on hover */
+}
+
+.btn:disabled {
+  background-color: #ccc; /* Grey background when disabled */
+  cursor: not-allowed; /* Not-allowed cursor when disabled */
+}
+
+/* Error Text Styling */
+.text-danger {
+  color: #d9534f; /* Red color for error text */
+  font-size: 13px; /* Slightly larger font size */
+  margin-top: 5px; /* Small margin above error text */
+}

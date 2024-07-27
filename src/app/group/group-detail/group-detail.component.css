@@ -1,32 +1,117 @@
-/* .container {
-    max-width: 800px;
-  } */
-  
-  .card {
-    border: none;
-    border-radius: 15px;
-  }
-  
-  .card-title {
-    font-size: 1.75rem;
-    font-weight: bold;
-    color: #333;
-  }
-  
-  .text-muted {
-    font-size: 1rem;
-  }
-  
-  .img-fluid {
-    max-height: 200px;
-    object-fit: cover;
-  }
-  
-  .group-actions .btn {
-    font-size: 0.9rem;
-  }
-  
-  hr {
-    border-top: 1px solid rgba(0, 0, 0, 0.1);
-  }
-  
+/* Container */
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+/* Card Styling */
+.card {
+  border: none;
+  border-radius: 20px;
+  background-color: #fff3e0; /* Light orange background */
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1); /* Stronger shadow for depth */
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for transform and shadow */
+}
+
+.card:hover {
+  transform: translateY(-5px); /* Lift effect on hover */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15); /* Stronger shadow on hover */
+}
+
+/* Card Title */
+.card-title {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #d32f2f; /* Bold red color */
+}
+
+/* Muted Text */
+.text-muted {
+  font-size: 1.1rem;
+  color: #757575; /* Light gray color */
+}
+
+/* Image Styling */
+.img-fluid {
+  max-height: 250px;
+  object-fit: cover;
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+/* Group Actions */
+.group-actions .btn {
+  font-size: 1rem;
+  border-radius: 50px;
+  transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth transition for background color and transform */
+}
+
+.group-actions .btn-outline-secondary {
+  color: #00796b;
+  border-color: #00796b;
+}
+
+.group-actions .btn-outline-secondary:hover {
+  background-color: #00796b;
+  color: #fff;
+  transform: translateY(-2px); /* Lift effect on hover */
+}
+
+.group-actions .btn-outline-danger {
+  color: #d32f2f;
+  border-color: #d32f2f;
+}
+
+.group-actions .btn-outline-danger:hover {
+  background-color: #d32f2f;
+  color: #fff;
+  transform: translateY(-2px); /* Lift effect on hover */
+}
+
+/* Divider */
+hr {
+  border-top: 2px solid rgba(0, 0, 0, 0.1);
+}
+
+/* Button */
+.btn-primary {
+  background-color: #ff5722;
+  border: none;
+  border-radius: 50px;
+  transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth transition for background color and transform */
+}
+
+.btn-primary:hover {
+  background-color: #e64a19;
+  transform: translateY(-2px); /* Lift effect on hover */
+}
+
+/* General Padding and Margin Adjustments */
+.mt-3 {
+  margin-top: 1.5rem !important;
+}
+
+.mb-3 {
+  margin-bottom: 1.5rem !important;
+}
+
+.me-2 {
+  margin-right: 0.5rem !important;
+}
+
+.me-1 {
+  margin-right: 0.25rem !important;
+}
+
+/* Flex Utilities */
+.d-flex {
+  display: flex !important;
+}
+
+.align-items-center {
+  align-items: center !important;
+}
+
+.justify-content-between {
+  justify-content: space-between !important;
+}

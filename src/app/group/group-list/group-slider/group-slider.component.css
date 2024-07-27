@@ -1,54 +1,111 @@
+/* Slider Container */
 .slider-container {
-    position: relative;
-    width: 100%;
-    overflow: hidden;
-  }
-  
-  .slider-wrapper {
-    display: flex;
-    overflow: hidden;
-    width: 100%;
-  }
-  
-  .slider-content {
-    display: flex;
-    transition: transform 0.5s ease-in-out;
-  }
-  
-  .slider-item {
-    flex: 1 0 13%; /* 20% of the container width, so 5 items should fit */
-    box-sizing: border-box;
-    padding: 10px;
-    text-align: center;
-  }
-  
-  .prev-button, .next-button {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background-color: rgba(0, 0, 0, 0.5);
-    color: white;
-    border: none;
-    padding: 10px;
-    cursor: pointer;
-  }
-  
-  .prev-button {
-    left: 10px;
-    z-index: 10;
-  }
-  
-  .next-button {
-    right: 10px;
-  }
-  
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  margin: 20px 0; /* Add some margin for spacing */
+}
 
+/* Slider Wrapper */
+.slider-wrapper {
+  display: flex;
+  overflow: hidden;
+  width: 100%;
+}
 
+/* Slider Content */
+.slider-content {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+}
 
+/* Slider Item */
+.slider-item {
+  flex: 1 0 20%; /* Adjust to fit 5 items in the container */
+  box-sizing: border-box;
+  padding: 10px;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for transform and shadow */
+}
 
+.slider-item:hover {
+  transform: scale(1.05); /* Slight zoom effect on hover */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
 
+/* Group Item Styling */
+.group-item {
+  background-color: #fff; /* White background */
+  border-radius: 15px; /* Rounded corners */
+  overflow: hidden; /* Clip children to rounded corners */
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for transform and shadow */
+}
 
+.group-item:hover {
+  transform: scale(1.05); /* Slight zoom effect on hover */
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1); /* Stronger shadow on hover */
+}
 
+/* Group Image Styling */
+.group-image-container {
+  position: relative;
+  padding-top: 75%; /* Aspect ratio 4:3 */
+  overflow: hidden;
+}
 
+.group-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease; /* Smooth transition for transform */
+}
 
-  
+.group-image:hover {
+  transform: scale(1.1); /* Slight zoom effect on hover */
+}
+
+/* Group Info Styling */
+.group-info {
+  padding: 10px;
+}
+
+.group-name {
+  font-size: 1.2rem;
+  color: #333;
+  font-weight: bold;
+  margin: 0;
+}
+
+/* Navigation Buttons */
+.prev-button, .next-button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.7); /* Darker background */
+  color: white;
+  border: none;
+  padding: 15px;
+  cursor: pointer;
+  border-radius: 50%; /* Circular buttons */
+  transition: background-color 0.3s ease; /* Smooth transition for background color */
+}
+
+.prev-button:hover, .next-button:hover {
+  background-color: rgba(0, 0, 0, 0.9); /* Darker background on hover */
+}
+
+.prev-button {
+  left: 15px;
+  z-index: 10;
+}
+
+.next-button {
+  right: 15px;
+}
+
+.prev-button::before, .next-button::before {
+  font-size: 1.5rem; /* Larger icon size */
+}

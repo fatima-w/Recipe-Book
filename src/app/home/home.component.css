@@ -1,3 +1,12 @@
+/* General styles */
+body {
+    font-family: 'Lato', sans-serif;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    background-color: #F5F5DC; /* Light Beige */
+}
+
 /* Container for the search bar */
 .search-container {
     display: flex;
@@ -52,11 +61,69 @@
     height: 20px;
 }
 
-
-/* home styles */
-.home-container{
+/* Home styles */
+.home-container {
     height: 88vh;
     background-image: url("https://img.freepik.com/premium-vector/modern-yellow-gradient-backgrounds-with-lines-header-banner-bright-geometric-abstract-presentation-backdrops-vector-illustration_515038-19522.jpg?w=740");
     background-repeat: no-repeat;
     background-size: cover;
+    color: #333; /* Text color for better readability */
+}
+
+/* Welcome text styles */
+h3 {
+    color: #8BC34A; /* Fresh Green */
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+p {
+    color: #555; /* Darker gray for better readability */
+    font-size: 1.2rem;
+    line-height: 1.6;
+}
+
+/* Container styles for inner content */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Add padding and margin to the app-group-list component */
+.app-group-list {
+    padding: 20px;
+    margin: 20px;
+    background-color: rgba(255, 255, 255, 0.9); /* Slightly transparent white background */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive design for smaller screens */
+@media (max-width: 768px) {
+    .home-container {
+        height: auto;
+    }
+
+    h3 {
+        font-size: 1.5rem;
+    }
+
+    p {
+        font-size: 1rem;
+    }
+
+    .search-container {
+        max-width: 100%;
+    }
+
+    .container {
+        padding: 10px;
+    }
+
+    .app-group-list {
+        padding: 10px;
+        margin: 10px;
+    }
 }

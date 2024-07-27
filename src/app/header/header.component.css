@@ -1,98 +1,151 @@
-/* src/app/shared/navbar.component.css */
-
 /* General Navbar Styling */
 .custom-navbar {
-    background-color: #e0f7fa; /* Pastel light cyan background */
-    padding: 1rem; /* Padding for spacing */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
-    transition: background-color 0.3s ease; /* Smooth transition for background color changes */
-  }
-  
-  /* Navbar Brand */
-  .navbar-brand {
-    font-family: 'Poppins', sans-serif; /* Modern font */
-    font-size: 2rem; /* Larger font size for prominence */
-    color: #00796b; /* Deep teal for brand text */
-    text-decoration: none; /* Remove underline */
-  }
-  
-  .brand-text {
-    font-weight: 600; /* Semi-bold for brand */
-  }
-  
-  .highlight {
-    color: #004d40; /* Darker teal for highlighting 'Book' */
-  }
-  
-  /* Navbar Links */
+  background-color: #E3E57D; /* Darker yellow background for the header */
+  padding: 1rem; /* Padding for spacing */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+  transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for background color and shadow */
+}
+
+.custom-navbar:hover {
+  background-color: #FFF455; /* Brighter yellow on hover */
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3); /* Enhanced shadow on hover */
+}
+
+/* Navbar Brand */
+.navbar-brand {
+  font-family: 'Poppins', sans-serif; /* Modern font */
+  font-size: 2.5rem; /* Larger font size for prominence */
+  color: #399918; /* Dark green for brand text */
+  text-decoration: none; /* Remove underline */
+  transition: color 0.3s ease; /* Smooth transition for color */
+}
+
+.navbar-brand:hover {
+  color: #2d6a4f; /* Darker green on hover */
+}
+
+.brand-text {
+  font-weight: 700; /* Bold for brand */
+}
+
+.highlight {
+  color: #FFAAAA; /* Soft red for highlighting */
+}
+
+/* Navbar Links */
+.navbar-nav .nav-link {
+  font-size: 1.2rem; /* Slightly larger font size */
+  color: #399918; /* Dark green color for links */
+  margin-right: 1.5rem; /* Spacing between nav items */
+  transition: color 0.3s ease, transform 0.3s ease; /* Smooth transitions for effects */
+  position: relative; /* Position for underline effect */
+}
+
+.navbar-nav .nav-link:hover {
+  color: #88D66C; /* Vibrant green on hover */
+  transform: translateY(-2px) scale(1.05); /* Lift and scale effect on hover */
+}
+
+.navbar-nav .nav-link::after {
+  content: ''; /* Empty content for underline */
+  position: absolute; /* Position relative to link */
+  left: 0; /* Start at beginning of link */
+  bottom: -5px; /* Slightly below link */
+  width: 100%; /* Full width */
+  height: 3px; /* Thickness of underline */
+  background-color: #88D66C; /* Vibrant green for underline */
+  transform: scaleX(0); /* Start hidden */
+  transition: transform 0.3s ease; /* Smooth reveal */
+}
+
+.navbar-nav .nav-link:hover::after {
+  transform: scaleX(1); /* Reveal underline on hover */
+}
+
+/* Active Link Styles */
+.navbar-nav .nav-item.active .nav-link {
+  color: #88D66C; /* Match hover color */
+  font-weight: 700; /* Bold for emphasis */
+}
+
+/* Navbar Toggler */
+.navbar-toggler {
+  border-color: rgba(0, 0, 0, 0.3); /* Darker border for toggler */
+  transition: border-color 0.3s ease; /* Smooth transition for border color */
+}
+
+.navbar-toggler:hover {
+  border-color: rgba(0, 0, 0, 0.5); /* Darker border on hover */
+}
+
+.navbar-toggler-icon {
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' fill='%23d32f2f' viewBox='0 0 30 30'><path stroke='%23d32f2f' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/></svg>");
+  /* Custom icon color */
+}
+
+/* Login Link Specific Style */
+.login-link {
+  font-weight: 700; /* Slightly bolder */
+  color: #399918; /* Dark green to match brand color */
+  transition: color 0.3s ease; /* Smooth transition for color */
+}
+
+.login-link:hover {
+  color: #2d6a4f; /* Darker green on hover */
+}
+
+/* Logout Link Specific Style */
+.logout-link {
+  font-weight: 700; /* Slightly bolder */
+  color: #FF7777; /* Soft red to signify logout */
+  transition: color 0.3s ease; /* Smooth transition for color */
+}
+
+.logout-link:hover {
+  color: #FFAAAA; /* Lighter red on hover */
+}
+
+/* Dropdown Menu */
+.navbar-nav .dropdown-menu {
+  background-color: #ffffff; /* White background for dropdown */
+  border: none; /* Remove border */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+}
+
+.navbar-nav .dropdown-item {
+  color: #399918; /* Dark green for dropdown items */
+  padding: 10px 20px; /* Padding for dropdown items */
+  transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transitions on hover */
+}
+
+.navbar-nav .dropdown-item:hover {
+  background-color: #F6FB7A; /* Light yellow background on hover */
+  color: #399918; /* Dark green color on hover */
+}
+
+/* Responsive Styles */
+@media (max-width: 992px) {
   .navbar-nav .nav-link {
-    font-size: 1.1rem; /* Slightly larger font size */
-    color: #004d40; /* Darker teal color for links */
-    margin-right: 1rem; /* Spacing between nav items */
-    transition: color 0.3s ease, transform 0.3s ease; /* Smooth transitions for effects */
-    position: relative; /* Position for underline effect */
-  }
-  
-  /* Hover Effect */
-  .navbar-nav .nav-link:hover {
-    color: #00796b; /* Deep teal on hover */
-    transform: translateY(-2px); /* Lift effect on hover */
-  }
-  
-  .navbar-nav .nav-link::after {
-    content: ''; /* Empty content for underline */
-    position: absolute; /* Position relative to link */
-    left: 0; /* Start at beginning of link */
-    bottom: -5px; /* Slightly below link */
-    width: 100%; /* Full width */
-    height: 2px; /* Thickness of underline */
-    background-color: #00796b; /* Deep teal for underline */
-    transform: scaleX(0); /* Start hidden */
-    transition: transform 0.3s ease; /* Smooth reveal */
-  }
-  
-  .navbar-nav .nav-link:hover::after {
-    transform: scaleX(1); /* Reveal underline on hover */
-  }
-  
-  /* Active Link Styles */
-  .navbar-nav .nav-item.active .nav-link {
-    color: #00796b; /* Match hover color */
-    font-weight: 600; /* Bold for emphasis */
-  }
-  
-  /* Navbar Toggler */
-  .navbar-toggler {
-    border-color: rgba(0, 0, 0, 0.2); /* Light border for toggler */
-  }
-  
-  .navbar-toggler-icon {
-    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' fill='%2300796b' viewBox='0 0 30 30'><path stroke='%2300796b' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/></svg>");
-    /* Custom icon color */
-  }
-  
-  /* Login Link Specific Style */
-  .login-link {
-    font-weight: 600; /* Slightly bolder */
-  }
-  
-  /* Logout Link Specific Style */
-  .logout-link {
-    font-weight: 600; /* Slightly bolder */
-    color: #d32f2f; /* Red to signify logout */
-    transition: color 0.3s ease;
-  }
-  
-  .logout-link:hover {
-    color: #b71c1c; /* Darker red on hover */
-  }
-  
-  /* Responsive Styles */
-  @media (max-width: 992px) {
-    .navbar-nav .nav-link {
       margin-right: 0;
       margin-bottom: 0.5rem; /* Spacing between items on mobile */
       text-align: center; /* Center text on mobile */
-    }
   }
-  
+}
+
+/* Additional Styles for Consistency */
+.container-fluid {
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+
+.navbar-nav {
+  align-items: center; /* Center-align items */
+}
+
+.ms-auto {
+  margin-left: auto !important; /* Push right-aligned items to the right */
+}
+
+.me-5 {
+  margin-right: 3rem !important; /* Extra spacing to the right */
+}
