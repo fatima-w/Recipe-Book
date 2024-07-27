@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}Home{% endblock %}
+{% block content %}
+<div>
+    <h1>Welcome to Your Recipe Dashboard</h1>
+    <a href="{{ url_for('views.create_group') }}" class="btn btn-primary">Create Group</a>
+</div>
+
+
+<div class="group-list">
+    <h2>Groups</h2>
+    {% for group in groups %}
+    <div class="group-card">
+        <h3>{{ group.name }}</h3>
+        <p>Created by: {{ group.creator.username }}</p>
+        <p>{{ group.description }}</p>
+        <p>Status: {{ 'Public' if group.public else 'Private' }}</p>
+        <form action="{{ url_for('views.delete_group', group_id=group.id) }}" method="POST" style="display:inline;">
+            <button type="submit" class="btn btn-danger">Delete Group</button>
+        </form>
+        <a href="{{ url_for('views.edit_group', group_id=group.id) }}" class="btn btn-warning">Edit Group</a>
+        <a href="{{ url_for('views.group_recipes', group_id=group.id) }}" class="btn btn-info">View Recipes</a>
+    </div>
+    {% endfor %}
+</div>
+
+{% endblock %}
