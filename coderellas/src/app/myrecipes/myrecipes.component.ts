@@ -13,4 +13,21 @@ export class MyrecipesComponent {
   onCreate(){
     this.router.navigate(['/create'])
   }
+
+  activeSection: string = 'yourRecipes'; // Default section
+
+  // showSection(section: string): void {
+  //   this.activeSection = section;
+  // }
+
+  toYourRecipes(){
+    this.activeSection = 'yourRecipes';
+    this.router.navigate(['/myrecipes/your-recipes'])
+
+  }
+  toYourCategories(){
+    this.activeSection = 'yourCategories';
+    this.router.navigate(['/myrecipes/your-categories'])
+
+  }
 }

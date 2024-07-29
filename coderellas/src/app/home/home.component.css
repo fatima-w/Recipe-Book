@@ -1,7 +1,7 @@
 /* Container for the search bar */
 .search-container {
     display: flex;
-    align-items: center;
+    align-items: center;   
     justify-content: center;
     width: 100%;
     max-width: 600px; /* Maximum width of the search bar */
@@ -56,7 +56,9 @@
 /* home styles */
 .home-container{
     height: 88vh;
-    background-image: url("https://img.freepik.com/premium-vector/modern-yellow-gradient-backgrounds-with-lines-header-banner-bright-geometric-abstract-presentation-backdrops-vector-illustration_515038-19522.jpg?w=740");
+    /* background-image: url("https://img.freepik.com/premium-vector/modern-yellow-gradient-backgrounds-with-lines-header-banner-bright-geometric-abstract-presentation-backdrops-vector-illustration_515038-19522.jpg?w=740");
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: cover; */
+    background: radial-gradient(at top right, #8e65a1 40%, #5749c3 100%);
+    color: white;
 }

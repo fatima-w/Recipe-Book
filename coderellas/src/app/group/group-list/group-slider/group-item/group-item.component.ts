@@ -6,6 +6,8 @@ interface Groupi {
   id: number;
   name: string;
   description: string;
+  public?:boolean;
+  user_id: number; // Add user_id to track group ownership
 }
 
 @Component({
@@ -20,9 +22,9 @@ export class GroupItemComponent {
     console.log("group =  ",this.group);
   }
 
-  onItemClicked(){
+  onItemClicked(group_id:number){
     // this.grouService.getGroup.next(this.group);
     this.grouService.getGroup(this.group)
-    this.router.navigate(['/category-detail']);
+    this.router.navigate(['/category-detail',group_id]);
   }
 }

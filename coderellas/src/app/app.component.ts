@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -8,8 +8,12 @@ import { Router } from '@angular/router';
 })
 export class AppComponent {
   title = 'coderellas';
-  constructor(private router: Router){}
+  isProfile:boolean = false;
+  constructor(private router: Router, private route:ActivatedRoute){}
   ngOnInit(){
     this.router.navigate(['/home'])
+    // if(this.router.url === '/myrecipes' || this.router.url === '/myrecipes/your-recipes' || this.router.url === '/myrecipes/your-categories'){
+    //   this.isProfile = true;
+    // }
   }
 }

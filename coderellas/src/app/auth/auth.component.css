@@ -1,0 +1,33 @@
+.auth-container{
+    background-color: #ffda54;
+    height: 88vh;
+    
+}
+.form-container{
+    background-color: white;
+    border-radius: 7px;
+    color: rgb(85, 85, 85);
+}
+
+
+/* form styles */
+.form-control{
+    border: 0px;
+    border-bottom: 2px solid rgb(98, 98, 98);
+    border-radius: 0px;
+}
+.switch-link{
+    color: rgb(85, 85, 85);
+    text-decoration: none;
+    font-weight: 500;
+}
+.switch-link:hover{
+    color: #7d00b7;
+    
+}
+.submit-btn{
+    font-weight: 500;
+    background-color: #7d00b7;
+    border-color: #7d00b7;
+    border-radius: 0;
+}

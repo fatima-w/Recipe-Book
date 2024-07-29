@@ -1,8 +1,10 @@
 import { Component, Input } from '@angular/core';
-export interface Recipe {
+interface Recipe {
   id: number;
-  name: string;
-  imageUrl: string;
+  recipe: string;
+  image_path: string;
+  instructions: string;
+  group_id: number;
 }
 @Component({
   selector: 'app-recipe-list',
@@ -10,11 +12,11 @@ export interface Recipe {
   styleUrl: './recipe-list.component.css'
 })
 export class RecipeListComponent {
-
+  @Input() recipes: Recipe[] = [];
 
   constructor() {}
 
   ngOnInit(): void {
-    console.log('Recipes:');
+    console.log('Recipes:', this.recipes);
   }
 }

@@ -1,20 +1,31 @@
-<div class="container-fluid p-5 ">
-    <div class="row">
-        <div class="col-md-8">
-            <!-- <h3>Group name</h3>
-            <p>Description</p> -->
-            <!-- <button type="button" (click)="onCreate()">Create Category</button> -->
-        </div>
-        <div class="col-md-4">
 
-        </div>
+<div class="d-flex">
+  <!-- Sidebar -->
+  <nav class="bg-light border-right" id="sidebar-wrapper">
+    <div class="sidebar-heading">My Recipes</div>
+    <div class="list-group list-group-flush">
+      <a
+      
+        class="list-group-item list-group-item-action bg-light"
+        (click)="toYourRecipes()">Your Recipes</a>
+      <a
+      [routerLink]="['/myrecipes/your-categories']"
+        class="list-group-item list-group-item-action bg-light"
+        (click)="toYourCategories()"
+        >Your Categories</a>
     </div>
+  </nav>
 
-    <div class="row">
-        <div class="col-md-12">
-            <div class="col-4">
-
-            </div>
-        </div>
+  <!-- Page Content -->
+  <div id="page-content-wrapper">
+    <div class="container-fluid">
+      <div *ngIf="activeSection === 'yourRecipes'">
+        <app-your-recipes></app-your-recipes>
+      </div>
+      <div *ngIf="activeSection === 'yourCategories'">
+        <app-your-groups></app-your-groups>
+      </div>
     </div>
+  </div>
 </div>
+    

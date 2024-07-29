@@ -77,7 +77,7 @@ export class GroupListComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.loadPublicGroups(); // Load public groups when component initializes
+    this.loadGroups(); // Load public groups when component initializes
     if(this.router.url === '/home'){
       this.groups = this.publicGroups;
       // this.groupService.getGroups().subscribe(res=>{
@@ -88,7 +88,7 @@ export class GroupListComponent implements OnInit {
   }
 
   // Method to load public groups from the service
-  loadPublicGroups() {
+  loadGroups() {
     this.groupService.getPublicGroups().subscribe({
       next: (data) => {
         this.userId = data.user; // Store user ID

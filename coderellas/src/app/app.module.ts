@@ -25,6 +25,9 @@ import { RecipeListComponent } from './group/group-detail/recipes/recipe-list/re
 import { RecipeItemComponent } from './group/group-detail/recipes/recipe-list/recipe-item/recipe-item.component';
 import { MyrecipesComponent } from './myrecipes/myrecipes.component';
 import { GroupSliderComponent } from './group/group-list/group-slider/group-slider.component';
+import { YourRecipesComponent } from './myrecipes/your-recipes/your-recipes.component';
+import { YourGroupsComponent } from './myrecipes/your-groups/your-groups.component';
+import { YourRecipeItemComponent } from './myrecipes/your-recipes/your-recipe-item/your-recipe-item.component';
 
 @NgModule({
   declarations: [
@@ -47,6 +50,9 @@ import { GroupSliderComponent } from './group/group-list/group-slider/group-slid
     RecipeItemComponent,
     MyrecipesComponent,
     GroupSliderComponent,
+    YourRecipesComponent,
+    YourGroupsComponent,
+    YourRecipeItemComponent,
     
   ],
   imports: [
