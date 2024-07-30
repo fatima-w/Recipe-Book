@@ -243,9 +243,53 @@
   
 
 
-  <!-- <div *ngIf="recipe">
+  <div *ngIf="recipe">
     <div *ngIf="!isEditing">
-      <h2>{{ recipe.recipe }}</h2>
+      <div class="recipe-detail" *ngIf="recipe">
+        <h2>{{ recipe.recipe }}</h2>
+        <img [src]="'http://127.0.0.1:5000/static/' + recipe.image_path" alt="Recipe Image" class="recipe-image" />
+        <div class="recipe-info">
+          <p><strong>Instructions:</strong> {{ recipe.instructions }}</p>
+          <p><strong>Cooking Time:</strong> {{ recipe.cooking_time }} minutes</p>
+          <p><strong>Difficulty Level:</strong> {{ recipe.difficulty_level }}</p>
+          <p><strong>Recipe Type:</strong> {{ recipe.recipe_type }}</p>
+        </div>
+        
+        <!-- Ingredients List -->
+        <h3>Ingredients</h3>
+        <ul>
+          <li *ngFor="let ingredient of recipe.ingredients">
+            {{ ingredient.quantity }} {{ ingredient.name }}
+          </li>
+        </ul>
+      
+        <!-- Likes/Dislikes -->
+        <div class="recipe-feedback">
+          <button (click)="likeRecipe()" [disabled]="hasLiked === true" class="btn btn-success">
+            Like <span class="badge bg-primary">{{ recipe.likes_count }}</span>
+          </button>
+          <button (click)="dislikeRecipe()" [disabled]="hasLiked === false" class="btn btn-danger">
+            Dislike <span class="badge bg-secondary">{{ recipe.dislikes_count }}</span>
+          </button>
+        </div>
+      
+        <!-- Add to Favorites -->
+        <button (click)="addToFavourites()" class="btn btn-warning">Add to Favourites</button>
+      
+        <!-- Comments Section -->
+        <h3>Comments</h3>
+        <div *ngFor="let comment of recipe.comments" class="comment">
+          <p><strong>User {{ comment.user_id }}:</strong> {{ comment.text }}</p>
+        </div>
+      
+        <!-- Add Comment Form -->
+        <div class="add-comment">
+          <textarea [(ngModel)]="newCommentText" rows="3" placeholder="Add a comment..." class="form-control"></textarea>
+          <button (click)="addComment()" class="btn btn-primary">Submit Comment</button>
+        </div>
+      </div>
+      
+      <!-- <h2>{{ recipe.recipe }}</h2>
       <img [src]="'http://127.0.0.1:5000/static/' + recipe.image_path" alt="{{ recipe.recipe }}" class="img-fluid">
       <p><strong>Instructions:</strong> {{ recipe.instructions }}</p>
       <p><strong>Cooking Time:</strong> {{ recipe.cooking_time }} minutes</p>
@@ -257,6 +301,8 @@
       </ul>
       <p><strong>Difficulty Level:</strong> {{ recipe.difficulty_level }}</p>
       <p><strong>Recipe Type:</strong> {{ recipe.recipe_type }}</p>
+      <button class="btn btn-primary" (click)="toggleEdit()">Edit</button>
+      <button class="btn btn-danger" (click)="deleteRecipe()">Delete</button> -->
       <button class="btn btn-primary" (click)="toggleEdit()">Edit</button>
       <button class="btn btn-danger" (click)="deleteRecipe()">Delete</button>
     </div>
@@ -314,7 +360,7 @@
         <button class="btn btn-secondary" type="button" (click)="toggleEdit()">Cancel</button>
       </form>
     </div>
-  </div> -->
+  </div>
 
   <!-- <div *ngIf="recipe">
     <div *ngIf="!isEditing">
@@ -500,47 +546,4 @@
   </div>
    -->
 
-   <div class="recipe-detail" *ngIf="recipe">
-    <h2>{{ recipe.recipe }}</h2>
-    <img [src]="'http://127.0.0.1:5000/static/' + recipe.image_path" alt="Recipe Image" class="recipe-image" />
-    <div class="recipe-info">
-      <p><strong>Instructions:</strong> {{ recipe.instructions }}</p>
-      <p><strong>Cooking Time:</strong> {{ recipe.cooking_time }} minutes</p>
-      <p><strong>Difficulty Level:</strong> {{ recipe.difficulty_level }}</p>
-      <p><strong>Recipe Type:</strong> {{ recipe.recipe_type }}</p>
-    </div>
-    
-    <!-- Ingredients List -->
-    <h3>Ingredients</h3>
-    <ul>
-      <li *ngFor="let ingredient of recipe.ingredients">
-        {{ ingredient.quantity }} {{ ingredient.name }}
-      </li>
-    </ul>
-  
-    <!-- Likes/Dislikes -->
-    <div class="recipe-feedback">
-      <button (click)="likeRecipe()" [disabled]="hasLiked === true" class="btn btn-success">
-        Like <span class="badge bg-primary">{{ recipe.likes_count }}</span>
-      </button>
-      <button (click)="dislikeRecipe()" [disabled]="hasLiked === false" class="btn btn-danger">
-        Dislike <span class="badge bg-secondary">{{ recipe.dislikes_count }}</span>
-      </button>
-    </div>
-  
-    <!-- Add to Favorites -->
-    <button (click)="addToFavourites()" class="btn btn-warning">Add to Favourites</button>
-  
-    <!-- Comments Section -->
-    <h3>Comments</h3>
-    <div *ngFor="let comment of recipe.comments" class="comment">
-      <p><strong>User {{ comment.user_id }}:</strong> {{ comment.text }}</p>
-    </div>
-  
-    <!-- Add Comment Form -->
-    <div class="add-comment">
-      <textarea [(ngModel)]="newCommentText" rows="3" placeholder="Add a comment..." class="form-control"></textarea>
-      <button (click)="addComment()" class="btn btn-primary">Submit Comment</button>
-    </div>
-  </div>
-  
+   

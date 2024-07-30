@@ -1009,6 +1009,10 @@ export class RecipeDetailComponent implements OnInit {
       }
     });
   }
+    // Toggle edit mode
+  toggleEdit(): void {
+    this.isEditing = !this.isEditing;
+  }
 
   // Method to add a new comment
   addComment(): void {

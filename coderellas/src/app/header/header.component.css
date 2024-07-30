@@ -11,7 +11,7 @@
 }
 /* General Navbar Styling */
 .custom-navbar {
-    background-color: var(--red); /* Pastel light cyan background */
+    background-color: var(--red);
     /* padding: 1rem; Padding for spacing */
     /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
     transition: background-color 0.3s ease; /* Smooth transition for background color changes */
