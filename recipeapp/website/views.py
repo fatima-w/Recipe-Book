@@ -426,7 +426,7 @@ def add_recipe(group_id):
         return jsonify({'error': 'Please select a group to add a recipe to.'}), 400
 
     group = Group.query.get_or_404(group_id)
-
+    print(request.form)
     recipe_name = request.form.get('name')
     ingredient_quantities = request.form.getlist('ingredient_quantities[]')
     ingredient_names = request.form.getlist('ingredient_names[]')
