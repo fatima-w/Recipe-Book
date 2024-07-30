@@ -1,0 +1,12 @@
+:root{
+    --red: #e43d12;
+    --rose: #d6536d;
+    --pink: #ffa2b6;
+    --yellow: #efb11d;
+    --cream: #ebe9e1;
+    --black: #000000;
+  }
+
+.list-container{
+    background-color: var(--cream);
+}

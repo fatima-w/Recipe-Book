@@ -719,57 +719,57 @@ def remove_from_shopping_list():
         return jsonify({'message': 'Ingredient not found in shopping list!'}), 400
     return jsonify({'message': 'Invalid request!'}), 400
 
-@views.route('/recipe/<int:recipe_id>', methods=['GET', 'POST'])
-@jwt_required()
-def recipe_detail(recipe_id):
-    current_user = User.query.get(get_jwt_identity())
-    recipe = Data.query.get_or_404(recipe_id)
-    if recipe.user_id != current_user.id and not recipe.public:
-        return jsonify({'message': 'You do not have permission to view this recipe!'}), 403
+# @views.route('/recipe/<int:recipe_id>', methods=['GET', 'POST'])
+# @jwt_required()
+# def recipe_detail(recipe_id):
+#     current_user = User.query.get(get_jwt_identity())
+#     recipe = Data.query.get_or_404(recipe_id)
+#     if recipe.user_id != current_user.id and not recipe.public:
+#         return jsonify({'message': 'You do not have permission to view this recipe!'}), 403
 
-    if request.method == 'POST':
-        data = request.json
-        if 'thumbs_up' in data or 'thumbs_down' in data:
-            thumbs_up = 'thumbs_up' in data
-            existing_review = Review.query.filter_by(user_id=current_user.id, recipe_id=recipe_id).first()
-            if existing_review:
-                existing_review.thumbs_up = thumbs_up
-                db.session.commit()
-                return jsonify({'message': 'Your review has been updated.'}), 200
-            else:
-                new_review = Review(thumbs_up=thumbs_up, user_id=current_user.id, recipe_id=recipe_id)
-                db.session.add(new_review)
-                db.session.commit()
-                return jsonify({'message': 'Your review has been added.'}), 200
+#     if request.method == 'POST':
+#         data = request.json
+#         if 'thumbs_up' in data or 'thumbs_down' in data:
+#             thumbs_up = 'thumbs_up' in data
+#             existing_review = Review.query.filter_by(user_id=current_user.id, recipe_id=recipe_id).first()
+#             if existing_review:
+#                 existing_review.thumbs_up = thumbs_up
+#                 db.session.commit()
+#                 return jsonify({'message': 'Your review has been updated.'}), 200
+#             else:
+#                 new_review = Review(thumbs_up=thumbs_up, user_id=current_user.id, recipe_id=recipe_id)
+#                 db.session.add(new_review)
+#                 db.session.commit()
+#                 return jsonify({'message': 'Your review has been added.'}), 200
 
-        if 'comment_text' in data:
-            comment_text = data.get('comment_text')
-            if comment_text:
-                new_comment = Comment(text=comment_text, user_id=current_user.id, recipe_id=recipe_id)
-                db.session.add(new_comment)
-                db.session.commit()
-                return jsonify({'message': 'Your comment has been added.'}), 200
-            return jsonify({'message': 'Comment cannot be empty.'}), 400
+#         if 'comment_text' in data:
+#             comment_text = data.get('comment_text')
+#             if comment_text:
+#                 new_comment = Comment(text=comment_text, user_id=current_user.id, recipe_id=recipe_id)
+#                 db.session.add(new_comment)
+#                 db.session.commit()
+#                 return jsonify({'message': 'Your comment has been added.'}), 200
+#             return jsonify({'message': 'Comment cannot be empty.'}), 400
 
-    ingredients = Ingredient.query.filter_by(data_id=recipe_id).all()
-    reviews = Review.query.filter_by(recipe_id=recipe_id).all()
-    comments = Comment.query.filter_by(recipe_id=recipe_id).all()
+#     ingredients = Ingredient.query.filter_by(data_id=recipe_id).all()
+#     reviews = Review.query.filter_by(recipe_id=recipe_id).all()
+#     comments = Comment.query.filter_by(recipe_id=recipe_id).all()
 
-    recipe_data = {
-        "id": recipe.id,
-        "recipe": recipe.recipe,
-        "ingredients": [{"id": ingredient.id, "quantity": ingredient.quantity, "name": ingredient.name} for ingredient in ingredients],
-        "instructions": recipe.instructions,
-        "cooking_time": recipe.cooking_time,
-        "difficulty_level": recipe.difficulty_level,
-        "image_path": recipe.image_path,
-        "recipe_type": recipe.recipe_type,
-        "public": recipe.public,
-        "reviews": [{"id": review.id, "thumbs_up": review.thumbs_up, "user_id": review.user_id} for review in reviews],
-        "comments": [{"id": comment.id, "text": comment.text, "user_id": comment.user_id} for comment in comments]
-    }
+#     recipe_data = {
+#         "id": recipe.id,
+#         "recipe": recipe.recipe,
+#         "ingredients": [{"id": ingredient.id, "quantity": ingredient.quantity, "name": ingredient.name} for ingredient in ingredients],
+#         "instructions": recipe.instructions,
+#         "cooking_time": recipe.cooking_time,
+#         "difficulty_level": recipe.difficulty_level,
+#         "image_path": recipe.image_path,
+#         "recipe_type": recipe.recipe_type,
+#         "public": recipe.public,
+#         "reviews": [{"id": review.id, "thumbs_up": review.thumbs_up, "user_id": review.user_id} for review in reviews],
+#         "comments": [{"id": comment.id, "text": comment.text, "user_id": comment.user_id} for comment in comments]
+#     }
 
-    return jsonify(recipe_data)
+#     return jsonify(recipe_data)
 
 @views.route('/add-to-shopping-list', methods=['POST'])
 @jwt_required()
@@ -795,55 +795,258 @@ def add_to_shopping_list():
 
 
 # @views.route('/recipe/<int:recipe_id>', methods=['GET', 'POST'])
-# @login_required
+# @jwt_required()
 # def recipe_detail(recipe_id):
+#     current_user = User.query.get(get_jwt_identity())
 #     recipe = Data.query.get_or_404(recipe_id)
+
 #     if recipe.user_id != current_user.id and not recipe.public:
-#         flash('You do not have permission to view this recipe!', category='error')
-#         return redirect(url_for('views.home'))
- 
+#         return jsonify({'error': 'You do not have permission to view this recipe!'}), 403
+
 #     ingredients = Ingredient.query.filter_by(data_id=recipe_id).all()
 #     reviews = Review.query.filter_by(recipe_id=recipe_id).all()
 #     comments = Comment.query.filter_by(recipe_id=recipe_id).all()
- 
+
 #     if request.method == 'POST':
 #         if 'thumbs_up' in request.form or 'thumbs_down' in request.form:
 #             thumbs_up = 'thumbs_up' in request.form
 #             existing_review = Review.query.filter_by(user_id=current_user.id, recipe_id=recipe_id).first()
 #             if existing_review:
 #                 existing_review.thumbs_up = thumbs_up
-#                 flash('Your review has been updated.', category='success')
+#                 db.session.commit()
+#                 return jsonify({'message': 'Your review has been updated.'}), 200
 #             else:
 #                 new_review = Review(thumbs_up=thumbs_up, user_id=current_user.id, recipe_id=recipe_id)
 #                 db.session.add(new_review)
-#                 flash('Your review has been added.', category='success')
-#             db.session.commit()
- 
+#                 db.session.commit()
+#                 return jsonify({'message': 'Your review has been added.'}), 201
+
 #         if 'comment' in request.form:
 #             comment_text = request.form.get('comment_text')
 #             if comment_text:
 #                 new_comment = Comment(text=comment_text, user_id=current_user.id, recipe_id=recipe_id)
 #                 db.session.add(new_comment)
 #                 db.session.commit()
-#                 flash('Your comment has been added.', category='success')
+#                 return jsonify({'message': 'Your comment has been added.'}), 201
 #             else:
-#                 flash('Comment cannot be empty.', category='error')
- 
+#                 return jsonify({'error': 'Comment cannot be empty.'}), 400
+
 #         if 'add_to_favourites' in request.form:
 #             if current_user not in recipe.favourited_by:
 #                 recipe.favourited_by.append(current_user)
 #                 db.session.commit()
-#                 flash('Recipe added to favourites.', category='success')
+#                 return jsonify({'message': 'Recipe added to favourites.'}), 200
 #             else:
-#                 flash('Recipe is already in your favourites.', category='error')
- 
-#     return render_template('recipe_detail.html', user=current_user, recipe=recipe, ingredients=ingredients, reviews=reviews, comments=comments)
- 
+#                 return jsonify({'error': 'Recipe is already in your favourites.'}), 400
+
+#     recipe_data = {
+#         'id': recipe.id,
+#         'recipe': recipe.recipe,
+#         'image_path': recipe.image_path,
+#         'instructions': recipe.instructions,
+#         'cooking_time': recipe.cooking_time,
+#         'difficulty_level': recipe.difficulty_level,
+#         'recipe_type': recipe.recipe_type,
+#         'public': recipe.public,
+#         'ingredients': [{'quantity': ing.quantity, 'name': ing.name} for ing in ingredients],
+#         'reviews': [{'user_id': rev.user_id, 'thumbs_up': rev.thumbs_up} for rev in reviews],
+#         'comments': [{'user_id': com.user_id, 'text': com.text} for com in comments]
+#     }
+
+#     return jsonify(recipe_data), 200
+
 # @views.route('/favourites', methods=['GET'])
-# @login_required
+# @jwt_required()
 # def favourites():
+#     current_user = User.query.get(get_jwt_identity())
 #     favourite_recipes = current_user.favourites.all()
-#     return render_template('favourites.html', user=current_user, recipes=favourite_recipes)
+
+#     recipes_data = [{
+#         'id': recipe.id,
+#         'recipe': recipe.recipe,
+#         'image_path': recipe.image_path,
+#         'instructions': recipe.instructions,
+#         'cooking_time': recipe.cooking_time,
+#         'difficulty_level': recipe.difficulty_level,
+#         'recipe_type': recipe.recipe_type,
+#         'public': recipe.public,
+#         'group_id': recipe.group_id
+#     } for recipe in favourite_recipes]
+
+#     return jsonify(recipes_data), 200
+
+# @views.route('/recipe/<int:recipe_id>', methods=['GET', 'POST'])
+# @jwt_required()
+# def recipe_detail(recipe_id):
+#     current_user = User.query.get(get_jwt_identity())
+#     recipe = Data.query.get_or_404(recipe_id)
+
+#     if recipe.user_id != current_user.id and not recipe.public:
+#         return jsonify({'error': 'You do not have permission to view this recipe!'}), 403
+
+#     ingredients = Ingredient.query.filter_by(data_id=recipe_id).all()
+#     reviews = Review.query.filter_by(recipe_id=recipe_id).all()
+#     comments = Comment.query.filter_by(recipe_id=recipe_id).all()
+
+#     if request.method == 'POST':
+#         data = request.json
+
+#         # Handling Like/Dislike
+#         if 'thumbs_up' in data or 'thumbs_down' in data:
+#             thumbs_up = 'thumbs_up' in data
+#             existing_review = Review.query.filter_by(user_id=current_user.id, recipe_id=recipe_id).first()
+#             if existing_review:
+#                 existing_review.thumbs_up = thumbs_up
+#                 db.session.commit()
+#                 return jsonify({'message': 'Your review has been updated.'}), 200
+#             else:
+#                 new_review = Review(thumbs_up=thumbs_up, user_id=current_user.id, recipe_id=recipe_id)
+#                 db.session.add(new_review)
+#                 db.session.commit()
+#                 return jsonify({'message': 'Your review has been added.'}), 201
+
+#         # Handling Comment
+#         if 'comment_text' in data:
+#             comment_text = data.get('comment_text')
+#             if comment_text:
+#                 new_comment = Comment(text=comment_text, user_id=current_user.id, recipe_id=recipe_id)
+#                 db.session.add(new_comment)
+#                 db.session.commit()
+#                 return jsonify({'message': 'Your comment has been added.'}), 201
+#             else:
+#                 return jsonify({'error': 'Comment cannot be empty.'}), 400
+
+#         # Handling Add to Favourites
+#         if 'add_to_favourites' in data:
+#             if current_user not in recipe.favourited_by:
+#                 recipe.favourited_by.append(current_user)
+#                 db.session.commit()
+#                 return jsonify({'message': 'Recipe added to favourites.'}), 200
+#             else:
+#                 return jsonify({'error': 'Recipe is already in your favourites.'}), 400
+
+#     recipe_data = {
+#         'id': recipe.id,
+#         'recipe': recipe.recipe,
+#         'image_path': recipe.image_path,
+#         'instructions': recipe.instructions,
+#         'cooking_time': recipe.cooking_time,
+#         'difficulty_level': recipe.difficulty_level,
+#         'recipe_type': recipe.recipe_type,
+#         'public': recipe.public,
+#         'ingredients': [{'quantity': ing.quantity, 'name': ing.name} for ing in ingredients],
+#         'reviews': [{'user_id': rev.user_id, 'thumbs_up': rev.thumbs_up} for rev in reviews],
+#         'comments': [{'user_id': com.user_id, 'text': com.text} for com in comments]
+#     }
+
+#     return jsonify(recipe_data), 200
+
+@views.route('/recipe/<int:recipe_id>', methods=['GET', 'POST'])
+@jwt_required()
+def recipe_detail(recipe_id):
+    current_user = User.query.get(get_jwt_identity())
+    recipe = Data.query.get_or_404(recipe_id)
+
+    if recipe.user_id != current_user.id and not recipe.public:
+        return jsonify({'error': 'You do not have permission to view this recipe!'}), 403
+
+    ingredients = Ingredient.query.filter_by(data_id=recipe_id).all()
+    reviews = Review.query.filter_by(recipe_id=recipe_id).all()
+    comments = Comment.query.filter_by(recipe_id=recipe_id).all()
+
+    # Count likes and dislikes
+    likes_count = Review.query.filter_by(recipe_id=recipe_id, thumbs_up=True).count()
+    dislikes_count = Review.query.filter_by(recipe_id=recipe_id, thumbs_up=False).count()
+
+    if request.method == 'POST':
+        if 'thumbs_up' in request.json or 'thumbs_down' in request.json:
+            thumbs_up = request.json.get('thumbs_up', False)
+            existing_review = Review.query.filter_by(user_id=current_user.id, recipe_id=recipe_id).first()
+            if existing_review:
+                existing_review.thumbs_up = thumbs_up
+                db.session.commit()
+                return jsonify({'message': 'Your review has been updated.'}), 200
+            else:
+                new_review = Review(thumbs_up=thumbs_up, user_id=current_user.id, recipe_id=recipe_id)
+                db.session.add(new_review)
+                db.session.commit()
+                return jsonify({'message': 'Your review has been added.'}), 201
+
+        if 'comment_text' in request.json:
+            comment_text = request.json.get('comment_text')
+            if comment_text:
+                new_comment = Comment(text=comment_text, user_id=current_user.id, recipe_id=recipe_id)
+                db.session.add(new_comment)
+                db.session.commit()
+                return jsonify({'message': 'Your comment has been added.'}), 201
+            else:
+                return jsonify({'error': 'Comment cannot be empty.'}), 400
+
+        if 'add_to_favourites' in request.json:
+            if current_user not in recipe.favourited_by:
+                recipe.favourited_by.append(current_user)
+                db.session.commit()
+                return jsonify({'message': 'Recipe added to favourites.'}), 200
+            else:
+                return jsonify({'error': 'Recipe is already in your favourites.'}), 400
+
+    recipe_data = {
+        'id': recipe.id,
+        'recipe': recipe.recipe,
+        'image_path': recipe.image_path,
+        'instructions': recipe.instructions,
+        'cooking_time': recipe.cooking_time,
+        'difficulty_level': recipe.difficulty_level,
+        'recipe_type': recipe.recipe_type,
+        'public': recipe.public,
+        'ingredients': [{'quantity': ing.quantity, 'name': ing.name} for ing in ingredients],
+        'reviews': [{'user_id': rev.user_id, 'thumbs_up': rev.thumbs_up} for rev in reviews],
+        'comments': [{'user_id': com.user_id, 'text': com.text} for com in comments],
+        'likes_count': likes_count,
+        'dislikes_count': dislikes_count
+    }
+
+    return jsonify(recipe_data), 200
+
+
+# @views.route('/favourites', methods=['GET'])
+# @jwt_required()
+# def favourites():
+#     current_user = User.query.get(get_jwt_identity())
+#     favourite_recipes = current_user.favourites.all()
+
+#     recipes_data = [{
+#         'id': recipe.id,
+#         'recipe': recipe.recipe,
+#         'image_path': recipe.image_path,
+#         'instructions': recipe.instructions,
+#         'cooking_time': recipe.cooking_time,
+#         'difficulty_level': recipe.difficulty_level,
+#         'recipe_type': recipe.recipe_type,
+#         'public': recipe.public,
+#         'group_id': recipe.group_id
+#     } for recipe in favourite_recipes]
+
+#     return jsonify(recipes_data), 200
+@views.route('/favourites', methods=['GET'])
+@jwt_required()
+def favourites():
+    current_user = User.query.get(get_jwt_identity())
+    favourite_recipes = current_user.favourites.all()
+
+    recipes_data = [{
+        'id': recipe.id,
+        'recipe': recipe.recipe,
+        'image_path': recipe.image_path,
+        'instructions': recipe.instructions,
+        'cooking_time': recipe.cooking_time,
+        'difficulty_level': recipe.difficulty_level,
+        'recipe_type': recipe.recipe_type,
+        'public': recipe.public,
+        'group_id': recipe.group_id
+    } for recipe in favourite_recipes]
+
+    return jsonify(recipes_data), 200
 
 
 @views.route('/current-user', methods=['GET'])

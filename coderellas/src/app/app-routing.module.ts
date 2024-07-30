@@ -12,6 +12,7 @@ import { RecipeDetailComponent } from './group/group-detail/recipes/recipe-detai
 import { GroupEditComponent } from './group/group-edit/group-edit.component';
 import { YourRecipesComponent } from './myrecipes/your-recipes/your-recipes.component';
 import { YourGroupsComponent } from './myrecipes/your-groups/your-groups.component';
+import { FavouritesComponent } from './favourites/favourites.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '', pathMatch:"full"},
@@ -29,6 +30,7 @@ const routes: Routes = [
   {path: 'add-recipe/:id', component:NewRecipeComponent},
   {path:'recipe-detail/:id', component:RecipeDetailComponent},
   {path: 'edit-group/:id', component:GroupEditComponent},
+  {path: 'favourites', component:FavouritesComponent}
   
 ];
 

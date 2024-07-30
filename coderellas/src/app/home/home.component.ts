@@ -9,6 +9,7 @@ import { Subscription } from 'rxjs';
 export class HomeComponent {
   // userSub:Subscription;
   isAuthenticated:boolean = false;
+  
   constructor(private authService:AuthService, private cd: ChangeDetectorRef){}
 
   // ngOnint(){

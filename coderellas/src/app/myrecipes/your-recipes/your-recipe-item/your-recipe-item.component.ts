@@ -1,4 +1,5 @@
 import { Component , Input} from '@angular/core';
+import { Router } from '@angular/router';
 interface Recipe {
   id: number;
   user_id: number;
@@ -21,4 +22,8 @@ interface Recipe {
 })
 export class YourRecipeItemComponent {
   @Input() recipe!: Recipe;
+  constructor(private router:Router){}
+  toRecipeDetail(){
+    this.router.navigate(['/recipe-detail', this.recipe.id]);
+  }
 }

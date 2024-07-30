@@ -64,7 +64,7 @@
             routerLinkActiveOptions="{exact:true}" 
             class="navbar-brand"
         >
-            <span class="brand-text">Recipe<span class="highlight">Book</span></span>
+            <span class="brand-text">Recipe Book</span>
         </a>
         <button 
             class="navbar-toggler" 
@@ -100,7 +100,7 @@
                 <li class="nav-item" routerLinkActive="active" *ngIf="isAuthenticated">
                     <a  
                         class="nav-link" 
-                        [routerLink]="['/shopping-list']"
+                        [routerLink]="['/favourites']"
                     >
                         Favourites
                     </a>

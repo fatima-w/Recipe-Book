@@ -243,7 +243,7 @@
   
 
 
-  <div *ngIf="recipe">
+  <!-- <div *ngIf="recipe">
     <div *ngIf="!isEditing">
       <h2>{{ recipe.recipe }}</h2>
       <img [src]="'http://127.0.0.1:5000/static/' + recipe.image_path" alt="{{ recipe.recipe }}" class="img-fluid">
@@ -314,4 +314,233 @@
         <button class="btn btn-secondary" type="button" (click)="toggleEdit()">Cancel</button>
       </form>
     </div>
+  </div> -->
+
+  <!-- <div *ngIf="recipe">
+    <div *ngIf="!isEditing">
+      <h2>{{ recipe.recipe }}</h2>
+      <img
+        [src]="'http://127.0.0.1:5000/static/' + recipe.image_path"
+        alt="{{ recipe.recipe }}"
+        class="img-fluid"
+      />
+      <p><strong>Instructions:</strong> {{ recipe.instructions }}</p>
+      <p><strong>Cooking Time:</strong> {{ recipe.cooking_time }} minutes</p>
+      <p><strong>Ingredients:</strong></p>
+      <ul>
+        <li *ngFor="let ingredient of recipe.ingredients">
+          {{ ingredient.quantity }} {{ ingredient.name }}
+        </li>
+      </ul>
+      <p><strong>Difficulty Level:</strong> {{ recipe.difficulty_level }}</p>
+      <p><strong>Recipe Type:</strong> {{ recipe.recipe_type }}</p>
+  
+      
+      <button
+        class="btn btn-success"
+        (click)="likeRecipe()"
+        [disabled]="isLiked"
+        [class.btn-secondary]="isLiked"
+      >
+        Like
+      </button>
+      <button
+        class="btn btn-warning"
+        (click)="dislikeRecipe()"
+        [disabled]="isDisliked"
+        [class.btn-secondary]="isDisliked"
+      >
+        Dislike
+      </button>
+  
+      
+      <button
+        class="btn btn-info"
+        (click)="addToFavourites()"
+        [disabled]="isFavourite"
+        [class.btn-secondary]="isFavourite"
+      >
+        Add to Favorites
+      </button>
+  
+      
+      <button class="btn btn-primary" (click)="toggleEdit()">Edit</button>
+      <button class="btn btn-danger" (click)="deleteRecipe()">Delete</button>
+  
+      
+      <div class="comments-section mt-4">
+        <h4>Comments</h4>
+  
+        <form [formGroup]="commentForm" (ngSubmit)="addComment()">
+          <div class="form-group">
+            <textarea
+              formControlName="commentText"
+              class="form-control"
+              placeholder="Add a comment..."
+            ></textarea>
+          </div>
+          <button class="btn btn-primary" type="submit">Submit</button>
+        </form>
+  
+        <ul class="list-group mt-3">
+          <li
+            class="list-group-item"
+            *ngFor="let comment of recipe.comments"
+          >
+            <strong>User {{ comment.user_id }}:</strong> {{ comment.text }}
+          </li>
+        </ul>
+      </div>
+    </div>
+  
+    <div *ngIf="isEditing">
+      <form [formGroup]="recipeForm" (ngSubmit)="editRecipe()">
+        <div class="form-group">
+          <label for="name">Recipe Name</label>
+          <input
+            formControlName="name"
+            class="form-control"
+            id="name"
+          />
+        </div>
+        <div class="form-group">
+          <label for="instructions">Instructions</label>
+          <textarea
+            formControlName="instructions"
+            class="form-control"
+            id="instructions"
+          ></textarea>
+        </div>
+        <div formArrayName="ingredients">
+          <h3>Ingredients</h3>
+          <div
+            *ngFor="let ingredient of recipeForm.get('ingredients').controls; let i = index"
+            [formGroupName]="i"
+          >
+            <div class="form-row">
+              <div class="form-group col-md-5">
+                <label for="ingredient-quantity">Quantity</label>
+                <input
+                  formControlName="quantity"
+                  class="form-control"
+                  id="ingredient-quantity"
+                />
+              </div>
+              <div class="form-group col-md-5">
+                <label for="ingredient-name">Name</label>
+                <input
+                  formControlName="name"
+                  class="form-control"
+                  id="ingredient-name"
+                />
+              </div>
+              <div class="form-group col-md-2 align-self-end">
+                <button
+                  type="button"
+                  class="btn btn-danger"
+                  (click)="removeIngredient(i)"
+                >
+                  Remove
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <button
+          type="button"
+          class="btn btn-success mb-3"
+          (click)="addIngredient()"
+        >
+          Add Ingredient
+        </button>
+        <div class="form-group">
+          <label for="cookingTime">Cooking Time</label>
+          <input
+            formControlName="cookingTime"
+            class="form-control"
+            id="cookingTime"
+          />
+        </div>
+        <div class="form-group">
+          <label for="difficultyLevel">Difficulty Level</label>
+          <select
+            formControlName="difficultyLevel"
+            class="form-control"
+            id="difficultyLevel"
+          >
+            <option value="Easy">Easy</option>
+            <option value="Medium">Medium</option>
+            <option value="Hard">Hard</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="recipeType">Recipe Type</label>
+          <select
+            formControlName="recipeType"
+            class="form-control"
+            id="recipeType"
+          >
+            <option value="Vegetarian">Vegetarian</option>
+            <option value="Non-Vegetarian">Non-Vegetarian</option>
+            <option value="Vegan">Vegan</option>
+          </select>
+        </div>
+        <button class="btn btn-primary" type="submit">
+          Save Changes
+        </button>
+        <button
+          class="btn btn-secondary"
+          type="button"
+          (click)="toggleEdit()"
+        >
+          Cancel
+        </button>
+      </form>
+    </div>
   </div>
+   -->
+
+   <div class="recipe-detail" *ngIf="recipe">
+    <h2>{{ recipe.recipe }}</h2>
+    <img [src]="'http://127.0.0.1:5000/static/' + recipe.image_path" alt="Recipe Image" class="recipe-image" />
+    <div class="recipe-info">
+      <p><strong>Instructions:</strong> {{ recipe.instructions }}</p>
+      <p><strong>Cooking Time:</strong> {{ recipe.cooking_time }} minutes</p>
+      <p><strong>Difficulty Level:</strong> {{ recipe.difficulty_level }}</p>
+      <p><strong>Recipe Type:</strong> {{ recipe.recipe_type }}</p>
+    </div>
+    
+    <!-- Ingredients List -->
+    <h3>Ingredients</h3>
+    <ul>
+      <li *ngFor="let ingredient of recipe.ingredients">
+        {{ ingredient.quantity }} {{ ingredient.name }}
+      </li>
+    </ul>
+  
+    <!-- Likes/Dislikes -->
+    <div class="recipe-feedback">
+      <button (click)="likeRecipe()" [disabled]="hasLiked === true" class="btn btn-success">
+        Like <span class="badge bg-primary">{{ recipe.likes_count }}</span>
+      </button>
+      <button (click)="dislikeRecipe()" [disabled]="hasLiked === false" class="btn btn-danger">
+        Dislike <span class="badge bg-secondary">{{ recipe.dislikes_count }}</span>
+      </button>
+    </div>
+  
+    <!-- Add to Favorites -->
+    <button (click)="addToFavourites()" class="btn btn-warning">Add to Favourites</button>
+  
+    <!-- Comments Section -->
+    <h3>Comments</h3>
+    <div *ngFor="let comment of recipe.comments" class="comment">
+      <p><strong>User {{ comment.user_id }}:</strong> {{ comment.text }}</p>
+    </div>
+  
+    <!-- Add Comment Form -->
+    <div class="add-comment">
+      <textarea [(ngModel)]="newCommentText" rows="3" placeholder="Add a comment..." class="form-control"></textarea>
+      <button (click)="addComment()" class="btn btn-primary">Submit Comment</button>
+    </div>
+  </div>
+  

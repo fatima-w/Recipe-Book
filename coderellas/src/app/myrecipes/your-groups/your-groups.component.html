@@ -1,6 +1,7 @@
-<!-- your-categories.component.html -->
-<div class="container">
-    <h3>Your Categories</h3>
-    <p>List of your categories will be displayed here...</p>
+<div class="container mt-4">
+  <div class="row">
+    <div class="col-md-4" *ngFor="let group of groups">
+      <app-your-groups-item [group]="group"></app-your-groups-item>
+    </div>
   </div>
-  
+</div>

@@ -1,15 +1,28 @@
+:root{
+    --red: #e43d12;
+    --rose: #d6536d;
+    --pink: #ffa2b6;
+    --yellow: #efb11d;
+    --cream: #ebe9e1;
+    --black: #000000;
+  }
 /* Container for the search bar */
 .search-container {
+    position: absolute;
+    top: 20%;
+    left: 37%;
+    right: 50%;
+    z-index: 50;
     display: flex;
-    align-items: center;   
+    align-items: center;
     justify-content: center;
-    width: 100%;
+    width: 27%;
     max-width: 600px; /* Maximum width of the search bar */
     margin: 0 auto; /* Center the search bar horizontally */
-    padding: 10px;
-    background-color: #fff;
+    /* padding: 10px; */
+    background-color: white;
     border-radius: 50px; /* Rounded corners */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+    box-shadow: 0 2px 5px rgb(0 0 0 / 59%); /* Subtle shadow for depth */
 }
 
 /* Input field styles */
@@ -55,10 +68,29 @@
 
 /* home styles */
 .home-container{
-    height: 88vh;
+    height: 105vh;
     /* background-image: url("https://img.freepik.com/premium-vector/modern-yellow-gradient-backgrounds-with-lines-header-banner-bright-geometric-abstract-presentation-backdrops-vector-illustration_515038-19522.jpg?w=740");
     background-repeat: no-repeat;
     background-size: cover; */
-    background: radial-gradient(at top right, #8e65a1 40%, #5749c3 100%);
+    /* background: radial-gradient(at top right, #8e65a1 40%, #5749c3 100%); */
+    /* background-image: url("../assets/images/jonathan-pielmayer-RKJElwIyCQw-unsplash.jpg");
+    background-repeat: no-repeat;
+    background-size: cover; */
+
     color: white;
+}
+
+
+/* video styles */
+.video-container {
+    padding: 0;
+    overflow: hidden;
+    height: 90vh; /* Adjust as needed */
+}
+ 
+.background-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensures the video covers the entire container */
+    z-index: -1; /* Places the video behind other content */
 }

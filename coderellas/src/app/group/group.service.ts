@@ -219,6 +219,10 @@ export class GroupService {
   updateGroup(group:Groupi){
     this.groupChanged.next(group);
   }
+
+  getPersonalGroups(): Observable<Groupi[]> {
+    return this.http.get<Groupi[]>("http://localhost:5000/profile/groups");
+  }
    
   // groups: Group[] = [
   //   new Group(

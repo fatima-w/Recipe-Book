@@ -28,6 +28,8 @@ import { GroupSliderComponent } from './group/group-list/group-slider/group-slid
 import { YourRecipesComponent } from './myrecipes/your-recipes/your-recipes.component';
 import { YourGroupsComponent } from './myrecipes/your-groups/your-groups.component';
 import { YourRecipeItemComponent } from './myrecipes/your-recipes/your-recipe-item/your-recipe-item.component';
+import { YourGroupsItemComponent } from './myrecipes/your-groups/your-groups-item/your-groups-item.component';
+import { FavouritesComponent } from './favourites/favourites.component';
 
 @NgModule({
   declarations: [
@@ -53,6 +55,8 @@ import { YourRecipeItemComponent } from './myrecipes/your-recipes/your-recipe-it
     YourRecipesComponent,
     YourGroupsComponent,
     YourRecipeItemComponent,
+    YourGroupsItemComponent,
+    FavouritesComponent,
     
   ],
   imports: [

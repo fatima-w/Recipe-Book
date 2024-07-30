@@ -1,33 +1,65 @@
+:root{
+    --red: #e43d12;
+    --rose: #d6536d;
+    --pink: #ffa2b6;
+    --yellow: #efb11d;
+    --cream: #ebe9e1;
+    --black: #000000;
+  }
+.background{
+    background: url(../assets/images/jonathan-pielmayer-RKJElwIyCQw-unsplash.jpg);
+    filter: blur(3px);
+  -webkit-filter: blur(3px);
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 90vh;
+}
 .auth-container{
-    background-color: #ffda54;
-    height: 88vh;
+    /* background-color: var(--cream); */
+
     
 }
 .form-container{
-    background-color: white;
+    /* background-color: white; */
     border-radius: 7px;
-    color: rgb(85, 85, 85);
+    color: var(--black);
 }
 
 
 /* form styles */
+.login-form{
+    position: absolute;
+    top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+    background: rgba( 255, 255, 255, 0.35 );
+box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+backdrop-filter: blur( 1.5px );
+-webkit-backdrop-filter: blur( 1.5px );
+border-radius: 10px;
+border: 1px solid rgba( 255, 255, 255, 0.18 );
+width: 27%;
+height: 66%;
+}
 .form-control{
     border: 0px;
-    border-bottom: 2px solid rgb(98, 98, 98);
+    border-bottom: 2px solid rgb(0, 0, 0);
     border-radius: 0px;
+    background-color: #00000000;
 }
 .switch-link{
-    color: rgb(85, 85, 85);
+    color: rgb(0, 0, 0);
     text-decoration: none;
     font-weight: 500;
 }
 .switch-link:hover{
-    color: #7d00b7;
+    color: var(--cream);
     
 }
 .submit-btn{
     font-weight: 500;
-    background-color: #7d00b7;
-    border-color: #7d00b7;
+    background-color: var(--red);
+    border-color: var(--red);
     border-radius: 0;
 }

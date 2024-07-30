@@ -1,9 +1,12 @@
 <div class="card mb-4">
+  <a style="cursor: pointer;" (click)="toRecipeDetail()">
     <img
     [src]="'http://127.0.0.1:5000/static/' + recipe.image_path" 
       class="card-img-top"
       alt="{{ recipe.recipe }}"
     />
+  </a>
+    
     <div class="card-body">
       <h5 class="card-title">{{ recipe.recipe }}</h5>
       <p class="card-text">
