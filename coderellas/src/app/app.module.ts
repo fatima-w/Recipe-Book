@@ -30,6 +30,7 @@ import { YourGroupsComponent } from './myrecipes/your-groups/your-groups.compone
 import { YourRecipeItemComponent } from './myrecipes/your-recipes/your-recipe-item/your-recipe-item.component';
 import { YourGroupsItemComponent } from './myrecipes/your-groups/your-groups-item/your-groups-item.component';
 import { FavouritesComponent } from './favourites/favourites.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -63,7 +64,8 @@ import { FavouritesComponent } from './favourites/favourites.component';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FontAwesomeModule
   ],
   providers: [provideHttpClient(withInterceptors([authInterceptor]))],
   bootstrap: [AppComponent]

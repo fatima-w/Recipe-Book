@@ -51,6 +51,23 @@
         <app-group-list></app-group-list>
          
     </div>
+    <div class="slideshow-container">
+        <div
+          class="slide fade"
+          *ngFor="let slide of slides; let i = index"
+          [style.display]="i === currentSlideIndex ? 'block' : 'none'"
+        >
+          <img [src]="slide.imageUrl" [alt]="'Food Image ' + (i + 1)" />
+          <div class="quote">{{ slide.quote }}</div>
+        </div>
+      
+        <!-- Optional: Add navigation controls -->
+        <a class="prev" (click)="currentSlideIndex = (currentSlideIndex - 1 + slides.length) % slides.length">&#10094;</a>
+        <a class="next" (click)="showNextSlide()">&#10095;</a>
+      </div>
+      
+      
+      
 </div>
 <div *ngIf="!isAuthenticated">
     <div class="container-fluid home-container">

@@ -15,19 +15,19 @@
     height: 90vh;
 }
 .auth-container{
-    /* background-color: var(--cream); */
-
+    background-color: var(--cream);
+    height: 90vh;
     
 }
 .form-container{
-    /* background-color: white; */
+    background-color: var(--cream);
     border-radius: 7px;
     color: var(--black);
 }
 
 
 /* form styles */
-.login-form{
+/* .login-form{
     position: absolute;
     top: 50%;
   left: 50%;
@@ -41,7 +41,10 @@ border-radius: 10px;
 border: 1px solid rgba( 255, 255, 255, 0.18 );
 width: 27%;
 height: 66%;
-}
+} */
+ .login-form{
+    background-color: white;
+ }
 .form-control{
     border: 0px;
     border-bottom: 2px solid rgb(0, 0, 0);
@@ -54,7 +57,7 @@ height: 66%;
     font-weight: 500;
 }
 .switch-link:hover{
-    color: var(--cream);
+    color: var(--red);
     
 }
 .submit-btn{
