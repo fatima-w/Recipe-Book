@@ -5,6 +5,8 @@ from flask_jwt_extended import jwt_required, get_jwt_identity
 from . import db
 import os
 from flask_cors import CORS
+from datetime import datetime, timedelta
+from sqlalchemy import func
 
 from flask import abort
 
@@ -1121,3 +1123,55 @@ def favourites():
 def get_current_user():
     current_user_id = get_jwt_identity()  # Retrieve the user ID from the JWT token
     return jsonify({'user_id': current_user_id}), 200
+
+
+
+
+
+
+@views.route('/top-recipes-week', methods=['GET'])
+@jwt_required()
+def top_recipes_week():
+    current_user = User.query.get(get_jwt_identity())
+
+    # Calculate the start of the week (Monday)
+    today = datetime.today()
+    start_of_week = today - timedelta(days=today.weekday())
+
+    # Query for the top 5 recipes with the most likes in the current week
+    top_recipes_query = db.session.query(
+        Data.id,
+        Data.recipe,
+        Data.image_path,
+        Data.cooking_time,
+        Data.difficulty_level,
+        Data.recipe_type,
+        func.count(Review.id).label('likes_count')
+    ).join(Review, Review.recipe_id == Data.id
+    ).filter(
+        Review.thumbs_up == True,
+        Review.timestamp >= start_of_week,
+        Data.public == True  # Only consider public recipes
+    ).group_by(
+        Data.id
+    ).order_by(
+        func.count(Review.id).desc()
+    ).limit(5).all()
+
+    # Serialize the top recipes
+    top_recipes = []
+    for recipe in top_recipes_query:
+        ingredients = Ingredient.query.filter_by(data_id=recipe.id).all()
+        top_recipes.append({
+            'id': recipe.id,
+            'recipe': recipe.recipe,
+            'image_path': recipe.image_path,
+            'cooking_time': recipe.cooking_time,
+            'difficulty_level': recipe.difficulty_level,
+            'recipe_type': recipe.recipe_type,
+            'likes_count': recipe.likes_count,
+            'ingredients': [{'quantity': ing.quantity, 'name': ing.name} for ing in ingredients],
+        })
+
+    return jsonify(top_recipes), 200
+ 

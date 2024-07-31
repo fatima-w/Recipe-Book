@@ -1,6 +1,7 @@
 from . import db
 from flask_login import UserMixin
 from sqlalchemy.dialects.sqlite import BLOB
+from datetime import datetime
 
 favourites = db.Table('favourites',
     db.Column('user_id', db.Integer, db.ForeignKey('user.id'), primary_key=True),
@@ -54,6 +55,7 @@ class Review(db.Model):
     thumbs_up = db.Column(db.Boolean)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
     recipe_id = db.Column(db.Integer, db.ForeignKey('data.id'), nullable=False)
+    timestamp = db.Column(db.DateTime, default=datetime.utcnow)
 
 
 class Comment(db.Model):
