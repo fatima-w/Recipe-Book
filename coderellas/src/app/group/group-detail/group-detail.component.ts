@@ -205,9 +205,13 @@ interface Recipe {
   id: number; // Include ID for editing, deleting recipes
   recipe: string;
   image_path: string;
-  instructions: string;
+  difficulty_level: string;
+  cooking_time: number;
   group_id: number;
 }
+  // instructions: string;
+
+  
 
 @Component({
   selector: 'app-group-detail',

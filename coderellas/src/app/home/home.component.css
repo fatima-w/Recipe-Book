@@ -107,7 +107,7 @@
   max-width: 65%;
   margin: auto;
   overflow: hidden;
-  height: 75vh;
+  height: 65vh;
   border-radius: 28px;
   margin-bottom: 10%;
   }
@@ -180,4 +180,46 @@
   .next:hover {
     background-color: rgba(0, 0, 0, 0.8);
   }
+  .containerquoteelement {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #E97451;
+    color: white;
+    font-family: 'Brush Script MT', cursive;
+    height: 60px;
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    font-size: 30px;
+    margin-bottom: 100px;
+
+  }
   
+  .containerquoteelement i {
+    margin-right: 10px;
+    font-size: 24px;
+  }
+  
+
+  .containergroupmessageelement {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #E97451;
+    color: white;
+    font-family: 'Brush Script MT', cursive;
+    height: 60px;
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    font-size: 30px;
+    margin-bottom: 10px;
+    margin-top: 60px;
+
+  }
+  
+  .containergroupmessageelement i {
+    margin-right: 10px;
+    font-size: 24px;
+  }
