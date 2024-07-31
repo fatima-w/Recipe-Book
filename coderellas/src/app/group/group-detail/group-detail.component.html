@@ -1,11 +1,51 @@
-<!-- 
+<!-- <div class="container mt-4">
+    <div class="card shadow-lg">
+      <div class="card-body">
+        <div class="d-flex align-items-center justify-content-between mb-3">
+          <div>
+            <h2 class="card-title">{{ group.name }}</h2>
+          </div>
+          <button class="btn btn-primary" type="button" (click)="toAddRecipe()">
+            <i class="bi bi-plus-circle me-2"></i> New Recipe
+          </button>
+        </div>
+        <hr>
+        <div class="row">
+          <div class="col-md-4">
+            <img
+              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTojWQ7KLh8l4Oein2ejKCOYwUM_NDSDOGvtQ&s"
+              class="img-fluid rounded shadow-sm"
+              alt="{{ group.name }}"
+            />
+          </div>
+          <div class="col-md-8">
+            <p>{{ group.description }}</p>
+          </div>
+        </div>
+        <hr>
+        <div class="group-actions mt-4">
+          <button class="btn btn-outline-secondary me-2">
+            <i class="bi bi-pencil-square me-1"></i> Edit Category
+          </button>
+          <button class="btn btn-outline-danger" type="button" (click)="deleteGroup(group.id)">
+            <i class="bi bi-trash-fill me-1"></i> Delete Category
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="pt-5 mt-5">
+    <app-recipe-list [recipes]="publicRecipes"></app-recipe-list>
+  </div>
+   -->
    <div class="container mt-4">
     <div class="card shadow-lg">
       <div class="card-body">
         <div class="d-flex align-items-center justify-content-between mb-3">
           <div>
             <h2 class="card-title">{{ group.name }}</h2>
-            
+            <!-- <p class="text-muted mb-0">Category Details</p> -->
           </div>
           <button class="btn btn-primary" type="button" (click)="toAddRecipe()">
             <i class="bi bi-plus-circle me-2"></i> New Recipe
@@ -21,13 +61,13 @@
             />
           </div>
           <div class="col-md-8">
-            
+            <!-- <h5 class="mt-3">Description</h5> -->
             <p>{{ group.description }}</p>
           </div>
         </div>
         <hr />
         <div class="group-actions mt-4">
-          
+          <!-- Conditional rendering based on group ownership -->
           <ng-container *ngIf="isUserAllowed">
             <button class="btn btn-outline-secondary me-2" (click)="editGroup()">
               <i class="bi bi-pencil-square me-1"></i> Edit Group
@@ -48,91 +88,4 @@
   <div class="pt-5 mt-5">
     <app-recipe-list [recipes]="recipes"></app-recipe-list>
   </div>
-   -->
-
-   <!-- <div class="container">
-    <div class="card shadow-lg">
-      <div class="group-info">
-        <h1 class="group-name">{{ group.name }}</h1>
-        <p class="group-description">{{ group.description }}</p>
-        
-        <div class="d-flex justify-content-between align-items-center">
-          <div class="group-actions">
-            <ng-container *ngIf="isUserAllowed">
-              <button class="btn btn-outline-secondary" (click)="editGroup()">
-                <i class="bi bi-pencil-square me-1"></i> Edit Group
-              </button>
-              <button class="btn btn-outline-danger" (click)="deleteGroup(group.id)">
-                <i class="bi bi-trash-fill me-1"></i> Delete Group
-              </button>
-            </ng-container>
-          </div>
-          <button class="btn add-recipe-btn" (click)="toAddRecipe()">
-            <i class="bi bi-plus-circle me-2"></i> New Recipe
-          </button>
-        </div>
-      </div>
-    </div>
-    
-    <div class="pt-5 mt-5">
-      <app-recipe-list [recipes]="recipes"></app-recipe-list>
-    </div> -->
-
-    <!-- <div class="main-container">
-      <div class="group-container">
-        <h1 class="group-name">{{ group.name }}</h1>
-        <p class="group-description">{{ group.description }}</p>
-        
-        <div class="d-flex justify-content-between align-items-center">
-          <div class="group-actions">
-            <ng-container *ngIf="isUserAllowed">
-              <button class="btn btn-outline-secondary" (click)="editGroup()">
-                <i class="bi bi-pencil-square me-1"></i> Edit Group
-              </button>
-              <button class="btn btn-outline-danger" (click)="deleteGroup(group.id)">
-                <i class="bi bi-trash-fill me-1"></i> Delete Group
-              </button>
-            </ng-container>
-          </div>
-          <button class="btn add-recipe-btn" (click)="toAddRecipe()">
-            <i class="bi bi-plus-circle me-2"></i> New Recipe
-          </button>
-        </div>
-      </div>
-      
-      <div class="recipes-container">
-        <app-recipe-list [recipes]="recipes"></app-recipe-list>
-      </div>
-    </div> -->
-
-
-    <div class="main-container">
-      <div class="group-container">
-        <h1 class="group-name">{{ group.name }}</h1>
-        <p class="group-description">{{ group.description }}</p>
-    
-        <div class="d-flex justify-content-between align-items-center">
-          <div class="quote-add-recipe">
-            <p class="quote">"Pass on your culinary secrets, one recipe at a time."</p>
-            <button class="btn add-recipe-btn" (click)="toAddRecipe()">
-              <i class="bi bi-plus-circle me-2"></i> New Recipe
-            </button>
-          </div>
-          <div class="group-actions">
-            <ng-container *ngIf="isUserAllowed">
-              <button class="btn btn-outline-secondary" (click)="editGroup()">
-                <i class="fa-regular fa-pen-to-square"></i>
-              </button>
-              <button class="btn btn-outline-danger" (click)="deleteGroup(group.id)">
-                <i class="fa-solid fa-trash"></i>
-              </button>
-            </ng-container>
-          </div>
-        </div>
-      </div>
-    
-      <div class="recipes-container">
-        <app-recipe-list [recipes]="recipes"></app-recipe-list>
-      </div>
-    </div>
-    
+  

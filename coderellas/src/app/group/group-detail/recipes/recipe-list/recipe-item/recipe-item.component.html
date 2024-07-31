@@ -1,11 +1,10 @@
 <div class="card">
   <a (click)="viewDetails()" style="cursor: pointer;">
     <img [src]="getImageUrl(recipe.image_path)" class="card-img-top" alt="Recipe Image">
-    <div class="cooking-time">{{ recipe.cooking_time }}</div>
   </a>
     <div class="card-body">
       <h5 class="card-title">{{ recipe.recipe }}</h5>
-      <p class="card-text">{{ recipe.cooking_time | slice:0:100 }}...</p>
+      <p class="card-text">{{ recipe.instructions | slice:0:100 }}...</p>
       <!-- <a [routerLink]="['/recipe-detail', recipe.id]" class="btn btn-primary">View Details</a> -->
     </div>
   </div>

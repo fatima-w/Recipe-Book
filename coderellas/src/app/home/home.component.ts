@@ -34,16 +34,16 @@ export class HomeComponent {
   // userSub:Subscription;
   slides: Slide[] = [
     {
-      imageUrl: 'https://images.unsplash.com/photo-1482017276394-d2ddc6d4c978?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTYxfHxmb29kfGVufDB8MHwwfHx8Mg%3D%3D',
-      quote: '“The best memories are made around the table.” ',
+      imageUrl: 'https://images.unsplash.com/photo-1528975604071-b4dc52a2d18c?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+      quote: '"Food is the ingredient that binds us together."',
     },
     {
-      imageUrl: 'https://images.unsplash.com/photo-1457460866886-40ef8d4b42a0?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTY2fHxmb29kfGVufDB8MHwwfHx8Mg%3D%3D',
-      quote: '“Food is a bridge between hearts.”',
+      imageUrl: 'https://images.unsplash.com/photo-1502741224143-90386d7f8c82?q=80&w=2069&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+      quote: '"Eating is a necessity, but cooking is an art."',
     },
     {
-      imageUrl: 'https://images.unsplash.com/photo-1457666134378-6b77915bd5f2?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NTB8fGZvb2R8ZW58MHx8MHx8fDI%3D',
-      quote: '"The joy of cooking is in the sharing."',
+      imageUrl: 'https://images.unsplash.com/photo-1595763603216-41c9e72e41bc?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+      quote: '"Food is the universal language of happiness."',
     },
   ];
   currentSlideIndex: number = 0;
