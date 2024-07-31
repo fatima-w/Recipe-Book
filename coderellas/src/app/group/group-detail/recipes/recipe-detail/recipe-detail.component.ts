@@ -873,6 +873,10 @@ interface Recipe {
   likes_count: number;
   dislikes_count: number;
 }
+interface Comment {
+  text: string;
+  username: string;  // Add username here
+}
 
 @Component({
   selector: 'app-recipe-detail',
@@ -887,6 +891,7 @@ export class RecipeDetailComponent implements OnInit {
   hasLiked: boolean | null = null; // To track if the current user liked/disliked
 
   instructions: string[] = [];
+  username:string;
 
   constructor(
     private route: ActivatedRoute,
@@ -908,6 +913,7 @@ export class RecipeDetailComponent implements OnInit {
     const recipeId = +this.route.snapshot.paramMap.get('id')!;
     this.recipeService.getRecipeById(recipeId).subscribe({
       next: data => {
+        this.username = data.comments.username;
         this.recipe = data;
         this.initializeForm(this.recipe);
         this.instructions = this.recipe.instructions.split('|||');

@@ -941,6 +941,73 @@ def add_to_shopping_list():
 
 #     return jsonify(recipe_data), 200
 
+# @views.route('/recipe/<int:recipe_id>', methods=['GET', 'POST'])
+# @jwt_required()
+# def recipe_detail(recipe_id):
+#     current_user = User.query.get(get_jwt_identity())
+#     recipe = Data.query.get_or_404(recipe_id)
+
+#     if recipe.user_id != current_user.id and not recipe.public:
+#         return jsonify({'error': 'You do not have permission to view this recipe!'}), 403
+
+#     ingredients = Ingredient.query.filter_by(data_id=recipe_id).all()
+#     reviews = Review.query.filter_by(recipe_id=recipe_id).all()
+#     comments = Comment.query.filter_by(recipe_id=recipe_id).all()
+
+#     # Count likes and dislikes
+#     likes_count = Review.query.filter_by(recipe_id=recipe_id, thumbs_up=True).count()
+#     dislikes_count = Review.query.filter_by(recipe_id=recipe_id, thumbs_up=False).count()
+
+#     if request.method == 'POST':
+#         if 'thumbs_up' in request.json or 'thumbs_down' in request.json:
+#             thumbs_up = request.json.get('thumbs_up', False)
+#             existing_review = Review.query.filter_by(user_id=current_user.id, recipe_id=recipe_id).first()
+#             if existing_review:
+#                 existing_review.thumbs_up = thumbs_up
+#                 db.session.commit()
+#                 return jsonify({'message': 'Your review has been updated.'}), 200
+#             else:
+#                 new_review = Review(thumbs_up=thumbs_up, user_id=current_user.id, recipe_id=recipe_id)
+#                 db.session.add(new_review)
+#                 db.session.commit()
+#                 return jsonify({'message': 'Your review has been added.'}), 201
+
+#         if 'comment_text' in request.json:
+#             comment_text = request.json.get('comment_text')
+#             if comment_text:
+#                 new_comment = Comment(text=comment_text, user_id=current_user.id, recipe_id=recipe_id)
+#                 db.session.add(new_comment)
+#                 db.session.commit()
+#                 return jsonify({'message': 'Your comment has been added.'}), 201
+#             else:
+#                 return jsonify({'error': 'Comment cannot be empty.'}), 400
+
+#         if 'add_to_favourites' in request.json:
+#             if current_user not in recipe.favourited_by:
+#                 recipe.favourited_by.append(current_user)
+#                 db.session.commit()
+#                 return jsonify({'message': 'Recipe added to favourites.'}), 200
+#             else:
+#                 return jsonify({'error': 'Recipe is already in your favourites.'}), 400
+
+#     recipe_data = {
+#         'id': recipe.id,
+#         'recipe': recipe.recipe,
+#         'image_path': recipe.image_path,
+#         'instructions': recipe.instructions,
+#         'cooking_time': recipe.cooking_time,
+#         'difficulty_level': recipe.difficulty_level,
+#         'recipe_type': recipe.recipe_type,
+#         'public': recipe.public,
+#         'ingredients': [{'quantity': ing.quantity, 'name': ing.name} for ing in ingredients],
+#         'reviews': [{'user_id': rev.user_id, 'thumbs_up': rev.thumbs_up} for rev in reviews],
+#         'comments': [{'user_id': com.user_id, 'text': com.text} for com in comments],
+#         'likes_count': likes_count,
+#         'dislikes_count': dislikes_count
+#     }
+
+#     return jsonify(recipe_data), 200
+
 @views.route('/recipe/<int:recipe_id>', methods=['GET', 'POST'])
 @jwt_required()
 def recipe_detail(recipe_id):
@@ -1001,7 +1068,7 @@ def recipe_detail(recipe_id):
         'public': recipe.public,
         'ingredients': [{'quantity': ing.quantity, 'name': ing.name} for ing in ingredients],
         'reviews': [{'user_id': rev.user_id, 'thumbs_up': rev.thumbs_up} for rev in reviews],
-        'comments': [{'user_id': com.user_id, 'text': com.text} for com in comments],
+        'comments': [{'username': User.query.get(com.user_id).username, 'text': com.text} for com in comments],
         'likes_count': likes_count,
         'dislikes_count': dislikes_count
     }

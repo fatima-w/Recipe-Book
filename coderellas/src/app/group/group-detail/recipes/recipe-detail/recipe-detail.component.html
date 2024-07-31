@@ -243,55 +243,103 @@
   
 
 
-  <div *ngIf="recipe">
+  <div *ngIf="recipe" class="mt-5">
     <div *ngIf="!isEditing">
-      <div class="recipe-detail" *ngIf="recipe">
-        <h2>{{ recipe.recipe }}</h2>
-        <img [src]="'http://127.0.0.1:5000/static/' + recipe.image_path" alt="Recipe Image" class="recipe-image" />
-        <div class="recipe-info">
-          <!-- <p><strong>Instructions:</strong> {{ recipe.instructions }}</p> -->
-          <h2>Instructions</h2>
-          <ol>
-            <li *ngFor="let step of instructions">{{ step }}</li>  <!-- Display each instruction step -->
-          </ol>
-          <p><strong>Cooking Time:</strong> {{ recipe.cooking_time }} minutes</p>
-          <p><strong>Difficulty Level:</strong> {{ recipe.difficulty_level }}</p>
-          <p><strong>Recipe Type:</strong> {{ recipe.recipe_type }}</p>
-        </div>
+      <div class="container-fluid recipe-container mt-5 w-75">
+        <div class="recipe-detail pt-5" *ngIf="recipe">
+          <div class="">
+            <h2 class="pb-3 recipe-heading">{{ recipe.recipe }}</h2>
+          </div>
+          
+          <div class="container-fluid image-card">
+            <div class="row">
+              <div class="post-card p-3 col-md-7">
+                <img [src]="'http://127.0.0.1:5000/static/' + recipe.image_path" alt="Recipe Image" class="recipe-image pb-3" />
+                <div class="image-info-card d-flex justify-content-between">
+                  <div class="profile">
+                    <p>User name</p>
+                  </div>
+                  <div class="reviews">
+                    <div class="recipe-feedback">
+                      <a (click)="likeRecipe()" [disabled]="hasLiked === true" class="" style="cursor: pointer;">
+                        <i class="fa-regular fa-thumbs-up" style="color: #d6536d;"></i> <span class="badge text-muted">{{ recipe.likes_count }}</span>
+                      </a>
+                      <a (click)="dislikeRecipe()" [disabled]="hasLiked === false" class="" style="cursor: pointer;">
+                        <i class="fa-regular fa-thumbs-down" style="color: #d6536d;"></i> <span class="badge text-muted">{{ recipe.dislikes_count }}</span>
+                      </a>
+                      <a (click)="addToFavourites()" class="ms-5" style="cursor: pointer;"><i class="fa-solid fa-bookmark" style="color: #d6536d;"></i></a>
+  
+                    </div>
+                  </div>
+              </div>
+              
+              </div>
+              <div class="col-md-3 p-3 ps-5">
+                <div class="time-container d-flex justify-content-between p-2">
+                  <span>{{recipe.cooking_time}} m</span>
+                  <div class="span ps-3"><i class="fa-regular fa-clock" style="color: #d6536d;"></i></div>
+                  <!-- <p><strong>Cooking Time:</strong> {{ recipe.cooking_time }} minutes</p> -->
+                </div>
+                <div class="time-container mt-2 p-2">
+                  <p class="m-0"><strong>Difficulty Level:</strong> {{ recipe.difficulty_level }}</p>
+
+                </div>
+                <div class="time-container mt-2 p-2">
+                  <p class="m-0"><strong>{{ recipe.recipe_type }}</strong> </p>
+
+                </div>
+              </div>
+            </div>
+            
+          </div>
+          <div class="recipe-info">
+            <!-- <p><strong>Instructions:</strong> {{ recipe.instructions }}</p> -->
+            <h2>Instructions</h2>
+            <ol>
+              <li *ngFor="let step of instructions">{{ step }}</li>  <!-- Display each instruction step -->
+            </ol>
+            <!-- <p><strong>Cooking Time:</strong> {{ recipe.cooking_time }} minutes</p>
+            <p><strong>Difficulty Level:</strong> {{ recipe.difficulty_level }}</p>
+            <p><strong>Recipe Type:</strong> {{ recipe.recipe_type }}</p> -->
+          </div>
+          
+          <!-- Ingredients List -->
+          <h3>Ingredients</h3>
+          <ul>
+            <li *ngFor="let ingredient of recipe.ingredients">
+              {{ ingredient.quantity }} {{ ingredient.name }}
+            </li>
+          </ul>
         
-        <!-- Ingredients List -->
-        <h3>Ingredients</h3>
-        <ul>
-          <li *ngFor="let ingredient of recipe.ingredients">
-            {{ ingredient.quantity }} {{ ingredient.name }}
-          </li>
-        </ul>
-      
+          
+          <!-- <div class="recipe-feedback">
+            <button (click)="likeRecipe()" [disabled]="hasLiked === true" class="btn btn-success">
+              Like <span class="badge bg-primary">{{ recipe.likes_count }}</span>
+            </button>
+            <button (click)="dislikeRecipe()" [disabled]="hasLiked === false" class="btn btn-danger">
+              Dislike <span class="badge bg-secondary">{{ recipe.dislikes_count }}</span>
+            </button>
+          </div> -->
         
-        <div class="recipe-feedback">
-          <button (click)="likeRecipe()" [disabled]="hasLiked === true" class="btn btn-success">
-            Like <span class="badge bg-primary">{{ recipe.likes_count }}</span>
-          </button>
-          <button (click)="dislikeRecipe()" [disabled]="hasLiked === false" class="btn btn-danger">
-            Dislike <span class="badge bg-secondary">{{ recipe.dislikes_count }}</span>
-          </button>
-        </div>
-      
-        <!-- Add to Favorites -->
-        <button (click)="addToFavourites()" class="btn btn-warning">Add to Favourites</button>
-      
-        <!-- Comments Section -->
-        <h3>Comments</h3>
-        <div *ngFor="let comment of recipe.comments" class="comment">
-          <p><strong>User {{ comment.user_id }}:</strong> {{ comment.text }}</p>
-        </div>
-      
-        <!-- Add Comment Form -->
-        <div class="add-comment">
-          <textarea [(ngModel)]="newCommentText" rows="3" placeholder="Add a comment..." class="form-control"></textarea>
-          <button (click)="addComment()" class="btn btn-primary">Submit Comment</button>
+          <!-- Add to Favorites -->
+          <!-- <a (click)="addToFavourites()" class="ms-5" style="cursor: pointer;"><i class="fa-solid fa-bookmark" style="color: #d6536d;"></i></a> -->
+
+          <!-- <button (click)="addToFavourites()" class="btn btn-warning">Add to Favourites</button> -->
+        
+          <!-- Comments Section -->
+          <h3>Comments</h3>
+          <div *ngFor="let comment of recipe.comments" class="comment">
+            <p><strong>{{ comment.username }}:</strong> {{ comment.text }}</p>
+          </div>
+        
+          <!-- Add Comment Form -->
+          <div class="add-comment">
+            <textarea [(ngModel)]="newCommentText" rows="3" placeholder="Add a comment..." class="form-control"></textarea>
+            <button (click)="addComment()" class="btn btn-primary">Submit Comment</button>
+          </div>
         </div>
       </div>
+      
       <button class="btn btn-primary" (click)="toggleEdit()">Edit</button>
       <button class="btn btn-danger" (click)="deleteRecipe()">Delete</button>
     </div>

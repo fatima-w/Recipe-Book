@@ -13,10 +13,9 @@
 }
 .group-create-container {
     max-width: 700px;
-    
     margin: 0 auto;
     padding: 20px;
-    background-color: #f9f9f9;
+    background-color: var(--cream);
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   }
@@ -37,12 +36,21 @@
   }
   
   .btn {
-    background-color: #007bff;
+    /* background-color: #007bff;
     color: white;
     padding: 10px 15px;
     border: none;
     border-radius: 4px;
-    cursor: pointer;
+    cursor: pointer; */
+    font-weight: 500;
+    background-color: var(--pink);
+    border-color: var(--pink);
+    border-radius: 0;
+  }
+  .btn:hover{
+    background-color: var(--rose);
+    font-weight: 700;
+ 
   }
   
   .btn:disabled {
