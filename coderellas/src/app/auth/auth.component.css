@@ -57,12 +57,17 @@ height: 66%;
     font-weight: 500;
 }
 .switch-link:hover{
-    color: var(--red);
+    color: var(--rose);
     
 }
 .submit-btn{
     font-weight: 500;
-    background-color: var(--red);
-    border-color: var(--red);
+    background-color: var(--rose);
+    border-color: var(--rose);
     border-radius: 0;
+}
+.submit-btn:hover{
+    background-color: var(--pink);
+    font-weight: 700;
+    color: black;
 }

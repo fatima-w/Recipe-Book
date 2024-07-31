@@ -31,6 +31,7 @@ import { YourRecipeItemComponent } from './myrecipes/your-recipes/your-recipe-it
 import { YourGroupsItemComponent } from './myrecipes/your-groups/your-groups-item/your-groups-item.component';
 import { FavouritesComponent } from './favourites/favourites.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -58,6 +59,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     YourRecipeItemComponent,
     YourGroupsItemComponent,
     FavouritesComponent,
+    FooterComponent,
     
   ],
   imports: [

@@ -11,7 +11,7 @@
 }
 /* General Navbar Styling */
 .custom-navbar {
-    background-color: var(--red);
+    background-color: var(--white);
     /* padding: 1rem; Padding for spacing */
     /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
     transition: background-color 0.3s ease; /* Smooth transition for background color changes */
@@ -19,10 +19,12 @@
   
   /* Navbar Brand */
   .navbar-brand {
-    font-family: 'Poppins', sans-serif; /* Modern font */
+    /* font-family: "Hachi Maru Pop", cursive; */
+    font-family: "Playwrite AR", cursive;
     font-size: 1.8rem; /* Larger font size for prominence */
     /* color: #00796b;  */
-    color: var(--cream);
+    color: var(--rose);
+    font-weight: 900;
     text-decoration: none; /* Remove underline */
   }
   
@@ -31,13 +33,14 @@
   }
   
   .highlight {
-    color: var(--cream); /* Darker teal for highlighting 'Book' */
+    font-size: 1.5rem;
+    font-weight: 500;
   }
   
   /* Navbar Links */
   .navbar-nav .nav-link {
     font-size: 1.1rem; /* Slightly larger font size */
-    color: white; /* Darker teal color for links */
+    color: var(rose); /* Darker teal color for links */
     margin-right: 1rem; /* Spacing between nav items */
     transition: color 0.3s ease, transform 0.3s ease; /* Smooth transitions for effects */
     position: relative; /* Position for underline effect */
@@ -45,8 +48,16 @@
   
   /* Hover Effect */
   .navbar-nav .nav-link:hover {
-    color: var(--cream); /* Deep teal on hover */
+    color: var(--pink); /* Deep teal on hover */
     transform: translateY(-2px); /* Lift effect on hover */
+  }
+  .nav-link:hover{
+    i{
+      color: var(--pink) !important;
+    }
+  }
+i:hover{
+    color: var(--pink) !important;
   }
   
   .navbar-nav .nav-link::after {
@@ -56,7 +67,7 @@
     bottom: -5px; /* Slightly below link */
     width: 100%; /* Full width */
     height: 2px; /* Thickness of underline */
-    background-color: var(--cream); /* Deep teal for underline */
+    background-color: var(--rose); /* Deep teal for underline */
     transform: scaleX(0); /* Start hidden */
     transition: transform 0.3s ease; /* Smooth reveal */
   }
@@ -67,7 +78,7 @@
   
   /* Active Link Styles */
   .navbar-nav .nav-item.active .nav-link {
-    color: var(--cream); /* Match hover color */
+    color: var(--pink); /* Match hover color */
     font-weight: 600; /* Bold for emphasis */
   }
   

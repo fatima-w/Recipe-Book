@@ -886,6 +886,8 @@ export class RecipeDetailComponent implements OnInit {
   newCommentText: string = ''; // For holding the new comment text
   hasLiked: boolean | null = null; // To track if the current user liked/disliked
 
+  instructions: string[] = [];
+
   constructor(
     private route: ActivatedRoute,
     private recipeService: RecipeService,
@@ -908,7 +910,7 @@ export class RecipeDetailComponent implements OnInit {
       next: data => {
         this.recipe = data;
         this.initializeForm(this.recipe);
-
+        this.instructions = this.recipe.instructions.split('|||');
         // Determine if the user has liked/disliked
         const currentUserReview = this.recipe.reviews.find(r => r.user_id === this.recipeService.getCurrentUserId());
         if (currentUserReview) {
@@ -939,6 +941,8 @@ export class RecipeDetailComponent implements OnInit {
       }));
     });
   }
+
+
 
   // Method to add a new ingredient form group
   addIngredient(): void {
@@ -975,6 +979,7 @@ export class RecipeDetailComponent implements OnInit {
     });
   }
 
+  
   // Method to handle recipe editing
   editRecipe(): void {
     if (this.recipeForm.invalid) {
@@ -989,26 +994,80 @@ export class RecipeDetailComponent implements OnInit {
     formData.append('difficulty_level', this.recipeForm.get('difficultyLevel')?.value);
     formData.append('recipe_type', this.recipeForm.get('recipeType')?.value);
 
-    const ingredientsArray = this.recipeForm.get('ingredients') as FormArray;
-    ingredientsArray.controls.forEach((group, index) => {
-      formData.append(`ingredients[${index}][quantity]`, group.get('quantity')?.value);
-      formData.append(`ingredients[${index}][name]`, group.get('name')?.value);
-      formData.append(`ingredients[${index}][id]`, group.get('id')?.value);
+    const ingredients = this.recipeForm.get('ingredients') as FormArray;
+    ingredients.controls.forEach((ingredient) => {
+      formData.append('ingredient_quantities[]', ingredient.get('quantity')?.value);
+      formData.append('ingredient_names[]', ingredient.get('name')?.value);
+      const id = ingredient.get('id')?.value;
+      if (id) {
+        formData.append('ingredient_ids[]', id);
+      } else {
+        formData.append('ingredient_ids[]', '');
+      }
     });
 
-    const recipeId = this.recipe!.id;
-    this.recipeService.editRecipe(recipeId, formData).subscribe({
-      next: (updatedRecipe: Recipe) => {
-        alert('Recipe updated successfully!');
-        this.recipe = updatedRecipe;
+    const recipeId = this.recipe?.id;
+    this.recipeService.editRecipe(recipeId!, formData).subscribe({
+      next: (response) => {
+        alert('Recipe edited successfully!');
+        this.recipe = response.recipe;
         this.isEditing = false;
+        this.initializeForm(this.recipe!);
+        //this.comments = this.recipe.comments;
       },
       error: (error) => {
-        console.error('Error updating recipe:', error);
-        alert('Failed to update recipe!');
+        console.error('Error editing recipe:', error);
+        alert('Failed to edit recipe!');
       }
     });
   }
+  // editRecipe(): void {
+  //   if (this.recipeForm.invalid) {
+  //     alert('Please fill out all required fields!');
+  //     return;
+  //   }
+  
+  //   const formData = new FormData();
+  //   formData.append('name', this.recipeForm.get('name')?.value);
+  
+  //   // Handle instruction steps with delimiter
+  //   const instructions = this.recipeForm.get('instructions')?.value.split('\n');
+  //   instructions.forEach((instruction, index) => {
+  //     formData.append(`instructions[]`, instruction.trim());
+  //   });
+  
+  //   formData.append('cooking_time', this.recipeForm.get('cookingTime')?.value);
+  //   formData.append('difficulty_level', this.recipeForm.get('difficultyLevel')?.value);
+  //   formData.append('recipe_type', this.recipeForm.get('recipeType')?.value);
+  
+  //   const ingredients = this.recipeForm.get('ingredients') as FormArray;
+  //   ingredients.controls.forEach((ingredient) => {
+  //     formData.append('ingredient_quantities[]', ingredient.get('quantity')?.value);
+  //     formData.append('ingredient_names[]', ingredient.get('name')?.value);
+  //     const id = ingredient.get('id')?.value;
+  //     if (id) {
+  //       formData.append('ingredient_ids[]', id);
+  //     } else {
+  //       formData.append('ingredient_ids[]', '');
+  //     }
+  //   });
+  
+  //   const recipeId = this.recipe?.id;
+  //   this.recipeService.editRecipe(recipeId!, formData).subscribe({
+  //     next: (response) => {
+  //       alert('Recipe edited successfully!');
+  //       this.recipe = response.recipe;
+  //       this.isEditing = false;
+  //       this.initializeForm(this.recipe!);
+  //     },
+  //     error: (error) => {
+  //       console.error('Error editing recipe:', error);
+  //       alert('Failed to edit recipe!');
+  //     }
+  //   });
+  // }
+  
+
     // Toggle edit mode
   toggleEdit(): void {
     this.isEditing = !this.isEditing;
@@ -1091,5 +1150,49 @@ dislikeRecipe(): void {
       }
     });
   }
+
+  addStep(): void {
+    const newStep = this.recipeForm.get('newStep')?.value;
+    if (newStep) {
+      this.instructions.push(newStep);
+      this.recipeForm.get('newStep')?.reset();
+    }
+  }
 }
 
+
+
+// Method to handle recipe editing
+  // editRecipe(): void {
+  //   if (this.recipeForm.invalid) {
+  //     alert('Please fill out all required fields!');
+  //     return;
+  //   }
+
+  //   const formData = new FormData();
+  //   formData.append('name', this.recipeForm.get('name')?.value);
+  //   formData.append('instructions', this.recipeForm.get('instructions')?.value);
+  //   formData.append('cooking_time', this.recipeForm.get('cookingTime')?.value);
+  //   formData.append('difficulty_level', this.recipeForm.get('difficultyLevel')?.value);
+  //   formData.append('recipe_type', this.recipeForm.get('recipeType')?.value);
+
+  //   const ingredientsArray = this.recipeForm.get('ingredients') as FormArray;
+  //   ingredientsArray.controls.forEach((group, index) => {
+  //     formData.append(`ingredients[][quantity]`, group.get('quantity')?.value);
+  //     formData.append(`ingredients[][name]`, group.get('name')?.value);
+  //     formData.append(`ingredients[][id]`, group.get('id')?.value);
+  //   });
+
+  //   const recipeId = this.recipe!.id;
+  //   this.recipeService.editRecipe(recipeId, formData).subscribe({
+  //     next: (updatedRecipe: Recipe) => {
+  //       alert('Recipe updated successfully!');
+  //       this.recipe = updatedRecipe;
+  //       this.isEditing = false;
+  //     },
+  //     error: (error) => {
+  //       console.error('Error updating recipe:', error);
+  //       alert('Failed to update recipe!');
+  //     }
+  //   });
+  // }

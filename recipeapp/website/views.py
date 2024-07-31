@@ -582,7 +582,7 @@ def edit_recipe(recipe_id):
     recipe = Data.query.get_or_404(recipe_id)
     if recipe.user_id != current_user.id:
         return jsonify({'error': 'You do not have permission to edit this recipe!'}), 403
-
+    print(request.form)
     data = request.form
     recipe_name = data.get('name')
     ingredient_quantities = data.getlist('ingredient_quantities[]')
