@@ -1,0 +1,21 @@
+<div class="card">
+    <a (click)="viewDetails()" style="cursor: pointer;">
+        <img [src]="'http://127.0.0.1:5000/static/' + recipe.image_path" class="card-img-top" alt="{{ recipe.recipe }}" />
+
+    </a>
+    <div class="card-body">
+      <h5 class="card-title">{{ recipe.recipe }}</h5>
+      <p class="card-text">
+        <strong>Cooking Time:</strong> {{ recipe.cooking_time }}<br />
+        <strong>Difficulty:</strong> {{ recipe.difficulty_level }}<br />
+        <strong>Type:</strong> {{ recipe.recipe_type }}<br />
+        <strong>Likes:</strong> {{ recipe.likes_count }}
+      </p>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item" *ngFor="let ingredient of recipe.ingredients">
+          {{ ingredient.quantity }} - {{ ingredient.name }}
+        </li>
+      </ul>
+    </div>
+  </div>
+  

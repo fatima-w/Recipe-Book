@@ -1174,4 +1174,59 @@ def top_recipes_week():
         })
 
     return jsonify(top_recipes), 200
+
+
+
+
+@views.route('/search-recipes', methods=['GET'])
+@jwt_required()
+def search_recipes():
+    current_user = User.query.get(get_jwt_identity())
+
+    # Get query parameters
+    search_by = request.args.get('search_by', 'recipe_name')  # Get the search by value from query params
+    search_value = request.args.get('search_value', '')       # Get the search value
+
+    # Build query
+    query = Data.query
+
+    if search_by == 'recipe_name' and search_value:
+        query = query.filter(Data.recipe.ilike(f'%{search_value}%'))
+    elif search_by == 'ingredient_name' and search_value:
+        # Join with Ingredient table to filter by ingredient name
+        query = query.join(Ingredient).filter(Ingredient.name.ilike(f'%{search_value}%'))
+    elif search_by == 'difficulty_level' and search_value:
+        query = query.filter(Data.difficulty_level == search_value)
+    elif search_by == 'cooking_time':
+        try:
+            # min_cooking_time, max_cooking_time = map(int, search_value.split('-'))
+            query = query.filter(Data.cooking_time.between(0, search_value))
+        except ValueError:
+            return jsonify({"error": "Invalid cooking time range"}), 400
+    elif search_by == 'recipe_type' and search_value:
+        query = query.filter(Data.recipe_type == search_value)
+
+    # Ensure only public recipes are returned
+    query = query.filter(Data.public == True)
+
+    # Execute query and get results
+    results = query.all()
+
+    # Prepare results for response with recipe detail URL
+    recipes = [
+        {
+            'id': recipe.id,
+            'recipe': recipe.recipe,
+            'image_path': recipe.image_path,
+            'instructions': recipe.instructions,
+            'cooking_time': recipe.cooking_time,
+            'difficulty_level': recipe.difficulty_level,
+            'recipe_type': recipe.recipe_type,
+            'public': recipe.public,
+        }
+        for recipe in results
+    ]
+
+    return jsonify(recipes), 200
+
  

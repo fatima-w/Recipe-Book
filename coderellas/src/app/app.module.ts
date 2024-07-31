@@ -32,6 +32,9 @@ import { YourGroupsItemComponent } from './myrecipes/your-groups/your-groups-ite
 import { FavouritesComponent } from './favourites/favourites.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { FooterComponent } from './footer/footer.component';
+import { TopRecipesComponent } from './top-recipes/top-recipes.component';
+import { TopRecipesItemComponent } from './top-recipes/top-recipes-item/top-recipes-item.component';
+import { SearchItemComponent } from './home/search-item/search-item.component';
 
 @NgModule({
   declarations: [
@@ -60,6 +63,9 @@ import { FooterComponent } from './footer/footer.component';
     YourGroupsItemComponent,
     FavouritesComponent,
     FooterComponent,
+    TopRecipesComponent,
+    TopRecipesItemComponent,
+    SearchItemComponent,
     
   ],
   imports: [

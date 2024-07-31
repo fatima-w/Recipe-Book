@@ -4,12 +4,28 @@
         <div class="row">
             <div class="col-xs-12 text-center">
                 <form>
-                    <div class="search-container">
-                        <input type="text" class="search-input" placeholder="Search your favorite recipes here!">
-                        <button class="search-button">
-                          <img src="https://cdn-icons-png.flaticon.com/512/622/622669.png" alt="search-icon" class="search-icon">
-                        </button>
-                      </div>
+                    
+                        
+                        <div class="search-container p-2">
+                            <select [(ngModel)]="searchBy" class="search-opt" >
+                                <option value="recipe_name">Recipe Name</option>
+                                <option value="ingredient_name">Ingredient Name</option>
+                                <option value="difficulty_level">Difficulty Level</option>
+                                <option value="cooking_time">Cooking Time</option>
+                                <option value="recipe_type">Recipe Type</option>
+                              </select>
+                            <div class="search-bar">
+                                <input type="text" [(ngModel)]="searchValue" [ngModelOptions]="{standalone: true}" class="search-input" placeholder="Search your favorite recipes here!">
+                                
+                                <a class="search-button" (click)="searchRecipes()">
+                                    <i class="fa-solid fa-magnifying-glass"></i>
+                                </a>
+                            </div>
+                            
+                            <app-search-item *ngFor="let recipe of searchedRecipes" [recipe]="recipe"></app-search-item>
+                          </div>
+                
+                    
                 </form>
                 <div class="container-fluid text-center">
                     <div class="row video-row w-75 text-center">
@@ -53,6 +69,9 @@
       
         <app-group-list></app-group-list>
          
+    </div>
+    <div class="my-5">
+        <app-top-recipes></app-top-recipes>
     </div>
     <div class="slideshow-container">
         <div

@@ -102,5 +102,9 @@ getFavouriteRecipes(): Observable<Recipe[]> {
   return this.http.get<Recipe[]>(`${this.baseUrl}/favourites`);
 }
 
+getTopRecipes(): Observable<Recipe[]> {
+  return this.http.get<Recipe[]>(`${this.baseUrl}/top-recipes-week`);
+}
+
 }
      

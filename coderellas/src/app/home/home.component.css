@@ -181,3 +181,44 @@
     background-color: rgba(0, 0, 0, 0.8);
   }
   
+
+
+
+
+  /* FOR SEARCH NEW STYLES */
+  .search-bar {
+    display: flex;
+    align-items: center;
+  }
+  
+  .search-bar input {
+    width: 200px;
+    padding: 8px;
+    margin-right: 8px;
+    border: none;
+    border-radius: 0px;
+  }
+  
+  select {
+    padding: 8px;
+    margin-right: 8px;
+    border:none;
+    border-radius: 0px;
+  }
+  
+  .search-bar a {
+    color: var(--rose);
+    text-decoration: none !important;
+    border: none;
+    padding: 8px 16px;
+    cursor: pointer;
+    border-radius: 4px;
+  }
+  
+  .search-bar button:hover {
+    color: var(--red);
+  }
+
+  .search-opt{
+    width:30%;
+  }
