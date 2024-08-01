@@ -1,10 +1,13 @@
-<div class="search-item">
-    <img [src]="'http://127.0.0.1:5000/static/' + recipe.image_path" alt="Recipe Image" class="recipe-image" />
+<a (click) = "viewDetails()" style="cursor: pointer;">
+  <div class="search-item ps-3">
+    <!-- <img [src]="'http://127.0.0.1:5000/static/' + recipe.image_path" alt="Recipe Image" class="recipe-image" /> -->
     <div class="recipe-details">
       <h3>{{ recipe.recipe }}</h3>
-      <p>Cooking Time: {{ recipe.cooking_time }} mins</p>
+      <!-- <p>Cooking Time: {{ recipe.cooking_time }} mins</p>
       <p>Difficulty: {{ recipe.difficulty_level }}</p>
-      <a [routerLink]="['/recipe', recipe.id]">View Details</a>
+      <a [routerLink]="['/recipe', recipe.id]">View Details</a> -->
     </div>
   </div>
+</a>
+
   

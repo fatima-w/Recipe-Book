@@ -106,5 +106,14 @@ getTopRecipes(): Observable<Recipe[]> {
   return this.http.get<Recipe[]>(`${this.baseUrl}/top-recipes-week`);
 }
 
+getRecipeCreatorUsername(recipeId: number): Observable<{ username: string }> {
+  const token = localStorage.getItem('authToken'); // JWT token if authentication is required
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}` // Include token in headers if necessary
+    });
+
+    return this.http.get<{ username: string }>(`${this.baseUrl}/recipe-creator/${recipeId}`, { headers });
+}
+
 }
      

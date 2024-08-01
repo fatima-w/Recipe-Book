@@ -1,3 +1,13 @@
+:root{
+  --red: #e43d12;
+  --rose: #d6536d;
+  --pink: #ffa2b6;
+  --yellow: #efb11d;
+  --cream: #ebe9e1;
+  --black: #000000;
+  --white: #ffffff;
+}
+
 .card {
     border-radius: 0.5rem;
     overflow: hidden;
@@ -22,4 +32,12 @@
     background-color: #007bff;
     border-color: #007bff;
   }
-  
+  .cooking-time{
+    background-color: var(--cream);
+    border-radius: 20px;
+    width: fit-content;
+    position: relative;
+    z-index: 50;
+    left: 78%;
+    top: 9%;
+  }

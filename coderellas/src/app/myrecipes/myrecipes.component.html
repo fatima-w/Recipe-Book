@@ -2,12 +2,12 @@
 <div class="d-flex">
   <!-- Sidebar -->
   <nav class="bg-light border-right" id="sidebar-wrapper">
-    <div class="sidebar-heading">My Recipes</div>
+    <div class="sidebar-heading">Profile</div>
     <div class="list-group list-group-flush">
       <a
       
         class="list-group-item list-group-item-action bg-light"
-        (click)="toYourRecipes()">Your Recipes</a>
+        (click)="toYourRecipes()" style="cursor: pointer;">Your Recipes</a>
       <a
       [routerLink]="['/myrecipes/your-categories']"
         class="list-group-item list-group-item-action bg-light"

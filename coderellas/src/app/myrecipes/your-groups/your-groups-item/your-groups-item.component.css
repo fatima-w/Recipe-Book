@@ -3,6 +3,7 @@
     border-radius: 5px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     transition: transform 0.2s;
+    height: 30vh;
   }
   
   .card:hover {
@@ -28,5 +29,13 @@
   
   .btn:hover {
     background-color: #0056b3;
+  }
+
+  .view-more{
+    color: black;
+  }
+  .view-more:hover{
+    text-decoration: underline;
+    color: var(--rose);
   }
   

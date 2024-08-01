@@ -85,6 +85,7 @@ export class GroupListComponent implements OnInit {
       // })
       this.recipes = this.publicRecipes;
     }
+    console.log("group list recipes:", this.publicRecipes)
   }
 
   // Method to load public groups from the service

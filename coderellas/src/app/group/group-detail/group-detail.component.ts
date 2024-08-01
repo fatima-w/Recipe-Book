@@ -201,12 +201,29 @@ interface Groupi {
   user_id: number; // Add user_id to track group ownership
 }
 
+// interface Recipe {
+//   id: number; // Include ID for editing, deleting recipes
+//   recipe: string;
+//   image_path: string;
+//   instructions: string;
+//   group_id: number;
+// }
 interface Recipe {
-  id: number; // Include ID for editing, deleting recipes
+  id: number;
+  user_id: number;
+  group_id: number;
+  cooking_time: number;
+  difficulty_level: string;
   recipe: string;
   image_path: string;
+  ingredients: any[];
   instructions: string;
-  group_id: number;
+  recipe_type: string;
+  public: boolean;
+  reviews: any[];
+  comments: any[];
+  likes_count: number;
+  dislikes_count: number;
 }
 
 @Component({
@@ -267,7 +284,7 @@ export class GroupDetailComponent {
     });
   }
 
-  // New method to load group recipes by group ID
+  //  method to load group recipes by group ID
   loadGroupRecipes() {
     this.groupService.getGroupRecipes(this.group.id).subscribe({
       next: (recipes) => {
@@ -283,18 +300,19 @@ export class GroupDetailComponent {
     });
   }
 
+//  method to delete group by group ID
   deleteGroup(groupId: number): void {
     if (confirm('Are you sure you want to delete this group?')) {
       this.groupService.deleteGroup(groupId).subscribe({
         next: (response) => {
           console.log('Group deleted successfully!', response);
-          // Refresh the group list after deletion
           this.loadGroups();
+          //Routing to home after recipe delete
           this.router.navigate(['/home']);
         },
         error: (error) => {
           console.error('Error deleting group:', error);
-          // Handle error appropriately, e.g., show a message to the user
+          
         },
       });
     }

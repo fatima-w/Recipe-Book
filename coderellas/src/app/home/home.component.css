@@ -7,6 +7,10 @@
     --black: #000000;
   }
 /* Container for the search bar */
+.search-after{
+  border-bottom-right-radius: 0px !important;
+  border-bottom-left-radius: 0px !important;
+}
 .search-container {
     position: absolute;
     top: 20%;
@@ -16,7 +20,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 27%;
+    width: 35%;
     max-width: 600px; /* Maximum width of the search bar */
     margin: 0 auto; /* Center the search bar horizontally */
     /* padding: 10px; */
@@ -24,6 +28,27 @@
     border-radius: 50px; /* Rounded corners */
     box-shadow: 0 2px 5px rgb(0 0 0 / 59%); /* Subtle shadow for depth */
 }
+.search-results{
+  position: absolute;
+  top: 29%;
+  left: 37%;
+  right: 50%;
+  display: block;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 35%;
+  max-width: 600px;
+  margin: 0 auto;
+  height: auto;
+  background-color: white;
+  /* border-radius: 50px; */
+  box-shadow: 0 2px 5px rgb(0 0 0 / 59%);
+  border-bottom-right-radius: 50px;
+    border-bottom-left-radius: 50px;
+}
+
 
 /* Input field styles */
 .search-input {
@@ -183,16 +208,20 @@
   
   
 
-
+.creat-cat-btn{
+  color: var(--rose);
+  background-color: white;
+}
 
   /* FOR SEARCH NEW STYLES */
   .search-bar {
+    width: 85%;
     display: flex;
     align-items: center;
   }
   
   .search-bar input {
-    width: 200px;
+    /* width: 200px; */
     padding: 8px;
     margin-right: 8px;
     border: none;
@@ -222,3 +251,50 @@
   .search-opt{
     width:30%;
   }
+
+
+
+  .containerquoteelement {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--rose);
+    color: white;
+    font-family: 'Brush Script MT', cursive;
+    height: 60px;
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    font-size: 25px;
+    margin-bottom: 50px;
+
+  }
+  
+  .containerquoteelement i {
+    margin-right: 10px;
+    font-size: 24px;
+  }
+  
+
+  .containergroupmessageelement {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--rose);
+    color: white;
+    /* font-family: 'Brush Script MT', cursive; */
+    height: 60px;
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    font-size: 20px;
+    margin-bottom: 10px;
+    margin-top: 60px;
+
+  }
+  
+  .containergroupmessageelement i {
+    margin-right: 10px;
+    font-size: 20px;
+  }
+  

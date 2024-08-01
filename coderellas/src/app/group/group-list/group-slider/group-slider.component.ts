@@ -68,6 +68,23 @@ interface Groupi {
   name: string;
   description: string;
 }
+interface Recipe {
+  id: number;
+  user_id: number;
+  group_id: number;
+  cooking_time: number;
+  difficulty_level: string;
+  recipe: string;
+  image_path: string;
+  ingredients: any[];
+  instructions: string;
+  recipe_type: string;
+  public: boolean;
+  reviews: any[];
+  comments: any[];
+  likes_count: number;
+  dislikes_count: number;
+}
 
 @Component({
   selector: 'app-group-slider',
@@ -75,6 +92,7 @@ interface Groupi {
   styleUrls: ['./group-slider.component.css']
 })
 export class GroupSliderComponent {
+  @Input() recipes: Recipe[] = [];
   @Input() groups: Group[] = [];
   currentIndex: number = 0;
 
@@ -82,6 +100,7 @@ export class GroupSliderComponent {
   itemsVisible: number = 5;
   ngOnInit(){
     console.log(this.groups)
+    console.log('group recipes slider:', this.recipes)
   }
   nextSlide() {
     if (this.currentIndex < this.groups.length - this.itemsVisible) {

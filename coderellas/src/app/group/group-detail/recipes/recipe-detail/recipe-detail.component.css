@@ -9,21 +9,26 @@
   --white: #ffffff;
 }
 
+.sub-headings{
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--rose);
+}
+
+
   ul {
     list-style-type: none;
     padding: 0;
   }
   
-  ul li {
+  /* ul li {
     margin: 5px 0;
     padding: 5px;
     background-color: #f9f9f9;
     border-radius: 4px;
-  }
+  } */
   
-  .recipe-feedback {
-    
-  }
+  
   
   .btn {
     margin-right: 10px;
@@ -39,9 +44,7 @@
   }
 
   /* recipe-detail styles */
-  .recipe-container{
-    
-  }
+ 
   .recipe-detail {
     margin: 20px;
     /* max-width: 800px; */
@@ -75,3 +78,63 @@ border-radius: 10px;
     margin: 10px 0;
   }
   
+  .recipe-info{
+    width: 60%;
+  }
+
+  .ingredient-name{
+    margin: 5px 0;
+    padding: 5px;
+    background-color: var(--cream);
+    border-radius: 4px;
+  }
+  .ingredient-quantity{
+    margin: 5px 0;
+    padding: 5px;
+    background-color: var(--cream);
+    border-radius: 4px;
+  }
+  .instructions{
+    margin: 5px 0;
+    padding: 5px;
+    background-color: var(--cream);
+    border-radius: 4px;
+    width: fit-content;
+  }
+  .add-comment textarea{
+    border: none;
+    border-bottom: 2px solid rgb(116, 116, 116);
+    border-radius: 0px;
+  }
+  .add-comment textarea:hover{
+    border: none;
+    border-bottom: 2px solid black;
+    border-radius: 0px;
+  }
+
+  .add-comment button{
+    border-radius: 20px;
+
+  }
+
+/*  edit-form styles */
+.form-container{
+  background-color: var(--cream);
+}
+.name-ctrl{
+  width: 60%;
+}
+.ingredient-quantity-ctrl{
+  width: 100%;
+}
+.ingredient-name-ctrl{
+  width: 100%;
+}
+.ints-ctrl{
+  width: 60%;
+}
+.submit-btn{
+  background-color: var(--rose);
+  font-weight: 600;
+  color: white;
+}

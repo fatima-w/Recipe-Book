@@ -16,6 +16,7 @@ interface Recipe {
   comments: any[];
   likes_count: number;
   dislikes_count: number;
+  username?:string;
 }
 @Component({
   selector: 'app-top-recipes-item',

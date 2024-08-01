@@ -73,7 +73,8 @@ def group_recipes(group_id):
     else:
         isUserAllowed = True
     recipes = Data.query.filter_by(group_id=group_id).all()
-    recipes_list = [{'id': recipe.id, 'recipe': recipe.recipe, 'image_path': recipe.image_path, 'instructions': recipe.instructions} for recipe in recipes]
+    
+    recipes_list = [{'id': recipe.id, 'recipe': recipe.recipe, 'image_path': recipe.image_path, 'instructions': recipe.instructions, 'cooking_time':recipe.cooking_time, 'recipe_type': recipe.recipe_type, 'public': recipe.public, 'difficulty_level':recipe.difficulty_level,"username" : (User.query.filter_by(id=recipe.user_id).first()).username} for recipe in recipes]
 
     return jsonify({'recipes': recipes_list, 'current_user_id': current_user.id , "isUserAllowed": isUserAllowed}), 200
 
@@ -1015,10 +1016,14 @@ def add_to_shopping_list():
 def recipe_detail(recipe_id):
     current_user = User.query.get(get_jwt_identity())
     recipe = Data.query.get_or_404(recipe_id)
-
+    isUserAllowed=False
     if recipe.user_id != current_user.id and not recipe.public:
         return jsonify({'error': 'You do not have permission to view this recipe!'}), 403
-
+    
+    if recipe.public and recipe.user_id != current_user.id:
+        isUserAllowed = False
+    else:
+        isUserAllowed = True
     ingredients = Ingredient.query.filter_by(data_id=recipe_id).all()
     reviews = Review.query.filter_by(recipe_id=recipe_id).all()
     comments = Comment.query.filter_by(recipe_id=recipe_id).all()
@@ -1072,7 +1077,8 @@ def recipe_detail(recipe_id):
         'reviews': [{'user_id': rev.user_id, 'thumbs_up': rev.thumbs_up} for rev in reviews],
         'comments': [{'username': User.query.get(com.user_id).username, 'text': com.text} for com in comments],
         'likes_count': likes_count,
-        'dislikes_count': dislikes_count
+        'dislikes_count': dislikes_count,
+        'isUserAllowed':isUserAllowed
     }
 
     return jsonify(recipe_data), 200
@@ -1127,6 +1133,24 @@ def get_current_user():
 
 
 
+@views.route('/recipe-creator', methods=['GET'])
+@jwt_required()
+def get_recipe_creator(recipe_id):
+    # Retrieve the recipe using the provided recipe_id
+    current_user = User.query.get(get_jwt_identity())
+    recipe = Data.query.filter_by(id=recipe_id).first()
+
+    if recipe:
+        # Retrieve the user who created the recipe
+        user = User.query.filter_by(id=recipe.user_id).first()
+
+        if user:
+            # Return the username of the creator
+            return jsonify({'username': user.username}), 200
+        else:
+            return jsonify({'error': 'User not found'}), 404
+    else:
+        return jsonify({'error': 'Recipe not found'}), 404
 
 
 @views.route('/top-recipes-week', methods=['GET'])

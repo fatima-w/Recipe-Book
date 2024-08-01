@@ -3,6 +3,7 @@ import { AuthService } from '../auth/auth.service';
 import { Subscription } from 'rxjs';
 import { QueryList } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
 interface Slide {
   imageUrl: string;
   quote: string;
@@ -32,6 +33,7 @@ interface Recipe {
 })
 export class HomeComponent {
   // userSub:Subscription;
+  isSearched:boolean = false;
   slides: Slide[] = [
     {
       imageUrl: 'https://images.unsplash.com/photo-1528975604071-b4dc52a2d18c?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
@@ -56,7 +58,7 @@ export class HomeComponent {
   searchedRecipes: Recipe[] = [];
   
   
-  constructor(private authService:AuthService, private cd: ChangeDetectorRef, private http:HttpClient){}
+  constructor(private authService:AuthService, private cd: ChangeDetectorRef, private http:HttpClient, private router:Router){}
 
   // ngOnint(){
   //   this.userSub = this.authService.user.subscribe(user =>{
@@ -113,10 +115,15 @@ export class HomeComponent {
         {next:(recipes) => {
           this.searchedRecipes = recipes;
           console.log("searched recipes: ", this.searchedRecipes)
+          this.isSearched = true;
         },
         error:(error) => {
           console.error('Error searching recipes:', error);
         }}
       );
+  }
+
+  toCreateCategory(){
+    this.router.navigate(['/create-group'])
   }
 }

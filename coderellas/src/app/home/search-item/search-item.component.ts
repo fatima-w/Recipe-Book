@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { Router } from '@angular/router';
 interface Recipe {
   id: number;
   user_id: number;
@@ -23,4 +24,10 @@ interface Recipe {
 })
 export class SearchItemComponent {
   @Input() recipe!: Recipe;
+  constructor(private router:Router){}
+  viewDetails(){
+    this.router.navigate(['/recipe-detail', this.recipe.id]);
+  }
+
+  
 }

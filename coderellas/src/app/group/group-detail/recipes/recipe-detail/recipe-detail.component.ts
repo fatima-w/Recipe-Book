@@ -892,6 +892,7 @@ export class RecipeDetailComponent implements OnInit {
 
   instructions: string[] = [];
   username:string;
+  isUserAllowed:boolean = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -913,6 +914,7 @@ export class RecipeDetailComponent implements OnInit {
     const recipeId = +this.route.snapshot.paramMap.get('id')!;
     this.recipeService.getRecipeById(recipeId).subscribe({
       next: data => {
+        this.isUserAllowed=data.isUserAllowed
         this.username = data.comments.username;
         this.recipe = data;
         this.initializeForm(this.recipe);
@@ -976,7 +978,7 @@ export class RecipeDetailComponent implements OnInit {
     this.recipeService.deleteRecipe(recipeId).subscribe({
       next: () => {
         alert('Recipe deleted successfully!');
-        this.router.navigate(['/recipes']); // Navigate to the recipe list or home
+        this.router.navigate(['/category-detail/:id']); // Navigate to the recipe list or home
       },
       error: (error) => {
         console.error('Error deleting recipe:', error);

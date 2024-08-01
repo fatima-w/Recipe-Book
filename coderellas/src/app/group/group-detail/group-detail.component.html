@@ -39,13 +39,12 @@
     <app-recipe-list [recipes]="publicRecipes"></app-recipe-list>
   </div>
    -->
-   <div class="container mt-4">
+   <!-- <div class="container mt-4">
     <div class="card shadow-lg">
       <div class="card-body">
         <div class="d-flex align-items-center justify-content-between mb-3">
           <div>
             <h2 class="card-title">{{ group.name }}</h2>
-            <!-- <p class="text-muted mb-0">Category Details</p> -->
           </div>
           <button class="btn btn-primary" type="button" (click)="toAddRecipe()">
             <i class="bi bi-plus-circle me-2"></i> New Recipe
@@ -61,13 +60,11 @@
             />
           </div>
           <div class="col-md-8">
-            <!-- <h5 class="mt-3">Description</h5> -->
             <p>{{ group.description }}</p>
           </div>
         </div>
         <hr />
         <div class="group-actions mt-4">
-          <!-- Conditional rendering based on group ownership -->
           <ng-container *ngIf="isUserAllowed">
             <button class="btn btn-outline-secondary me-2" (click)="editGroup()">
               <i class="bi bi-pencil-square me-1"></i> Edit Group
@@ -88,4 +85,34 @@
   <div class="pt-5 mt-5">
     <app-recipe-list [recipes]="recipes"></app-recipe-list>
   </div>
+   -->
+
+   <div class="main-container w-75">
+    <div class="group-container">
+      <h1 class="group-name">{{ group.name }}</h1>
+      <p class="group-description">{{ group.description }}</p>
   
+      <div class="d-flex justify-content-between align-items-end add-edit">
+        <div class="quote-add-recipe">
+          <p class="quote">"Pass on your culinary secrets, one recipe at a time."</p>
+          <button class="btn add-recipe-btn" (click)="toAddRecipe()">
+            <i class="bi bi-plus-circle me-2"></i> New Recipe
+          </button>
+        </div>
+        <div class="group-actions">
+          <ng-container *ngIf="isUserAllowed">
+            <a class="" (click)="editGroup()" style="cursor: pointer;">
+              <i class="fa-regular fa-pen-to-square" style="color: #d6536d;"></i>
+            </a>
+            <a class="" (click)="deleteGroup(group.id)" style="cursor: pointer;">
+              <i class="fa-solid fa-trash" style="color: #d6536d;"></i>
+            </a>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+  
+    <div class="recipes-container">
+      <app-recipe-list [recipes]="recipes"></app-recipe-list>
+    </div>
+  </div>

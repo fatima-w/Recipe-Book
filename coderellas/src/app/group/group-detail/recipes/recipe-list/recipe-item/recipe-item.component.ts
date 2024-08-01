@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
+import { RecipeService } from '../../recipe.service';
 interface Recipe {
   id: number;
   user_id: number;
@@ -16,6 +17,7 @@ interface Recipe {
   comments: any[];
   likes_count: number;
   dislikes_count: number;
+  username?:string;
 }
 
 @Component({
@@ -25,15 +27,28 @@ interface Recipe {
 })
 export class RecipeItemComponent {
   @Input() recipe: Recipe;
-  constructor(private router:Router){}
+  creatorUsername: string = '';
+  constructor(private router:Router, private recipeService: RecipeService){}
   getImageUrl(imagePath: string): string {
     return `http://127.0.0.1:5000/static/${imagePath}`;
   }
   ngOnInit(){
     console.log(this.recipe)
+    this.fetchCreatorUsername();
   }
   viewDetails() {
     // Navigate to recipe-detail with the recipe ID
     this.router.navigate(['/recipe-detail', this.recipe.id]);
+  }
+  fetchCreatorUsername(): void {
+    this.recipeService.getRecipeCreatorUsername(this.recipe.id).subscribe(
+      (data) => {
+        this.creatorUsername = data.username;
+        console.log(this.creatorUsername)
+      },
+      (error) => {
+        console.error('Error fetching creator username:', error);
+      }
+    );
   }
 }

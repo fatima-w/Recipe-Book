@@ -1,7 +1,7 @@
-<div class="container mt-5">
-    <div class="card shadow-lg">
-      <div class="card-body">
-        <h2 class="card-title mb-4">Edit Group</h2>
+<div class="container mt-5 start-container">
+    <div class="card shadow-lg group-create-container ">
+      <div class="card-body ">
+        <h2 class="card-title mb-4 create-cat-heading mt-3 mb-3">Edit Group</h2>
         <form [formGroup]="editGroupForm" (ngSubmit)="onSubmit()">
           <div class="mb-3">
             <label for="name" class="form-label">Group Name</label>
@@ -46,7 +46,7 @@
   
           <button
             type="submit"
-            class="btn btn-success"
+            class="btn btn-success me-3"
             [disabled]="editGroupForm.invalid"
           >
             Save Changes

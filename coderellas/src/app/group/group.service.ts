@@ -108,6 +108,23 @@ interface Groupi {
   public?: boolean;
   user_id: number; // Add user_id to track group ownership
 }
+interface Recipe {
+  id: number;
+  user_id: number;
+  group_id: number;
+  cooking_time: number;
+  difficulty_level: string;
+  recipe: string;
+  image_path: string;
+  ingredients: any[];
+  instructions: string;
+  recipe_type: string;
+  public: boolean;
+  reviews: any[];
+  comments: any[];
+  likes_count: number;
+  dislikes_count: number;
+}
 @Injectable({
   providedIn: 'root'
 })
@@ -201,7 +218,7 @@ export class GroupService {
         };
       })
     );
-  }
+  }   
 
 
     // Method to get the current user ID
