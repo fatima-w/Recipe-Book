@@ -4,10 +4,15 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from flask_jwt_extended import JWTManager
 from flask_cors import CORS
+from dotenv import load_dotenv
+
+
 
 db = SQLAlchemy()
 migrate = Migrate()
-
+# load_dotenv('dev.env')
+# gemini_api_key = os.getenv('GEMINI_API_KEY')
+# print(f"GEMINI_API_KEY: {gemini_api_key}")
 
 def create_app():
     app = Flask(__name__)

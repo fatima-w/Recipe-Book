@@ -251,8 +251,8 @@
             
             <h2 class="pb-3 recipe-heading">{{ recipe.recipe }}</h2>
             <div class="update-recipe me-5" *ngIf="isUserAllowed">
-              <a class="" (click)="toggleEdit()" style="cursor: pointer;"><i class="fa-regular fa-pen-to-square" style="color: #d6536d;"></i></a>
-              <a class="" (click)="deleteRecipe()" style="cursor: pointer;"><i class="ms-4 fa-solid fa-trash" style="color: #d6536d;"></i></a>
+              <a class="" (click)="toggleEdit()" style="cursor: pointer;" title="Edit recipe"><i class="fa-regular fa-pen-to-square" style="color: #d6536d; font-size: 25px;"></i></a>
+              <a class="" (click)="deleteRecipe()" style="cursor: pointer;" title="Delete recipe"><i class="ms-4 fa-solid fa-trash" style="color: #d6536d; font-size: 25px;"></i></a>
             </div>
           </div>
           
@@ -267,12 +267,12 @@
                   <div class="reviews">
                     <div class="recipe-feedback">
                       <a (click)="likeRecipe()" [disabled]="hasLiked === true" class="" style="cursor: pointer;">
-                        <i class="fa-regular fa-thumbs-up" style="color: #d6536d;"></i> <span class="badge text-muted">{{ recipe.likes_count }}</span>
+                        <i class="fa-regular fa-thumbs-up" style="color: #d6536d;font-size: 25px;"></i> <span class="badge text-muted">{{ recipe.likes_count }}</span>
                       </a>
                       <a (click)="dislikeRecipe()" [disabled]="hasLiked === false" class="" style="cursor: pointer;">
-                        <i class="fa-regular fa-thumbs-down" style="color: #d6536d;"></i> <span class="badge text-muted">{{ recipe.dislikes_count }}</span>
+                        <i class="fa-regular fa-thumbs-down" style="color: #d6536d;font-size: 25px;"></i> <span class="badge text-muted">{{ recipe.dislikes_count }}</span>
                       </a>
-                      <a (click)="addToFavourites()" class="ms-5" style="cursor: pointer;"><i class="fa-solid fa-bookmark" style="color: #d6536d;"></i></a>
+                      <a (click)="addToFavourites()" class="ms-5" style="cursor: pointer;" title="Save recipe"><i class="fa-solid fa-bookmark" style="color: #d6536d; font-size: 25px;"></i></a>
   
                     </div>
                   </div>
@@ -282,7 +282,7 @@
               <div class="col-md-3 p-3 ps-5">
                 <div class="time-container d-flex justify-content-between p-2">
                   <span>{{recipe.cooking_time}} m</span>
-                  <div class="span ps-3"><i class="fa-regular fa-clock" style="color: #d6536d;"></i></div>
+                  <div class="span ps-3" ><i class="fa-regular fa-clock" title="Cooking time" style="color: #d6536d;"></i></div>
                   <!-- <p><strong>Cooking Time:</strong> {{ recipe.cooking_time }} minutes</p> -->
                 </div>
                 <div class="time-container mt-2 p-2">
@@ -300,8 +300,8 @@
           <div class="recipe-info pt-4">
             <h3 class="sub-headings pt-2">Ingredients</h3>
           <ul>
-            <li *ngFor="let ingredient of recipe.ingredients">
-              <span class="ingredient-name px-3">{{ ingredient.name }}</span> - <span class="ingredient-quantity ms-3 px-3">{{ ingredient.quantity }}</span>
+            <li *ngFor="let ingredient of recipe.ingredients" class="mb-3">
+              <span class="ingredient-name px-3 me-1">{{ ingredient.name }}</span> - <span class="ingredient-quantity ms-3 px-3">{{ ingredient.quantity }}</span>
             </li>
           </ul>
             <!-- <p><strong>Instructions:</strong> {{ recipe.instructions }}</p> -->
@@ -329,18 +329,23 @@
 
           <!-- <button (click)="addToFavourites()" class="btn btn-warning">Add to Favourites</button> -->
           <hr>
+
           <!-- Comments Section -->
-          <h3 class="sub-headings pt-5">Comments</h3>
-          <div *ngFor="let comment of recipe.comments" class="comment">
-            <p><strong>{{ comment.username }}:</strong> {{ comment.text }}</p>
-          </div>
+           <div class="container-fluid ">
+            <h3 class="sub-headings pt-5">Comments</h3>
+          
         
-          <!-- Add Comment Form -->
-          <div class="add-comment w-75">
-            <textarea [(ngModel)]="newCommentText" rows="1" placeholder="Add a comment..." class="form-control"></textarea>
-            <div class="text-end"><button (click)="addComment()" class="btn btn-outline-secondary ">Comment</button></div>
-            
-          </div>
+            <!-- Add Comment Form -->
+            <div class="add-comment">
+              <textarea [(ngModel)]="newCommentText" rows="1" placeholder="Add a comment..." class="form-control"></textarea>
+              <div class="text-end"><button (click)="addComment()" class="btn btn-outline-secondary ">Comment</button></div>
+              
+            </div>
+            <div *ngFor="let comment of recipe.comments" class="comment mt-4">
+              <p class="p-2"><strong>{{ comment.username }}:</strong> {{ comment.text }}</p>
+            </div>
+           </div>
+          
         </div>
       </div>
       

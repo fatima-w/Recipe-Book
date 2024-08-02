@@ -1254,3 +1254,163 @@ def search_recipes():
     return jsonify(recipes), 200
 
  
+
+
+
+
+
+import os
+from dotenv import load_dotenv
+from youtube_transcript_api import YouTubeTranscriptApi, NoTranscriptFound, CouldNotRetrieveTranscript
+import google.generativeai as genai
+from flask import Blueprint, request, jsonify
+from flask_jwt_extended import jwt_required, get_jwt_identity
+from .models import User, Data, Ingredient, Review, Comment
+import json
+import logging
+
+
+
+# Load environment variables
+# load_dotenv('dev.env')
+
+# Access the Gemini API key
+# gemini_api_key = os.getenv('GEMINI_API_KEY')
+
+# if not gemini_api_key:
+#     print("API Key not found!")
+# else:
+#     print("API Key loaded successfully.")
+
+
+def extract_transcript_details(youtube_video_url):
+    try:
+        video_id = youtube_video_url.split("v=")[1]
+        transcript_text = YouTubeTranscriptApi.get_transcript(video_id, languages=['en', 'en-GB'])
+        transcript = " ".join([i["text"] for i in transcript_text])
+        return transcript
+    except NoTranscriptFound:
+        return "Transcript not found for the provided video."
+    except CouldNotRetrieveTranscript as e:
+        return f"Could not retrieve the transcript. Details: {str(e)}"
+    except Exception as e:
+        raise e
+    
+
+def final_json(youtube_url):
+    youtube_text = extract_transcript_details(youtube_url)
+    if "Transcript not found" in youtube_text or "Could not retrieve the transcript" in youtube_text:
+        return {"error": youtube_text}
+
+    genai.configure(api_key='AIzaSyC8TXINh7qxkn_EAjctpB3RdssvoOh402I')
+    model = genai.GenerativeModel('gemini-pro')
+    system_content = '''You are a great cooking Expert. You will be given a youtube transcript and you need to find the key features like time taken for recipe, list of ingredients, name of recipe and instructions to cook.
+                You need to output a JSON with keys name, ingredients and instructions.
+                You need to give a parsable JSON without any extra terms.
+'''
+    user_content = f'''Youtube_transcript: {youtube_text}
+                    You need to give a JSON with keys name of the recipe, ingredients and detailed instructions for making the recipe.
+                     The output should be a direct dictionary without any text outside.'''
+    try:
+        response = model.generate_content([system_content, user_content])
+        result_final = response.text
+        result_json = json.loads(result_final)
+    except json.JSONDecodeError:
+        return {"error": "Failed to decode JSON response from Gemini API"}
+    except Exception as e:
+        return {"error": str(e)}
+
+    return result_json
+# def final_json(youtube_url):
+#     youtube_text = extract_transcript_details(youtube_url)
+#     if "Transcript not found" in youtube_text or "Could not retrieve the transcript" in youtube_text:
+#         return youtube_text
+
+#     genai.configure(api_key='AIzaSyC8TXINh7qxkn_EAjctpB3RdssvoOh402I')
+#     model = genai.GenerativeModel('gemini-pro')
+#     system_content = '''You are a great cooking Expert. You will be given a youtube transcript and you need to find the key features like time taken for recipe, list of ingredients, name of recipe and instructions to cook.
+#                 You need to output a JSON with keys name, ingredients and instructions.
+#                 You need to give a parsable JSON without any extra terms.
+# '''
+#     user_content = f'''Youtube_transcript: {youtube_text}
+#                     You need to give a JSON with keys name of the recipe, ingredients and detailed instructions for making the recipe.
+#                      The output should be a direct dictionary without any text outside.'''
+#     try:
+#         response = model.generate_content([system_content, user_content])
+#         result_final = response.text
+#         result_json = json.loads(result_final)
+#         # formatted_json = json.dumps(result_json, indent=4, ensure_ascii=False)
+#     except json.JSONDecodeError as e:
+#         raise
+#     except Exception as e:
+#         raise
+
+#     return result_json
+
+# @views.route('/api/generate', methods=['POST'])
+# @jwt_required()
+# def generate():
+#     current_user = User.query.get(get_jwt_identity())
+#     data = request.json
+#     youtube_url = data.get('youtube_url')
+#     if not youtube_url:
+#         return jsonify({'error': 'No YouTube URL provided'}), 400
+#     try:
+#         result = final_json(youtube_url)
+#         return jsonify(result)
+#     except Exception as e:
+#         return jsonify({'error': str(e)}), 500
+
+@views.route('/api/generate', methods=['POST'])
+@jwt_required()
+def generate():
+    current_user = User.query.get(get_jwt_identity())
+    data = request.json
+    youtube_url = data.get('youtube_url')
+    if not youtube_url:
+        return jsonify({'error': 'No YouTube URL provided'}), 400
+    
+    try:
+        result = final_json(youtube_url)
+        # Check if the result contains an error
+        if 'error' in result:
+            return jsonify(result), 500
+        
+        return jsonify(result)
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+
+@views.route('/chat', methods=['POST'])
+@jwt_required()
+def chat():
+    current_user = User.query.get(get_jwt_identity())
+    user_message = request.json.get('message')
+    if not user_message:
+        return jsonify({'error': 'No message provided'}), 400
+    response_message = process_chat_message(user_message)
+    return jsonify({'response': response_message})
+
+def process_chat_message(message):
+    questions = {
+        "recipe name": "The recipe name is extracted from the JSON and is 'Traditional English Pancakes'.",
+        "ingredients": "The ingredients are: 100 grams of plain flour, 2 large eggs, 300 milliliters of milk, one tablespoon of sunflower oil.",
+        "instructions": "Instructions include: Put all the ingredients into a bowl, whisk into a smooth batter, cook pancakes for one minute on each side until golden, and more.",
+        "time": "The exact time to cook the recipe is not provided, but generally, it takes around 30 minutes to prepare and cook pancakes."
+    }
+    normalized_message = message.lower()
+    for key in questions:
+        if key in normalized_message:
+            return questions[key]
+    return "I'm sorry, I didn't understand your question. Please ask about the recipe name, ingredients, instructions, or cooking time."
+
+# @views.route('/')
+# @jwt_required()
+# def home():
+#     current_user = User.query.get(get_jwt_identity())
+#     public_groups = Group.query.filter_by(public=True).all()
+#     public_recipes = Data.query.join(Group).filter(Group.public == True).all()
+
+#     groups_list = [{'id': group.id, 'name': group.name, 'description': group.description} for group in public_groups]
+#     recipes_list = [{'id': recipe.id, 'recipe': recipe.recipe, 'image_path': recipe.image_path, 'instructions': recipe.instructions, 'group_id': recipe.group_id} for recipe in public_recipes]
+#     return jsonify({'user': current_user.id, 'public_groups': groups_list, 'public_recipes': recipes_list})

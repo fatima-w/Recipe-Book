@@ -1,0 +1,40 @@
+/* feature.component.css */
+:root{
+  --red: #e43d12;
+  --rose: #d6536d;
+  --pink: #ffa2b6;
+  --yellow: #efb11d;
+  --cream: #ebe9e1;
+  --black: #000000;
+  --white: #ffffff;
+}
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+    height: 90vh;
+  }
+  
+  h2 {
+    margin-bottom: 20px;
+  }
+  
+  .form-control.is-invalid {
+    border-color: #dc3545;
+  }
+  
+  .invalid-feedback {
+    color: #dc3545;
+  }
+  
+  button {
+    margin-top: 10px;
+  }
+  
+  .alert {
+    margin-top: 20px;
+  }
+  
+
+  .main-container{
+    background-color: var(--cream);
+  }

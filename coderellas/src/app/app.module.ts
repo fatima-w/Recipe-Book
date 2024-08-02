@@ -35,6 +35,7 @@ import { FooterComponent } from './footer/footer.component';
 import { TopRecipesComponent } from './top-recipes/top-recipes.component';
 import { TopRecipesItemComponent } from './top-recipes/top-recipes-item/top-recipes-item.component';
 import { SearchItemComponent } from './home/search-item/search-item.component';
+import { FeatureComponent } from './feature/feature.component';
 
 @NgModule({
   declarations: [
@@ -66,6 +67,7 @@ import { SearchItemComponent } from './home/search-item/search-item.component';
     TopRecipesComponent,
     TopRecipesItemComponent,
     SearchItemComponent,
+    FeatureComponent,
     
   ],
   imports: [

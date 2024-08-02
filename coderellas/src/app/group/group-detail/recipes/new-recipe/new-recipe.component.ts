@@ -194,6 +194,15 @@ export class NewRecipeComponent implements OnInit {
     this.recipeForm.get('instructions')?.setValue(instructionsWithDelimiter);
   }
 
+  // Method to remove an instruction step
+  removeInstructionStep(index: number): void {
+    this.instructionSteps.splice(index, 1);
+    
+    // Update the form control with the updated instruction steps
+    const instructionsWithDelimiter = this.instructionSteps.join('|||');
+    this.recipeForm.get('instructions')?.setValue(instructionsWithDelimiter);
+  }
+
   onFileSelected(event: any): void {
     this.selectedFile = event.target.files[0];
   }

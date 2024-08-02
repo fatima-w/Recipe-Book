@@ -129,38 +129,42 @@
       />
     </div>
   
-    
-    <div formArrayName="ingredients">
-      <div
-        class="ingredient-item  pt-4"
-        *ngFor="let ingredient of ingredients.controls; let i = index"
-        [formGroupName]="i"
-      >
-      
-      <input
-          type="text"
-          formControlName="quantity"
-          placeholder="Quantity (eg. 5ml, 100 g)"
-          class="form-control ingredient-quantity-ctrl py-3"
-          required
-        />
-        <input
-          type="text"
-          formControlName="name"
-          placeholder="Ingredient Name"
-          class="form-control ingredient-name-ctrl py-3"
-          required
-        />
+    <div class="d-flex row">
+      <div formArrayName="ingredients" class="col-md-11">
+        <div
+          class="ingredient-item  pt-4"
+          *ngFor="let ingredient of ingredients.controls; let i = index"
+          [formGroupName]="i"
+        >
         
-        <a type="button" (click)="removeIngredient(i)" style="cursor: pointer;">
-          <i class="fa-solid fa-trash" style="color: #d6536d;"></i>
-        </a>
-        <a type="button" (click)="addIngredient()" style="cursor: pointer;"><i class="fa-solid fa-plus" style="color: #d6536d;"></i></a>
+        <input
+            type="text"
+            formControlName="quantity"
+            placeholder="Quantity (eg. 5ml, 100 g)"
+            class="form-control ingredient-quantity-ctrl py-3"
+            required
+          />
+          <input
+            type="text"
+            formControlName="name"
+            placeholder="Ingredient Name"
+            class="form-control ingredient-name-ctrl py-3"
+            required
+          />
+          
+          <a type="button" (click)="removeIngredient(i)" style="cursor: pointer;">
+            <i class="fa-solid fa-trash" style="color: #d6536d;"></i>
+          </a>
+          <!-- <a type="button" (click)="addIngredient()" style="cursor: pointer;"><i class="fa-solid fa-plus" style="color: #d6536d;"></i></a> -->
+        </div>
+      </div>
+      <div class="col-md-1">      <a type="button" (click)="addIngredient()" style="cursor: pointer;" class="pt-4 my-3"><i class="fa-solid fa-plus" style="color: #d6536d;"></i></a>
       </div>
     </div>
     
+    
   
-    <div class="form-group pt-4 ">
+    <!-- <div class="form-group pt-4 ">
       <label for="currentStep">Add Instructions</label>
       <div class="add-inst d-flex">
         <input
@@ -176,10 +180,39 @@
       
     </div>
   
+    <div class="form-group">  
+      <label>Instructions:</label>
+      <ul>
+        <li *ngFor="let step of instructionSteps">{{ step }}</li>  
+      </ul>
+    </div> -->
+
+    <div class="form-group pt-4">
+      <label for="currentStep">Add Instructions</label>
+      <div class="add-inst d-flex">
+        <input
+          type="text"
+          [(ngModel)]="currentStep"  
+          [ngModelOptions]="{standalone: true}"
+          placeholder="Enter step"
+          class="form-control ints-ctrl py-3"
+          required
+        />
+        <a type="button" (click)="addInstructionStep()" style="cursor: pointer;">
+          <i class="fa-solid fa-plus p-3" style="color: #d6536d;"></i>
+        </a>
+      </div>
+    </div>
+  
     <div class="form-group">
       <label>Instructions:</label>
       <ul>
-        <li *ngFor="let step of instructionSteps">{{ step }}</li>  <!-- Display added steps -->
+        <li *ngFor="let step of instructionSteps; let i = index">
+          {{ step }}
+          <a type="button" (click)="removeInstructionStep(i)" style="cursor: pointer;">
+            <i class="fa-solid fa-trash ps-5" style="color: #d6536d;"></i>
+          </a>
+        </li>  <!-- Display added steps with remove option -->
       </ul>
     </div>
   

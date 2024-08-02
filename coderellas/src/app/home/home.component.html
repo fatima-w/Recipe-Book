@@ -1,5 +1,6 @@
 
 <div *ngIf="isAuthenticated">
+    <!-- <app-feature></app-feature> -->
     <div class="container-fluid home-container">
         <div class="row">
             <div class="col-xs-12 text-center">
@@ -17,7 +18,7 @@
                             <div class="search-bar justify-content-between">
                                 <input type="text" [(ngModel)]="searchValue" [ngModelOptions]="{standalone: true}" class="search-input" placeholder="Search your favorite recipes here!">
                                 
-                                <a class="search-button" (click)="searchRecipes()">
+                                <a class="search-button" (click)="searchRecipes()" title="Search">
                                     <i class="fa-solid fa-magnifying-glass"></i>
                                 </a>
                             </div>

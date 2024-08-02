@@ -115,5 +115,17 @@ getRecipeCreatorUsername(recipeId: number): Observable<{ username: string }> {
     return this.http.get<{ username: string }>(`${this.baseUrl}/recipe-creator/${recipeId}`, { headers });
 }
 
+
+ // Function to send a request to the backend to generate recipe JSON
+ generateRecipe(youtubeUrl: string): Observable<any> {
+  const headers = new HttpHeaders().set('Content-Type', 'application/json');
+  return this.http.post(`${this.baseUrl}/api/generate`, { youtube_url: youtubeUrl }, { headers });
+}
+
+// Function to chat with the backend
+chat(message: string, token: string): Observable<any> {
+  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  return this.http.post(`${this.baseUrl}/chat`, { message }, { headers });
+}
 }
      

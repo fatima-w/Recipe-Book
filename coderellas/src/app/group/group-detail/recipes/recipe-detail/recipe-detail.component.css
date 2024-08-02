@@ -138,3 +138,9 @@ border-radius: 10px;
   font-weight: 600;
   color: white;
 }
+.comments-container{
+  border: 0.5px solid rgb(59, 59, 59);
+}
+.comment{
+background-color: #ebe9e1a6;
+}
