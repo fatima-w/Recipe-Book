@@ -1,5 +1,5 @@
 
-
+<!-- component for extracting the recipe name , ingredients and instructions through provided youtube url. -->
  <div class="container-fluid p-5 m-5 main-container">
   <h2>Generate Recipe from YouTube</h2>
   <form (ngSubmit)="onSubmit()">
@@ -12,6 +12,7 @@
     <p>{{ errorMessage }}</p>
   </div>
 
+  <!-- displaying recipes on success -->
   <div *ngIf="recipe">
     <h3>Recipe Details:</h3>
     <p><strong>Name:</strong> {{ recipe.name }}</p>

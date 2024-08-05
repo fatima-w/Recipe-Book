@@ -22,17 +22,8 @@ export class AuthService {
   isAuthenticated = new BehaviorSubject<boolean>(null);
   constructor(private http:HttpClient, private router:Router) { }
   apiUrl = "http://127.0.0.1:5000";
-  // onLogin(email:string, password:string){
-  //   return this.http.post<AuthResponseData>("http://127.0.0.1:5000/login",
-  //     {
-  //       email: email,
-  //       password: password,
-  //     }
-  //   ).pipe(tap(resData =>{
-  //     const user = new User(resData.email, resData.username);
-  //     this.user.next(user);
-  //   }))
-  // }
+ 
+  //method for logging in a user and storing its auth token from the response
   onLogin(email: string, password: string): Observable<any> {
     return this.http.post<any>(`${this.apiUrl}/login`, { email, password }).pipe(
       tap(response => {
@@ -45,31 +36,7 @@ export class AuthService {
     );
   }
   
-  // onSignUp(email:string,username:string, password1:string, password2:string){
-  //   return this.http.post<any>("http://127.0.0.1:5000/signup",
-  //     { email: email, username: username, password1: password1, password2: password2 }
-  //   ).pipe(tap(resData =>{
-  //     // if (resData.access_token) {
-  //     //   localStorage.setItem('authToken', resData.access_token);
-  //     //   // const user = new User(response.email, response.username);
-  //     //   // this.user.next(user);
-  //     // }
-  //     const user = new User(resData.email, resData.username);
-  //     this.user.next(user);
-  //   }))
-  // }
-
-  // onSignUp(email: string, username: string, password: string) {
-  //   return this.http.post<any>(`${this.apiUrl}/signup`,
-  //     { email: email, username: username, password: password }
-  //   ).pipe(tap(resData => {
-  //     if (resData.access_token) {
-  //       localStorage.setItem('authToken', resData.access_token);
-  //     }
-  //     const user = new User(email, username);
-  //     this.user.next(user);
-  //   }))
-  // }
+  
   onSignUp(email: string, username: string, password: string) {
     return this.http.post<any>(`${this.apiUrl}/signup`,
       { email, username, password }

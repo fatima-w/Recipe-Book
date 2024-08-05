@@ -25,10 +25,8 @@ interface Recipe {
 })
 export class RecipeService {
   private baseUrl = 'http://127.0.0.1:5000';
-  private apiUrl = "http://127.0.0.1:5000/add-recipe"; // Adjust API URL as needed
 
   constructor(private http: HttpClient) {}
-   // Adjust the base URL if necessary  
 
   getRecipeById(id: number): Observable<any> {
     return this.http.get<Recipe>(`${this.baseUrl}/recipe/${id}`);
@@ -41,9 +39,6 @@ export class RecipeService {
   editRecipe(recipeId: number, formData: FormData): Observable<any> {
     return this.http.post(`${this.baseUrl}/edit-recipe/${recipeId}`, formData);
   }
-  // updateRecipe(recipeId: number, recipeData: any): Observable<any> {
-  //   return this.http.put(`${this.baseUrl}/update-recipe/${recipeId}`, recipeData);
-  // }
 
   // Create a new recipe
   createRecipe(recipeData: any): Observable<any> {
@@ -53,7 +48,7 @@ export class RecipeService {
       'Authorization': `Bearer ${token}` // Include token in headers if required
     });
 
-    return this.http.post<any>(this.apiUrl, recipeData, { headers });
+    return this.http.post<any>("http://127.0.0.1:5000/add-recipe", recipeData, { headers });
 
     
   }
@@ -87,9 +82,9 @@ addRecipeToFavourites(recipeId: number): Observable<any> {
 }
 
 getCurrentUserId(): Observable<number> {
-  const token = localStorage.getItem('authToken'); // JWT token if authentication is required
+  const token = localStorage.getItem('authToken'); 
     const headers = new HttpHeaders({
-      'Authorization': `Bearer ${token}` // Include token in headers if necessary
+      'Authorization': `Bearer ${token}` 
     });
 
     return this.http.get<any>(`http://localhost:5000/current-user`, { headers }).pipe(
@@ -107,22 +102,21 @@ getTopRecipes(): Observable<Recipe[]> {
 }
 
 getRecipeCreatorUsername(recipeId: number): Observable<{ username: string }> {
-  const token = localStorage.getItem('authToken'); // JWT token if authentication is required
+  const token = localStorage.getItem('authToken'); 
     const headers = new HttpHeaders({
-      'Authorization': `Bearer ${token}` // Include token in headers if necessary
+      'Authorization': `Bearer ${token}` 
     });
 
     return this.http.get<{ username: string }>(`${this.baseUrl}/recipe-creator/${recipeId}`, { headers });
 }
 
 
- // Function to send a request to the backend to generate recipe JSON
+ // Function to generate recipe using youtube url
  generateRecipe(youtubeUrl: string): Observable<any> {
   const headers = new HttpHeaders().set('Content-Type', 'application/json');
   return this.http.post(`${this.baseUrl}/api/generate`, { youtube_url: youtubeUrl }, { headers });
 }
 
-// Function to chat with the backend
 chat(message: string, token: string): Observable<any> {
   const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
   return this.http.post(`${this.baseUrl}/chat`, { message }, { headers });

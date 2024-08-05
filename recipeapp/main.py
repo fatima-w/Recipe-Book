@@ -9,7 +9,7 @@ import google.generativeai as genai
 from dotenv import load_dotenv
 
 load_dotenv('dev.env')
-gemini_api_key = 'AIzaSyC8TXINh7qxkn_EAjctpB3RdssvoOh402I'
+gemini_api_key = 'your-api-key'
 print(f"GEMINI_API_KEY: {gemini_api_key}")
 app = create_app()
 

@@ -60,30 +60,12 @@ export class HomeComponent {
   
   constructor(private authService:AuthService, private cd: ChangeDetectorRef, private http:HttpClient, private router:Router){}
 
-  // ngOnint(){
-  //   this.userSub = this.authService.user.subscribe(user =>{
-  //     this.isAuthenticated = !!user;
-  //     // console.log(!user);
-  //     console.log("user authentication status: ",!!user);
-  //     this.cd.detectChanges();
-  //   });
-  // }
-
   ngOnInit(){
     this.authService.isAuthenticated.subscribe(res =>{
       this.isAuthenticated = res;
     });
     this.startSlideshow();
   }
-  
-  
-
-  // ngOnDestroy() { // Implement OnDestroy to clean up the subscription
-  //   if (this.userSub) {
-  //     this.userSub.unsubscribe();
-  //   }
-  // }
-
 
   // for slideshow
   

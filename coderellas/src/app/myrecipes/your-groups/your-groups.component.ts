@@ -5,7 +5,7 @@ interface Groupi {
   name: string;
   description: string;
   public?: boolean;
-  user_id: number; // Add user_id to track group ownership
+  user_id: number; 
 }
 @Component({
   selector: 'app-your-groups',

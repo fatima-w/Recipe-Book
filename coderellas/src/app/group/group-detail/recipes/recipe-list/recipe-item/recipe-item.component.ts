@@ -37,7 +37,7 @@ export class RecipeItemComponent {
     this.fetchCreatorUsername();
   }
   viewDetails() {
-    // Navigate to recipe-detail with the recipe ID
+    // Navigate to recipe-detail with the recipe ID after clicking the current recipe item
     this.router.navigate(['/recipe-detail', this.recipe.id]);
   }
   fetchCreatorUsername(): void {

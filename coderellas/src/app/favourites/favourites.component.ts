@@ -28,6 +28,7 @@ export class FavouritesComponent implements OnInit {
     this.fetchFavouriteRecipes();
   }
 
+  //method for retrieving favourite recipes using recipe service's getFavouriteRecipes() method
   fetchFavouriteRecipes(): void {
     this.recipeService.getFavouriteRecipes().subscribe({
       next: (recipes) => {

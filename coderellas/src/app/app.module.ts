@@ -20,7 +20,6 @@ import { GroupStartComponent } from './group/group-start/group-start.component';
 import { RecipesComponent } from './group/group-detail/recipes/recipes.component';
 import { NewRecipeComponent } from './group/group-detail/recipes/new-recipe/new-recipe.component';
 import { RecipeDetailComponent } from './group/group-detail/recipes/recipe-detail/recipe-detail.component';
-import { RecipeEditComponent } from './group/group-detail/recipes/recipe-edit/recipe-edit.component';
 import { RecipeListComponent } from './group/group-detail/recipes/recipe-list/recipe-list.component';
 import { RecipeItemComponent } from './group/group-detail/recipes/recipe-list/recipe-item/recipe-item.component';
 import { MyrecipesComponent } from './myrecipes/myrecipes.component';
@@ -53,7 +52,6 @@ import { FeatureComponent } from './feature/feature.component';
     RecipesComponent,
     NewRecipeComponent,
     RecipeDetailComponent,
-    RecipeEditComponent,
     RecipeListComponent,
     RecipeItemComponent,
     MyrecipesComponent,

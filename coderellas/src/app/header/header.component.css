@@ -1,4 +1,3 @@
-/* src/app/shared/navbar.component.css */
 
 :root{
   --red: #e43d12;
@@ -12,24 +11,22 @@
 /* General Navbar Styling */
 .custom-navbar {
     background-color: var(--white);
-    /* padding: 1rem; Padding for spacing */
-    /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
-    transition: background-color 0.3s ease; /* Smooth transition for background color changes */
+    transition: background-color 0.3s ease; 
   }
   
   /* Navbar Brand */
   .navbar-brand {
     /* font-family: "Hachi Maru Pop", cursive; */
     font-family: "Playwrite AR", cursive;
-    font-size: 1.8rem; /* Larger font size for prominence */
+    font-size: 1.8rem; 
     /* color: #00796b;  */
     color: var(--rose);
     font-weight: 900;
-    text-decoration: none; /* Remove underline */
+    text-decoration: none; 
   }
   
   .brand-text {
-    font-weight: 600; /* Semi-bold for brand */
+    font-weight: 600; 
   }
   
   .highlight {
@@ -39,17 +36,17 @@
   
   /* Navbar Links */
   .navbar-nav .nav-link {
-    font-size: 1.1rem; /* Slightly larger font size */
-    color: var(rose); /* Darker teal color for links */
-    margin-right: 1rem; /* Spacing between nav items */
-    transition: color 0.3s ease, transform 0.3s ease; /* Smooth transitions for effects */
-    position: relative; /* Position for underline effect */
+    font-size: 1.1rem; 
+    color: var(rose); 
+    margin-right: 1rem; 
+    transition: color 0.3s ease, transform 0.3s ease; 
+    position: relative; 
   }
   
   /* Hover Effect */
   .navbar-nav .nav-link:hover {
-    color: var(--pink); /* Deep teal on hover */
-    transform: translateY(-2px); /* Lift effect on hover */
+    color: var(--pink); 
+    transform: translateY(-2px);
   }
   .nav-link:hover{
     i{
@@ -61,59 +58,53 @@ i:hover{
   }
   
   .navbar-nav .nav-link::after {
-    content: ''; /* Empty content for underline */
-    position: absolute; /* Position relative to link */
-    left: 0; /* Start at beginning of link */
-    bottom: -5px; /* Slightly below link */
-    width: 100%; /* Full width */
-    height: 2px; /* Thickness of underline */
-    background-color: var(--rose); /* Deep teal for underline */
-    transform: scaleX(0); /* Start hidden */
-    transition: transform 0.3s ease; /* Smooth reveal */
+    content: ''; 
+    position: absolute; 
+    left: 0; 
+    bottom: -5px; 
+    width: 100%; 
+    height: 2px; 
+    background-color: var(--rose); 
+    transform: scaleX(0); 
+    transition: transform 0.3s ease; 
   }
   
   .navbar-nav .nav-link:hover::after {
-    transform: scaleX(1); /* Reveal underline on hover */
+    transform: scaleX(1); 
   }
   
-  /* Active Link Styles */
   .navbar-nav .nav-item.active .nav-link {
-    color: var(--pink); /* Match hover color */
-    font-weight: 600; /* Bold for emphasis */
+    color: var(--pink); 
+    font-weight: 600;
   }
   
-  /* Navbar Toggler */
   .navbar-toggler {
-    border-color: rgba(0, 0, 0, 0.2); /* Light border for toggler */
+    border-color: rgba(0, 0, 0, 0.2);
   }
   
   .navbar-toggler-icon {
     background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' fill='%2300796b' viewBox='0 0 30 30'><path stroke='%2300796b' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/></svg>");
-    /* Custom icon color */
   }
   
-  /* Login Link Specific Style */
   .login-link {
-    font-weight: 600; /* Slightly bolder */
+    font-weight: 600; 
   }
   
-  /* Logout Link Specific Style */
   .logout-link {
-    font-weight: 600; /* Slightly bolder */
-    color: #d32f2f; /* Red to signify logout */
+    font-weight: 600; 
+    color: #d32f2f; 
     transition: color 0.3s ease;
   }
   
   .logout-link:hover {
-    color: #b71c1c; /* Darker red on hover */
+    color: #b71c1c; 
   }
   
-  /* Responsive Styles */
   @media (max-width: 992px) {
     .navbar-nav .nav-link {
       margin-right: 0;
-      margin-bottom: 0.5rem; /* Spacing between items on mobile */
-      text-align: center; /* Center text on mobile */
+      margin-bottom: 0.5rem;
+      text-align: center; 
     }
   }
   

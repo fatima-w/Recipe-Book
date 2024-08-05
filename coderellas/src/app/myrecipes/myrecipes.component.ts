@@ -16,9 +16,6 @@ export class MyrecipesComponent {
 
   activeSection: string = 'yourRecipes'; // Default section
 
-  // showSection(section: string): void {
-  //   this.activeSection = section;
-  // }
 
   toYourRecipes(){
     this.activeSection = 'yourRecipes';
