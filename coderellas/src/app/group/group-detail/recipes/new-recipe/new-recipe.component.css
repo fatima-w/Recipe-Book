@@ -1,0 +1,63 @@
+:root{
+  --red: #e43d12;
+  --rose: #d6536d;
+  --pink: #ffa2b6;
+  --yellow: #efb11d;
+  --cream: #ebe9e1;
+  --black: #000000;
+  --white: #ffffff;
+}
+.form-container{
+  background-color: var(--cream);
+}
+.form-group {
+    margin-bottom: 15px;
+  }
+  
+  .ingredient-item {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  button {
+    cursor: pointer;
+  }
+  
+  button[type='button'] {
+    margin-right: 10px;
+  }
+  
+  /* .ingredient-item input {
+    width: 45%;
+  } */
+  
+  textarea {
+    resize: vertical;
+  }
+  
+  .form-check {
+    margin-top: 20px;
+  }
+
+.name-ctrl{
+  width: 89%;
+}
+.ingredient-quantity-ctrl{
+  width: 46%;
+}
+.ingredient-name-ctrl{
+  width: 51%;
+}
+.ints-ctrl{
+  width: 89%;
+}
+.submit-btn{
+  background-color: var(--rose);
+  font-weight: 600;
+  color: white;
+}
+.ingredient-item{
+  width: 100%;
+}

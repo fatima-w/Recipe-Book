@@ -1,0 +1,29 @@
+<div class="main-container w-75">
+    <div class="group-container">
+      <h1 class="group-name">{{ group.name }}</h1>
+      <p class="group-description">{{ group.description }}</p>
+  
+      <div class="d-flex justify-content-between align-items-end add-edit">
+        <div class="quote-add-recipe">
+          <p class="quote">"Pass on your culinary secrets, one recipe at a time."</p>
+          <button class="btn add-recipe-btn" (click)="toAddRecipe()">
+            <i class="bi bi-plus-circle me-2"></i> New Recipe
+          </button>
+        </div>
+        <div class="group-actions">
+          <ng-container *ngIf="isUserAllowed">
+            <a class="" (click)="editGroup()" style="cursor: pointer;">
+              <i class="fa-regular fa-pen-to-square" style="color: #d6536d;"></i>
+            </a>
+            <a class="" (click)="deleteGroup(group.id)" style="cursor: pointer;">
+              <i class="fa-solid fa-trash" style="color: #d6536d;"></i>
+            </a>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+  
+    <div class="recipes-container">
+      <app-recipe-list [recipes]="recipes"></app-recipe-list>
+    </div>
+  </div>

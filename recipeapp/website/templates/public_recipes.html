@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block content %}
+    <h1>My Public Recipes</h1>
+    <ul>
+        {% for recipe in recipes %}
+        <li>{{ recipe.recipe }} - {{ recipe.ingredients }}</li>
+        {% endfor %}
+    </ul>
+    <a href="{{ url_for('views.profile') }}">Back to Profile</a>
+    {% endblock %}

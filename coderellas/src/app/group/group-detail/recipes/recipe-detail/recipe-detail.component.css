@@ -1,0 +1,137 @@
+
+:root{
+  --red: #e43d12;
+  --rose: #d6536d;
+  --pink: #ffa2b6;
+  --yellow: #efb11d;
+  --cream: #ebe9e1;
+  --black: #000000;
+  --white: #ffffff;
+}
+
+.sub-headings{
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--rose);
+}
+
+
+  ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .btn {
+    margin-right: 10px;
+  }
+  
+  .add-comment {
+    margin-top: 20px;
+  }
+  
+  textarea {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  /* recipe-detail styles */
+ 
+  .recipe-detail {
+    margin: 20px;
+    /* max-width: 800px; */
+    width: 100%;
+  }
+  .recipe-heading{
+    font-size: 2.5rem;
+    font-weight: 700;
+  }
+  .image-info-card{
+    width: 100%;
+  }
+  .post-card{
+    /* width: 60%; */
+background-color: var(--cream); 
+border-radius: 10px; 
+}
+
+.time-container{
+  background-color: var(--cream);
+  border-radius: 20px;
+}
+  
+  .recipe-image {
+    width: 100%;
+    height: 50vh;
+    border-radius: 20px;
+  }
+  
+  .recipe-info p {
+    margin: 10px 0;
+  }
+  
+  .recipe-info{
+    width: 60%;
+  }
+
+  .ingredient-name{
+    margin: 5px 0;
+    padding: 5px;
+    background-color: var(--cream);
+    border-radius: 4px;
+  }
+  .ingredient-quantity{
+    margin: 5px 0;
+    padding: 5px;
+    background-color: var(--cream);
+    border-radius: 4px;
+  }
+  .instructions{
+    margin: 5px 0;
+    padding: 5px;
+    background-color: var(--cream);
+    border-radius: 4px;
+    width: fit-content;
+  }
+  .add-comment textarea{
+    border: none;
+    border-bottom: 2px solid rgb(116, 116, 116);
+    border-radius: 0px;
+  }
+  .add-comment textarea:hover{
+    border: none;
+    border-bottom: 2px solid black;
+    border-radius: 0px;
+  }
+
+  .add-comment button{
+    border-radius: 20px;
+
+  }
+
+/*  edit-form styles */
+.form-container{
+  background-color: var(--cream);
+}
+.name-ctrl{
+  width: 60%;
+}
+.ingredient-quantity-ctrl{
+  width: 100%;
+}
+.ingredient-name-ctrl{
+  width: 100%;
+}
+.ints-ctrl{
+  width: 60%;
+}
+.submit-btn{
+  background-color: var(--rose);
+  font-weight: 600;
+  color: white;
+}
+.comments-container{
+  border: 0.5px solid rgb(59, 59, 59);
+}
+.comment{
+background-color: #ebe9e1a6;
+}

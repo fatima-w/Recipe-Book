@@ -1,0 +1,43 @@
+:root{
+  --red: #e43d12;
+  --rose: #d6536d;
+  --pink: #ffa2b6;
+  --yellow: #efb11d;
+  --cream: #ebe9e1;
+  --black: #000000;
+  --white: #ffffff;
+}
+
+.card {
+    border-radius: 0.5rem;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  .card-img-top {
+    height: 200px;
+    object-fit: cover;
+  }
+  .card-body {
+    padding: 1rem;
+  }
+  .card-title {
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+  }
+  .card-text {
+    font-size: 0.875rem;
+    color: #555;
+  }
+  .btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+  }
+  .cooking-time{
+    background-color: var(--cream);
+    border-radius: 20px;
+    width: fit-content;
+    position: relative;
+    z-index: 50;
+    left: 78%;
+    top: 9%;
+  }

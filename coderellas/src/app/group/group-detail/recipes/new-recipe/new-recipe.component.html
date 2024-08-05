@@ -1,0 +1,154 @@
+
+
+<div class="container-fluid form-container p-5 w-75">
+  <h2>Add Recipe</h2>
+
+  <!-- -----For entering recipe name----- -->
+  <form [formGroup]="recipeForm" (ngSubmit)="onSubmit()">
+    <div class="form-group pt-3">
+      <input
+        type="text"
+        id="name"
+        formControlName="name"
+        class="form-control py-3 name-ctrl"
+        required
+        placeholder="Enter your recipe's name (eg. Sushi)"
+      />
+    </div>
+  
+    <!-- -----For managing recipe ingredients----- -->
+    <div class="d-flex row">
+      <div formArrayName="ingredients" class="col-md-11">
+        <div
+          class="ingredient-item  pt-4"
+          *ngFor="let ingredient of ingredients.controls; let i = index"
+          [formGroupName]="i"
+        >
+        
+        <input
+            type="text"
+            formControlName="quantity"
+            placeholder="Quantity (eg. 5ml, 100 g)"
+            class="form-control ingredient-quantity-ctrl py-3"
+            required
+          />
+          <input
+            type="text"
+            formControlName="name"
+            placeholder="Ingredient Name"
+            class="form-control ingredient-name-ctrl py-3"
+            required
+          />
+          
+          <a type="button" (click)="removeIngredient(i)" style="cursor: pointer;">
+            <i class="fa-solid fa-trash" style="color: #d6536d;"></i>
+          </a>
+        </div>
+      </div>
+      <div class="col-md-1">      
+        <a type="button" (click)="addIngredient()" style="cursor: pointer;" class="pt-4 my-3"><i class="fa-solid fa-plus" style="color: #d6536d;"></i></a>
+      </div>
+    </div>
+
+
+    <!-- -----For managing recipe instructions----- -->
+    <div class="form-group pt-4">
+      <label for="currentStep">Add Instructions</label>
+      <div class="add-inst d-flex">
+        <input
+          type="text"
+          [(ngModel)]="currentStep"  
+          [ngModelOptions]="{standalone: true}"
+          placeholder="Enter step"
+          class="form-control ints-ctrl py-3"
+          required
+        />
+        <a type="button" (click)="addInstructionStep()" style="cursor: pointer;">
+          <i class="fa-solid fa-plus p-3" style="color: #d6536d;"></i>
+        </a>
+      </div>
+    </div>
+  
+    <div class="form-group">
+      <label>Instructions:</label>
+      <ul>
+        <li *ngFor="let step of instructionSteps; let i = index">
+          {{ step }}
+          <a type="button" (click)="removeInstructionStep(i)" style="cursor: pointer;">
+            <i class="fa-solid fa-trash ps-5" style="color: #d6536d;"></i>
+          </a>
+        </li>  
+      </ul>
+    </div>
+  
+    <!-- -----For uploading recipe image----- -->
+    <div class="form-group">
+      <label class="pt-4 d-block">Upload image</label>
+      <input
+        type="file"
+        id="recipeImage"
+        (change)="onFileSelected($event)"
+        class="form-control-file"
+      />
+    </div>
+
+    <!-- -----For entering recipe cooking time, difficulty and type----- -->
+  <div class="row">
+    <div class="form-group pt-4 col-md-4">
+      <label for="cookingTime">Cooking Time (minutes)</label>
+      <input
+        type="number"
+        id="cookingTime"
+        formControlName="cookingTime"
+        class="form-control cook-ctrl py-3"
+        required
+      />
+    </div>
+  
+    <div class="form-group pt-4 col-md-4">
+      <label for="difficultyLevel">Difficulty Level:</label>
+      <select
+        id="difficultyLevel"
+        formControlName="difficultyLevel"
+        class="form-control diff-ctrl py-3"
+        required
+        placeholder="Choose difficulty level"
+      >
+        <option value="Easy">Easy</option>
+        <option value="Medium">Medium</option>
+        <option value="Hard">Hard</option>
+      </select>
+    </div>
+  
+    <div class="form-group pt-4 col-md-4">
+      <label for="recipeType">Recipe Type:</label>
+      <select
+        id="recipeType"
+        formControlName="recipeType"
+        class="form-control type-ctrl py-3"
+        required
+        placeholder="Choose recipe type"
+      >
+        <option value="Vegetarian">Vegetarian</option>
+        <option value="Non-Vegetarian">Non-Vegetarian</option>
+        <option value="Vegan">Vegan</option>
+      </select>
+    </div>
+  </div>
+    
+  <!-- -----Checkbox for sharing the recipe----- -->
+    <div class="form-check mb-3 pt-4">
+      <input
+        class="form-check-input"
+        type="checkbox"
+        id="public"
+        formControlName="public"
+      />
+      <label class="form-check-label" for="public">Share your recipe with others!</label>
+    </div>
+  
+    <button type="submit" class="btn submit-btn">Add Recipe</button>
+  </form>
+</div>
+
+

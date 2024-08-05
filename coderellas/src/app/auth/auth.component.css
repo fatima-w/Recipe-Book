@@ -1,0 +1,55 @@
+:root{
+    --red: #e43d12;
+    --rose: #d6536d;
+    --pink: #ffa2b6;
+    --yellow: #efb11d;
+    --cream: #ebe9e1;
+    --black: #000000;
+  }
+.background{
+    background: url(../assets/images/jonathan-pielmayer-RKJElwIyCQw-unsplash.jpg);
+    filter: blur(3px);
+  -webkit-filter: blur(3px);
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 90vh;
+}
+.auth-container{
+    background-color: var(--cream);
+    height: 90vh;
+    
+}
+.form-container{
+    background-color: var(--cream);
+    border-radius: 7px;
+    color: var(--black);
+}
+ .login-form{
+    background-color: white;
+ }
+.form-control{
+    border: 0px;
+    border-bottom: 2px solid rgb(0, 0, 0);
+    border-radius: 0px;
+    background-color: #00000000;
+}
+.switch-link{
+    color: rgb(0, 0, 0);
+    text-decoration: none;
+    font-weight: 500;
+}
+.switch-link:hover{
+    color: var(--rose);
+    
+}
+.submit-btn{
+    font-weight: 500;
+    background-color: var(--rose);
+    border-color: var(--rose);
+    border-radius: 0;
+}
+.submit-btn:hover{
+    background-color: var(--pink);
+    font-weight: 700;
+    color: black;
+}

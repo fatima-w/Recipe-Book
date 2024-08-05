@@ -1,0 +1,96 @@
+
+
+<nav class="navbar navbar-expand-lg custom-navbar fixed-top px-4">
+    <div class="container-fluid">
+        <a 
+            [routerLink]="['/home']" 
+            routerLinkActiveOptions="{exact:true}" 
+            class="navbar-brand"
+        >
+            <span class="brand-text">Cuisine <span class="highlight">Chérie</span></span>
+        </a>
+        <button 
+            class="navbar-toggler" 
+            type="button" 
+            data-bs-toggle="collapse" 
+            data-bs-target="#navbarNav" 
+            aria-controls="navbarNav" 
+            aria-expanded="false" 
+            aria-label="Toggle navigation"
+        >
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto align-items-center">
+                <li class="nav-item" routerLinkActive="active" *ngIf="isAuthenticated">
+                    <button
+                        class="nav-link" 
+                        type="button"
+                        [routerLink]="['/home']" 
+                        title="Home"
+                    >
+                    <i class="fa-solid fa-house-chimney" style="color: #d6536d;"></i>
+                    </button>
+                </li>
+                <li class="nav-item" routerLinkActive="active" *ngIf="isAuthenticated">
+                    <button
+                        class="nav-link" 
+                        type="button"
+                        [routerLink]="['/create-group']" 
+                        title="Create new category"
+                    >
+                    <i class="fa-solid fa-plus" style="color: #d6536d;"></i>
+                    </button>
+                </li>
+                <li class="nav-item" routerLinkActive="active" *ngIf="isAuthenticated">
+                    <a 
+                        class="nav-link" 
+                        [routerLink]="['/myrecipes/your-recipes']" 
+                        (click)="onMyRecipeClicked()"
+                        title="View your profile"
+                    >
+                    <i class="fa-solid fa-user" style="color: #d6536d;"></i>
+                    </a>
+                </li>
+                <li class="nav-item" routerLinkActive="active" *ngIf="isAuthenticated">
+                    <a  
+                        class="nav-link" 
+                        [routerLink]="['/favourites']"
+                        title="Saved recipes"
+                    >
+                    <i class="fa-solid fa-bookmark" style="color: #d6536d;"></i>
+                    </a>
+                </li>
+                <li class="nav-item" routerLinkActive="active" *ngIf="isAuthenticated">
+                    <a  
+                        class="nav-link" 
+                        [routerLink]="['/feature']"
+                        title="Saved recipes"
+                    >
+                    <i class="fa-solid fa-wand-magic-sparkles" style="color: #d6536d;"></i>
+                    </a>
+                </li>
+                <li class="nav-item" routerLinkActive="active" *ngIf="isAuthenticated">
+                    <a  
+                        class="nav-link logout-link" 
+                        (click)="onLogout()" 
+                        style="cursor: pointer;"
+                    >
+                        Logout
+                    </a>
+                </li>
+                <li class="nav-item" routerLinkActive="active" *ngIf="!isAuthenticated">
+                    <a  
+                        class="nav-link login-link" 
+                        [routerLink]="['/auth']"
+                        title="Login or Sign in"
+                    >
+                    <i class="fa-solid fa-user" style="color: #d6536d;"></i>
+                    </a>
+                </li>
+            </ul> 
+        </div>
+    </div>
+</nav>
+
+

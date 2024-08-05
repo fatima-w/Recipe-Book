@@ -1,0 +1,61 @@
+<div class="container mt-5 start-container">
+    <div class="card shadow-lg group-create-container ">
+      <div class="card-body ">
+        <h2 class="card-title mb-4 create-cat-heading mt-3 mb-3">Edit Group</h2>
+        <form [formGroup]="editGroupForm" (ngSubmit)="onSubmit()">
+          <div class="mb-3">
+            <label for="name" class="form-label">Group Name</label>
+            <input
+              type="text"
+              id="name"
+              class="form-control"
+              formControlName="name"
+            />
+            <div
+              *ngIf="editGroupForm.get('name')?.invalid && editGroupForm.get('name')?.touched"
+              class="text-danger"
+            >
+              Group name is required.
+            </div>
+          </div>
+  
+          <div class="mb-3">
+            <label for="description" class="form-label">Description</label>
+            <textarea
+              id="description"
+              class="form-control"
+              formControlName="description"
+            ></textarea>
+            <div
+              *ngIf="editGroupForm.get('description')?.invalid && editGroupForm.get('description')?.touched"
+              class="text-danger"
+            >
+              Description is required.
+            </div>
+          </div>
+  
+          <div class="form-check mb-3">
+            <input
+              type="checkbox"
+              id="public"
+              class="form-check-input"
+              formControlName="public"
+            />
+            <label for="public" class="form-check-label">Public</label>
+          </div>
+  
+          <button
+            type="submit"
+            class="btn btn-success me-3"
+            [disabled]="editGroupForm.invalid"
+          >
+            Save Changes
+          </button>
+          <button type="button" class="btn btn-secondary" (click)="cancelEdit()">
+            Cancel
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+  

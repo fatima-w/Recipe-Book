@@ -1,0 +1,110 @@
+
+<div *ngIf="isAuthenticated">
+    <!-- <app-feature></app-feature> -->
+    <div class="container-fluid home-container">
+        <div class="row">
+            <div class="col-xs-12 text-center">
+                <form>
+                    
+                        
+                        <div class="search-container p-2" [ngClass]="{'search-after': isSearched}">
+                            <div class="search-bar justify-content-between">
+                                <input type="text" [(ngModel)]="searchValue" [ngModelOptions]="{standalone: true}" class="search-input" placeholder="Search your favorite recipes here!">
+                                
+                                <a class="search-button" (click)="searchRecipes()" title="Search">
+                                    <i class="fa-solid fa-magnifying-glass"></i>
+                                </a>
+                            </div>
+                            
+                            
+                          </div>
+                          <div *ngIf="isSearched" class="search-results d-block p-3">
+                            <app-search-item *ngFor="let recipe of searchedRecipes" [recipe]="recipe"></app-search-item>
+                          </div>
+                          
+                
+                    
+                </form>
+                <div class="container-fluid text-center">
+                    <div class="row video-row w-75 text-center">
+                        <div class="col-md-4 video-container">
+                            <video autoplay muted loop class="background-video">
+                                <source src="https://videos.pexels.com/video-files/9207047/9207047-sd_360_450_25fps.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+                        <div class="col-md-4 video-container">
+                            <video autoplay muted loop class="background-video">
+                                <source src="https://videos.pexels.com/video-files/6824077/6824077-sd_360_640_30fps.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+                        <div class="col-md-4 video-container">
+                            <video autoplay muted loop class="background-video">
+                                <source src="https://videos.pexels.com/video-files/9207045/9207045-sd_360_450_30fps.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+            
+                    </div>
+                </div>
+                
+         
+                
+            </div>
+        </div>
+       
+    </div>
+
+
+    <div class="containergroupmessageelement py-4">
+        <span>Join a flavor family or start your own kitchen tribe.</span><span><button (click)="toCreateCategory()" class="btn ms-5 creat-cat-btn">Create Category</button></span>
+        
+      </div>
+    
+    <div class="">
+      
+        <app-group-list></app-group-list>
+         
+    </div>
+
+    <div class="containerquoteelement">
+        <!-- <i class="fa-thin fa-bowl-food"></i> -->
+        <span>Join a flavor family or start your own kitchen tribe.</span>
+      </div>
+
+    <div class="my-5">
+        <app-top-recipes></app-top-recipes>
+    </div>
+    <div class="slideshow-container mt-5 pt-2">
+        <div
+          class="slide fade"
+          *ngFor="let slide of slides; let i = index"
+          [style.display]="i === currentSlideIndex ? 'block' : 'none'"
+        >
+          <img [src]="slide.imageUrl" [alt]="'Food Image ' + (i + 1)" />
+          <div class="quote">{{ slide.quote }}</div>
+        </div>
+      
+        <a class="prev d-none" (click)="currentSlideIndex = (currentSlideIndex - 1 + slides.length) % slides.length">&#10094;</a>
+        <a class="next d-none" (click)="showNextSlide()">&#10095;</a>
+      </div>
+      
+      
+      
+</div>
+<div *ngIf="!isAuthenticated">
+    <div class="container-fluid home-container">
+        <div class="row pt-5">
+        </div>
+        <div class="row mt-5">
+            <div class="col-xs-12 text-center mt-4">
+                <h3>Welcome to Recipe Haven!</h3>
+                <div class="mx-5 px-5">
+                    <p class="mx-5 px-5 mt-2">Unleash your inner chef with Recipe Haven! Whether you're a pro in the kitchen or a novice, our vast collection of recipes caters to every taste. Discover culinary delights, craft unforgettable dishes, and connect with food lovers worldwide. Ignite your culinary creativity today!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

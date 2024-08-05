@@ -1,0 +1,11 @@
+<div class="top-recipes-container pt-5 px-5 pb-5">
+    <h2 class="text-center">Recipes of the Week</h2>
+    <div class="row">
+        <app-top-recipes-item *ngFor="let recipe of topRecipes"
+        [recipe]="recipe"
+        class="col-md-3 mb-4"
+        ></app-top-recipes-item>
+     
+    </div>
+  </div>
+  

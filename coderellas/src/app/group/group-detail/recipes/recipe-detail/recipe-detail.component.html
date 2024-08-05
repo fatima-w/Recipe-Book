@@ -1,0 +1,153 @@
+<div *ngIf="recipe" class="mt-5">
+    <div *ngIf="!isEditing">
+      <div class="container-fluid recipe-container mt-5 w-75">
+        <div class="recipe-detail pt-5" *ngIf="recipe">
+          <div class="d-flex justify-content-between">
+            
+            <h2 class="pb-3 recipe-heading">{{ recipe.recipe }}</h2>
+            <div class="update-recipe me-5" *ngIf="isUserAllowed">
+              <a class="" (click)="toggleEdit()" style="cursor: pointer;" title="Edit recipe"><i class="fa-regular fa-pen-to-square" style="color: #d6536d; font-size: 25px;"></i></a>
+              <a class="" (click)="deleteRecipe()" style="cursor: pointer;" title="Delete recipe"><i class="ms-4 fa-solid fa-trash" style="color: #d6536d; font-size: 25px;"></i></a>
+            </div>
+          </div>
+          
+          <div class="container-fluid image-card">
+            <div class="row">
+              <div class="post-card p-3 col-md-7">
+                <img [src]="'http://127.0.0.1:5000/static/' + recipe.image_path" alt="Recipe Image" class="recipe-image pb-3" />
+                <div class="image-info-card d-flex justify-content-between">
+                  <div class="profile">
+                    <p></p>
+                  </div>
+                  <div class="reviews">
+                    <div class="recipe-feedback">
+                      <a (click)="likeRecipe()" [disabled]="hasLiked === true" class="" style="cursor: pointer;">
+                        <i class="fa-regular fa-thumbs-up" style="color: #d6536d;font-size: 25px;"></i> <span class="badge text-muted">{{ recipe.likes_count }}</span>
+                      </a>
+                      <a (click)="dislikeRecipe()" [disabled]="hasLiked === false" class="" style="cursor: pointer;">
+                        <i class="fa-regular fa-thumbs-down" style="color: #d6536d;font-size: 25px;"></i> <span class="badge text-muted">{{ recipe.dislikes_count }}</span>
+                      </a>
+                      <a (click)="addToFavourites()" class="ms-5" style="cursor: pointer;" title="Save recipe"><i class="fa-solid fa-bookmark" style="color: #d6536d; font-size: 25px;"></i></a>
+  
+                    </div>
+                  </div>
+              </div>
+              
+              </div>
+              <div class="col-md-3 p-3 ps-5">
+                <div class="time-container d-flex justify-content-between p-2">
+                  <span>{{recipe.cooking_time}} m</span>
+                  <div class="span ps-3" ><i class="fa-regular fa-clock" title="Cooking time" style="color: #d6536d;"></i></div>
+                </div>
+                <div class="time-container mt-2 p-2">
+                  <p class="m-0"><strong>{{ recipe.difficulty_level }}</strong> </p>
+
+                </div>
+                <div class="time-container mt-2 p-2">
+                  <p class="m-0"><strong>{{ recipe.recipe_type }}</strong> </p>
+
+                </div>
+              </div>
+            </div>
+            
+          </div>
+          <div class="recipe-info pt-4">
+            <h3 class="sub-headings pt-2">Ingredients</h3>
+          <ul>
+            <li *ngFor="let ingredient of recipe.ingredients" class="mb-3">
+              <span class="ingredient-name px-3 me-1">{{ ingredient.name }}</span> - <span class="ingredient-quantity ms-3 px-3">{{ ingredient.quantity }}</span>
+            </li>
+          </ul>
+            <h2 class="sub-headings pt-4">Instructions</h2>
+            <ol>
+              <li *ngFor="let step of instructions"><p class="instructions px-3">{{ step }}</p></li>  <!-- Display each instruction step -->
+            </ol>
+          </div>
+
+          <hr>
+
+          <!-- Comments Section -->
+           <div class="container-fluid ">
+            <h3 class="sub-headings pt-5">Comments</h3>
+          
+        
+            <!-- Add Comment Form -->
+            <div class="add-comment">
+              <textarea [(ngModel)]="newCommentText" rows="1" placeholder="Add a comment..." class="form-control"></textarea>
+              <div class="text-end"><button (click)="addComment()" class="btn btn-outline-secondary ">Comment</button></div>
+              
+            </div>
+            <div *ngFor="let comment of recipe.comments" class="comment mt-4">
+              <p class="p-2"><strong>{{ comment.username }}:</strong> {{ comment.text }}</p>
+            </div>
+           </div>
+          
+        </div>
+      </div>
+      
+      
+    </div>
+  
+    <div *ngIf="isEditing" class="container-fluid form-container p-5 w-75">
+      <h2>Edit Recipe</h2>
+      <form [formGroup]="recipeForm" (ngSubmit)="editRecipe()">
+        <div class="form-group pt-3">
+          <label for="name">Recipe Name</label>
+          <input formControlName="name" class="form-control py-3 name-ctrl" id="name">
+        </div>
+        
+        <div formArrayName="ingredients" class="pt-4">
+          <p>Ingredients</p>
+          <div *ngFor="let ingredient of recipeForm.get('ingredients').controls; let i = index" [formGroupName]="i">
+            <div class="form-row row">
+              <div class="form-group col-md-5">
+                
+                <input formControlName="quantity" class="form-control ingredient-quantity-ctrl py-3" id="ingredient-quantity">
+              </div>
+              <div class="form-group col-md-5">
+                
+                <input formControlName="name" class="form-control ingredient-name-ctrl py-3" id="ingredient-name">
+              </div>
+              <div class="form-group col-md-2 align-self-end p-3">
+                <a type="button" class="" (click)="addIngredient()" style="cursor: pointer;"><i class="fa-solid fa-plus" style="color: #d6536d;"></i></a>
+                <a type="button" class="" (click)="removeIngredient(i)" style="cursor: pointer;"><i class="fa-solid fa-trash ps-3" style="color: #d6536d;"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group pt-4">
+          <label for="instructions">Instructions</label>
+          <textarea formControlName="instructions" class="form-control" id="instructions"></textarea>
+        </div>
+
+        
+        
+        <div class="row">
+          <div class="form-group col-md-4">
+            <label for="cookingTime">Cooking Time</label>
+            <input formControlName="cookingTime" class="form-control py-3" id="cookingTime">
+          </div>
+  
+          <div class="form-group col-md-4">
+            <label for="difficultyLevel">Difficulty Level</label>
+            <select formControlName="difficultyLevel" class="form-control  py-3" id="difficultyLevel">
+              <option value="Easy">Easy</option>
+              <option value="Medium">Medium</option>
+              <option value="Hard">Hard</option>
+            </select>
+          </div>
+          <div class="form-group col-md-4">
+            <label for="recipeType">Recipe Type</label>
+            <select formControlName="recipeType" class="form-control  py-3" id="recipeType">
+              <option value="Vegetarian">Vegetarian</option>
+              <option value="Non-Vegetarian">Non-Vegetarian</option>
+              <option value="Vegan">Vegan</option>
+            </select>
+          </div>
+        </div>
+        
+        <button class="btn btn-success me-3 mt-4" type="submit">Save Changes</button>
+        <button class="btn btn-secondary mt-4" type="button" (click)="toggleEdit()">Cancel</button>
+      </form>
+     
